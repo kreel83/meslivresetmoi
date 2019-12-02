@@ -10,10 +10,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_153214) do
+ActiveRecord::Schema.define(version: 2019_12_02_201029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "criteres", force: :cascade do |t|
+    t.string "name"
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_criteres_on_category_id"
+  end
+
+  create_table "endinglists", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "endings", force: :cascade do |t|
+    t.bigint "endinglist_id", null: false
+    t.bigint "livre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["endinglist_id"], name: "index_endings_on_endinglist_id"
+    t.index ["livre_id"], name: "index_endings_on_livre_id"
+  end
+
+  create_table "livres", force: :cascade do |t|
+    t.string "imageurl"
+    t.string "title"
+    t.text "description"
+    t.string "author"
+    t.bigint "category_id", null: false
+    t.string "googleid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_livres_on_category_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.bigint "reading_id", null: false
+    t.bigint "critere_id", null: false
+    t.string "note"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["critere_id"], name: "index_notes_on_critere_id"
+    t.index ["reading_id"], name: "index_notes_on_reading_id"
+  end
+
+  create_table "readings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "livre_id", null: false
+    t.datetime "startdate"
+    t.datetime "enddate"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["livre_id"], name: "index_readings_on_livre_id"
+    t.index ["user_id"], name: "index_readings_on_user_id"
+  end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
@@ -54,5 +119,13 @@ ActiveRecord::Schema.define(version: 2019_12_02_153214) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "criteres", "categories"
+  add_foreign_key "endings", "endinglists"
+  add_foreign_key "endings", "livres"
+  add_foreign_key "livres", "categories"
+  add_foreign_key "notes", "criteres"
+  add_foreign_key "notes", "readings"
+  add_foreign_key "readings", "livres"
+  add_foreign_key "readings", "users"
   add_foreign_key "taggings", "tags"
 end

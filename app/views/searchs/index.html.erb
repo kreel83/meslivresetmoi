@@ -1,6 +1,7 @@
 
-<h1>search</h1>
-<div class="container">
+
+<div class="container" style="margin-top: 100px">
+  <h4>recherche</h4>
   <form action="search">
     <label for="title">par titre</label>
     <input type="text" id="title" name="title">
@@ -11,25 +12,10 @@
   </form>
 
   <hr>
-  <form action="/books/store" method="get" id="form">
-    <input type="hidden" name="dataId" value="" id="id">
-    <div class="contains">
-      <% @fj.each do |book| %>
-      <div class="card">
-        <div class="card-body">
-          <% if book['volumeInfo']['imageLinks'].nil? %>
-          <% else %>
-            <%= image_tag(book['volumeInfo']['imageLinks']['smallThumbnail'], height: '60', width: '45', data: {"id" => book['id']}) %>
-          <% end %>
-          <%= book['volumeInfo']['title'] %> (<%= book['volumeInfo']['authors'].join(', ') %>)
-
-        </div>
-      </div>
-
-      <% end %>
-    </div>
-  </form>
+    <%= render 'searchs/result', fb: @fb %>
 </div>
+
+
 
 
 
