@@ -1,0 +1,35 @@
+
+<h1>search</h1>
+<div class="container">
+  <form action="search">
+    <label for="title">par titre</label>
+    <input type="text" id="title" name="title">
+    <label for="author">par auteur</label>
+    <input type="text" id="author" name="author">
+
+     <button type="submit">search</button>
+  </form>
+
+  <hr>
+  <form action="/books/store" method="get" id="form">
+    <input type="hidden" name="dataId" value="" id="id">
+    <div class="contains">
+      <% @fj.each do |book| %>
+      <div class="card">
+        <div class="card-body">
+          <% if book['volumeInfo']['imageLinks'].nil? %>
+          <% else %>
+            <%= image_tag(book['volumeInfo']['imageLinks']['smallThumbnail'], height: '60', width: '45', data: {"id" => book['id']}) %>
+          <% end %>
+          <%= book['volumeInfo']['title'] %> (<%= book['volumeInfo']['authors'].join(', ') %>)
+
+        </div>
+      </div>
+
+      <% end %>
+    </div>
+  </form>
+</div>
+
+
+
