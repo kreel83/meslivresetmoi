@@ -1,0 +1,44 @@
+#book-card-buttons {
+  height: 120px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn-add {
+  color: white;
+  font-weight: bold;
+  width: 235px;
+  margin: 2px;
+  padding: 8px 8px;
+  border-radius: 4px;
+  background: #0F67DA;
+  opacity: 0.7;
+  transition: background 0.3s ease;
+}
+
+.btn-add:hover {
+  background: #147EFF;
+  color: white;
+}
+
+.btn-start {
+  color: white;
+  width: 235px;
+  font-weight: bold;
+  margin: 2px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: #1BCB7F;
+  transition: background 0.3s ease;
+  border: 1px solid;
+}
+
+.btn-start:hover {
+  background: #1BCB7F;
+  opacity: 0.8;
+  color: white;
+}
+
