@@ -1,0 +1,40 @@
+#bookcard {
+    overflow: hidden;
+    height: 120px;
+    width: 600px;
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+  }
+
+#bookcard img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+#bookcard h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+#bookcard h3 {
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+#bookcard p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+#bookcard .bookcard-infos {
+  padding: 16px;
+}
+

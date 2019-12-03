@@ -1,0 +1,14 @@
+<div id="bookshow" class="d-flex">
+  <div id="bookcard" style="margin: 100px">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+    <div class="bookcard-infos">
+      <h2>Titre du livre <%#= @book.title %></h2>
+      <h3>Auteur du livre <%#= @book.author %></h3>
+      <p>Catégorie : <%#= @book.category_id %></p>
+    </div>
+  </div>
+  <div id="book-card-buttons" style="margin: 100px">
+    <%= link_to "Ajouter à la liste de lecture", "#", class: "btn btn-add" %>
+    <%= link_to "Commencer la lecture", "#", class: "btn btn-start" %>
+  </div>
+</div>
