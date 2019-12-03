@@ -54,6 +54,9 @@ class SearchsController < ApplicationController
       if params[:status] == 'wl'
         r.startdate = Date.today
       end
+      if params[:status] == 'ec'
+        r.enddate = Date.today
+      end
       r.save!
 
 
