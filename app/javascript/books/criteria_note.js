@@ -1,1 +1,3 @@
-criteria_note.js
+$('input[type="range"]').rangeslider({
+
+polyfill: true,
