@@ -1,56 +1,59 @@
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-</head>
-<body>
-
-
-
-  <div class="container" style="margin: 150px;">
-
-
-<div class="notification">
-  <img src='https://avatars0.githubusercontent.com/u/55450222?s=400&v=4' class="avatar-large" />
-  <div class="notification-content">
-    <p><small>Mister Alexander- 1 Day Ago</small></p>
-    <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+<div id="bookshow" class="d-flex">
+  <div id="bookcard" style="margin: 100px">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+    <div class="bookcard-infos">
+      <h2>Titre du livre <%#= @book.title %></h2>
+      <h3>Auteur du livre <%#= @book.author %></h3>
+      <p>Catégorie : <%#= @book.category_id %></p>
+    </div>
   </div>
-
-  <div class="notification-actions">
-    <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
-    <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
+  <div id="book-card-buttons" style="margin: 100px">
+    <%= link_to "Ajouter à la liste de lecture", "#", class: "btn btn-add" %>
+    <%= link_to "Commencer la lecture", "#", class: "btn btn-start" %>
   </div>
 </div>
 
+<div class="container" style="margin: 150px;">
 
-<div class="notification">
-  <img src='https://avatars2.githubusercontent.com/u/34319123?s=400&v=4' class="avatar-large" />
-  <div class="notification-content">
-    <p><small>Mister Marcus- 2 Days Ago</small></p>
-    <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+  <div class="notification">
+    <img src='https://avatars0.githubusercontent.com/u/55450222?s=400&v=4' class="avatar-large" />
+    <div class="notification-content">
+      <p><small>Mister Alexander- 1 Day Ago</small></p>
+      <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+    </div>
+
+    <div class="notification-actions">
+      <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
+      <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
+    </div>
   </div>
 
-  <div class="notification-actions">
-    <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
-    <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
+
+  <div class="notification">
+    <img src='https://avatars2.githubusercontent.com/u/34319123?s=400&v=4' class="avatar-large" />
+    <div class="notification-content">
+      <p><small>Mister Marcus- 2 Days Ago</small></p>
+      <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+    </div>
+
+    <div class="notification-actions">
+      <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
+      <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
+    </div>
+  </div>
+
+
+
+  <div class="notification">
+    <img src='https://avatars3.githubusercontent.com/u/55838781?s=400&v=4' class="avatar-large"/>
+    <div class="notification-content">
+      <p><small>Mister Momo- 3 Days Ago</small></p>
+      <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+    </div>
+
+    <div class="notification-actions">
+      <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
+      <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
+    </div>
   </div>
 </div>
-
-
-
-<div class="notification">
-  <img src='https://avatars3.githubusercontent.com/u/55838781?s=400&v=4' class="avatar-large"/>
-  <div class="notification-content">
-    <p><small>Mister Momo- 3 Days Ago</small></p>
-    <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-  </div>
-
-  <div class="notification-actions">
-    <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
-    <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
-  </div>
-</div>
-</div>
-</body>
-</html>
