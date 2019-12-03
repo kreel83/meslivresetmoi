@@ -1,1 +1,14 @@
 // Specific CSS for your home-page
+.section {
+  width: 100%;
+  height: 150px;
+  background-color: black;
+  border-bottom: 3px solid orange;
+  .titre {
+    padding-top: 5px;
+    padding-left: 10px;
+    color: white;
+    font-size: 0.7rem
+  }
+
+}
