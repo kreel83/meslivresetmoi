@@ -1,8 +1,7 @@
-
-
 <div class="container" style="margin-top: 100px">
   <h4>recherche</h4>
   <form action="search">
+    <input type="hidden" name="status" value="<%= params[:status] %>">
     <label for="title">par titre</label>
     <input type="text" id="title" name="title">
     <label for="author">par auteur</label>

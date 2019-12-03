@@ -31,8 +31,41 @@ class SearchsController < ApplicationController
   end
 
   def store
+    status = params[:status]
     session['search'] = params[:dataId]
-    render 'books/index'
+
+
+
+      url = "https://www.googleapis.com/books/v1/volumes/#{params[:dataId]}"
+      f = open(url).read
+      fj = JSON.parse(f)
+
+      l = Livre.new
+      l.imageurl = fj['volumeInfo']['imageLinks']['smallThumbnail']
+      l.title =  fj['volumeInfo']['title']
+      l.description = fj['volumeInfo']['description']
+      l.author = fj['volumeInfo']['authors'].join(', ')
+      l.googleid = params[:dataId]
+      l.save!
+      r = Reading.new
+      r.livre = l
+      r.user = current_user
+      r.status = params[:status]
+      if params[:status] == 'wl'
+        r.startdate = Date.today
+      end
+      if params[:status] == 'ec'
+        r.enddate = Date.today
+      end
+      r.save!
+
+
+
+    redirect_to books_index_path
   end
+
+  private
+
+
 end
 

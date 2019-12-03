@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_201029) do
+ActiveRecord::Schema.define(version: 2019_12_03_113416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,11 +51,9 @@ ActiveRecord::Schema.define(version: 2019_12_02_201029) do
     t.string "title"
     t.text "description"
     t.string "author"
-    t.bigint "category_id", null: false
     t.string "googleid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_livres_on_category_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -122,7 +120,6 @@ ActiveRecord::Schema.define(version: 2019_12_02_201029) do
   add_foreign_key "criteres", "categories"
   add_foreign_key "endings", "endinglists"
   add_foreign_key "endings", "livres"
-  add_foreign_key "livres", "categories"
   add_foreign_key "notes", "criteres"
   add_foreign_key "notes", "readings"
   add_foreign_key "readings", "livres"

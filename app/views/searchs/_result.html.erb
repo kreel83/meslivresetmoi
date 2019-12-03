@@ -1,5 +1,6 @@
   <form action="/books/store" method="get" id="form">
     <input type="hidden" name="dataId" value="" id="id">
+    <input type="hidden" name="status" value="<%= params[:status] %>">
     <div class="contains">
       <% @fj.each do |book| %>
       <div class="card">

@@ -1,35 +1,60 @@
+<style>
+  .section {
+    overflow-x: scroll;
+  }
+</style>
+
+
 <div style="margin-top: 66px">
 
-<div class="section">
-  <div class="titre">Lecture actuelle</div>
-</div>
-<div class="section">
-  <div class="titre">derniere lecture</div>
-</div>
-<div class="section">
-  <div class="titre">les livres faciles à lire</div>
+  <div class="section">
+    <div class="titre">Lecture actuelle</div>
+    <%= render 'shared/carousel', ec: @ec, status: 'ec' %>
+  </div>
+  <div class="section">
+    <div class="titre">Wish list</div>
+    <%= render 'shared/carousel', ec: @wl, status: 'wl'  %>
+  </div>
+  <div class="section">
+    <div class="titre">dernieres lectures</div>
+        <%= render 'shared/carousel', ec: @done, status: 'done'  %>
+  </div>
+  <div class="section">
+    <div class="titre">les livres faciles à lire</div>
 
-</div>
-<div class="section">
-  <div class="titre">Les romans brefs</div>
+  </div>
+  <div class="section">
+    <div class="titre">Les romans brefs</div>
 
-</div>
-<div class="section">
-  <div class="titre">Les livres pour l'hiver</div>
+  </div>
+  <div class="section">
+    <div class="titre">Les livres pour l'hiver</div>
 
-</div>
-<div class="section">
-  <div class="titre">les meilleurs policiers</div>
+  </div>
+  <div class="section">
+    <div class="titre">les meilleurs policiers</div>
 
-</div>
-<div class="section">
-  <div class="titre">Les années 1960</div>
+  </div>
+  <div class="section">
+    <div class="titre">Les années 1960</div>
 
-</div>
-<div class="section">
+  </div>
+  <div class="section">
 
+  </div>
 </div>
-</div>
+
+
+<script type="module">
+  import {tns} from './src/tiny-slider.js';
+
+  var slider = tns({
+    container: '.my-slider',
+    items: 3,
+    slideBy: 'page',
+    autoplay: true
+  });
+</script>
 
 
 
