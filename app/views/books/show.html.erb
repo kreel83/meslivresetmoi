@@ -1,0 +1,49 @@
+<style>
+  .image {
+    width: 200px;
+    height: 300px;
+  }
+
+  .haut  {
+    display: flex;
+  }
+  .droite {
+    display: flex;
+    flex-direction: column;
+
+  }
+  .comment {
+    margin-left: 10px
+  }
+</style>
+
+
+<div class="container" style="margin-top: 80px">
+
+
+  <h1><%= @reading.livre.title %></h1>
+  <div class="haut">
+    <div class="gauche">
+      <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
+    </div>
+    <div class="droite">
+      <div class="comment">
+        <%=  @reading.livre.description %>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="bas">
+    <div class="control" style="margin-bottom: >
+      <%= link_to 'effacer', book_destroy_path(@reading),  class: "btn btn-lg btn-danger d-block w-100 mb-5"%>
+      <% if @reading.status == 'wl' %>
+        <%= link_to 'je lis ce livre', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
+      <% end %>
+      <% if @reading.status == 'ec' %>
+        <%= link_to "j'ai terminé ce livre", book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>
