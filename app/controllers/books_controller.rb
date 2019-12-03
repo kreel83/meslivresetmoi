@@ -32,4 +32,8 @@ class BooksController < ApplicationController
     redirect_to books_index_path
 
   end
+
+  def show
+    #@book = Book.find(params[:id])
+  end
 end
