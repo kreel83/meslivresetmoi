@@ -7,8 +7,9 @@ class BooksController < ApplicationController
   end
 
   def show
+    puts "coucou"
+    puts params[:id]
     @reading = Reading.find(params[:id])
-
   end
 
 
@@ -33,7 +34,5 @@ class BooksController < ApplicationController
 
   end
 
-  def show
-    #@book = Book.find(params[:id])
-  end
+
 end

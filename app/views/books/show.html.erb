@@ -28,13 +28,13 @@
     </div>
     <div class="droite">
       <div class="comment">
-        <%=  @reading.livre.description %>
+        <%=  @reading.livre.description.html_safe %>
       </div>
     </div>
   </div>
   <hr>
   <div class="bas">
-    <div class="control" style="margin-bottom: >
+    <div class="control">
       <%= link_to 'effacer', book_destroy_path(@reading),  class: "btn btn-lg btn-danger d-block w-100 mb-5"%>
       <% if @reading.status == 'wl' %>
         <%= link_to 'je lis ce livre', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
@@ -45,8 +45,8 @@
     </div>
   </div>
 </div>
-                                
-                                
+
+
 <div class="container" style="margin: 150px;">
 
   <div class="notification">
