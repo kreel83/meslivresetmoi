@@ -10,7 +10,13 @@ class BooksController < ApplicationController
 
     @reading = Reading.find(params[:id])
     @tags = ActsAsTaggableOn::Tag.all
+
+    if @reading.livre.tags == []
+      @tag = []
+    else
     @tag = @reading.livre.tags[0].name
+  end
+
 
   end
 
