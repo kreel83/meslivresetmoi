@@ -10,6 +10,8 @@ class BooksController < ApplicationController
 
     @reading = Reading.find(params[:id])
     @tags = ActsAsTaggableOn::Tag.all
+    @tag = @reading.livre.tags[0].name
+
   end
 
   def update_tag
