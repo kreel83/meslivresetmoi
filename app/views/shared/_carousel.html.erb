@@ -1,13 +1,12 @@
 <style>
   .item {
-    width: 95px;
-    height: 120px;
+    width: 160px;
+    height: 200px;
     background-color: #fff;
     margin-right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 5rem;
     cursor: pointer;
     border: 1px solid white;
     background-color: black;
@@ -16,7 +15,7 @@
   }
   .owl-carousel {
     display: flex;
-    width: 3000px;
+    width: auto;
     padding: 0 15px;
 
   }
@@ -31,7 +30,7 @@
 
 <div class="owl-carousel">
   <%= link_to search_path(status: status) do  %>
-  <% if status != 'done' %>
+  <% if ajout  %>
   <div class="item">+</div>
   <% end %>
   <% end %>
