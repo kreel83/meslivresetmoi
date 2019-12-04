@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   get 'books/destroy/:id', to: 'books#destroy', as: :book_destroy
   patch 'books/update/:id', to: 'books#update', as: :book_update
   get 'books/:id/tags/:cat', to: 'books#update_tag', as: :book_update_tag, defaults: {format: :json}
+
+  get 'books/:id/notations', to: "notations#index", as: :notations
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
