@@ -1,37 +1,38 @@
-<style>
-  .custom-range {
-    color: red;
-  }
-</style>
+
 
 <div class="container" style="margin-top: 100px">
   <h1>notation</h1>
-    <div>
-    <div class="cadre">
-      <div class="boite"></div>
-      <div class="boite"></div>
-      <div class="boite"></div>
-      <div class="boite"></div>
-      <div class="boite"></div>
+  <div class="notations mb-5">
+
+    <div id="1">
+      <div >criterion 1</div>
+      <%= render 'slider', status: "slide1"  %>
     </div>
+    <div id="2">
+      <div>criterion 2</div>
+      <%= render 'slider',status: "slide2" %>
+    </div>
+    <div  id="3">
+      <div>criterion 3</div>
+      <%= render 'slider', status: "slide3" %>
+    </div>
+    <div id="4">
+      <div>criterion 4</div>
+      <%= render 'slider', status: "slide4" %>
+    </div>
+
   </div>
   <div>
-  <div>
-    <input
-    type="range"
-    min="10"
-    max="1000"
-    step="10"
-    value="300"
-    data-orientation="vertical"
-    >
+
+
+
+
+    <%= link_to "j'ai terminé ce livre", book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
+
   </div>
 
 
 
-  <%= link_to "j'ai terminé ce livre", book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
-
-</div>
 
 
 
