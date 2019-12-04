@@ -3,6 +3,7 @@ class BooksController < ApplicationController
     @ec = Reading.where(status: 'ec')
     @wl = Reading.where(status: 'wl')
     @done = Reading.where(status: 'done')
+    @el = Endinglist.all
 
   end
 

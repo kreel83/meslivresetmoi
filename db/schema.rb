@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_160037) do
+ActiveRecord::Schema.define(version: 2019_12_04_220920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,18 @@ ActiveRecord::Schema.define(version: 2019_12_04_160037) do
     t.index ["user_id"], name: "index_readings_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "reading_id", null: false
+    t.text "comment"
+    t.text "feeling"
+    t.integer "like"
+    t.integer "unlike"
+    t.text "discover"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reading_id"], name: "index_reviews_on_reading_id"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -122,5 +134,6 @@ ActiveRecord::Schema.define(version: 2019_12_04_160037) do
   add_foreign_key "notes", "readings"
   add_foreign_key "readings", "livres"
   add_foreign_key "readings", "users"
+  add_foreign_key "reviews", "readings"
   add_foreign_key "taggings", "tags"
 end
