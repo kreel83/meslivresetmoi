@@ -23,6 +23,11 @@
 
   <h1><%= @reading.livre.title %></h1>
   <div class="haut">
+    <div class="side">
+      <% @tags.each do |tag| %>
+      <h6><span class="badge" data-cat="<%= tag.name  %>" data-id="<%= @reading.livre.id %>" data-active="false" data-color="<%= tag.color %>" style="background-color: lightgray; color: grey; border-radius: 8px; border: 1px solid black; cursor: pointer"><%= tag.name %></span></h6>
+      <% end %>
+    </div>
     <div class="gauche">
       <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
     </div>
@@ -37,10 +42,10 @@
     <div class="control">
       <%= link_to 'effacer', book_destroy_path(@reading),  class: "btn btn-lg btn-danger d-block w-100 mb-5"%>
       <% if @reading.status == 'wl' %>
-        <%= link_to 'je lis ce livre', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
+      <%= link_to 'je lis ce livre', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
       <% end %>
       <% if @reading.status == 'ec' %>
-        <%= link_to "j'ai terminé ce livre", book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
+      <%= link_to "j'ai terminé ce livre", book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
       <% end %>
     </div>
   </div>
@@ -59,53 +64,53 @@
           step="1"
           value="min + (max-min)/2"
           data-orientation="horizontal"
-        > -->
+          > -->
+        </div>
+      </div>
+    </div>
+
+    <div class="notification">
+      <img src='https://avatars0.githubusercontent.com/u/55450222?s=400&v=4' class="avatar-large" />
+      <div class="notification-content">
+        <p><small>Mister Alexander- 1 Day Ago</small></p>
+        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+      </div>
+
+      <div class="notification-actions">
+        <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
+        <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
+      </div>
+    </div>
+
+
+    <div class="notification">
+      <img src='https://avatars2.githubusercontent.com/u/34319123?s=400&v=4' class="avatar-large" />
+      <div class="notification-content">
+        <p><small>Mister Marcus- 2 Days Ago</small></p>
+        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+      </div>
+
+      <div class="notification-actions">
+        <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
+        <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
+      </div>
+    </div>
+
+
+
+    <div class="notification">
+      <img src='https://avatars3.githubusercontent.com/u/55838781?s=400&v=4' class="avatar-large"/>
+      <div class="notification-content">
+        <p><small>Mister Momo- 3 Days Ago</small></p>
+        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+      </div>
+
+      <div class="notification-actions">
+        <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
+        <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
       </div>
     </div>
   </div>
-
-  <div class="notification">
-    <img src='https://avatars0.githubusercontent.com/u/55450222?s=400&v=4' class="avatar-large" />
-    <div class="notification-content">
-      <p><small>Mister Alexander- 1 Day Ago</small></p>
-      <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-    </div>
-
-    <div class="notification-actions">
-      <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
-      <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
-    </div>
-  </div>
-
-
-  <div class="notification">
-    <img src='https://avatars2.githubusercontent.com/u/34319123?s=400&v=4' class="avatar-large" />
-    <div class="notification-content">
-      <p><small>Mister Marcus- 2 Days Ago</small></p>
-      <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-    </div>
-
-    <div class="notification-actions">
-      <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
-      <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
-    </div>
-  </div>
-
-
-
-  <div class="notification">
-    <img src='https://avatars3.githubusercontent.com/u/55838781?s=400&v=4' class="avatar-large"/>
-    <div class="notification-content">
-      <p><small>Mister Momo- 3 Days Ago</small></p>
-      <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-    </div>
-
-    <div class="notification-actions">
-      <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
-      <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
-    </div>
-  </div>
-</div>
 
 <!-- <script src="jquery.min.js"></script>
 <script src="rangeslider.min.js"></script>
@@ -114,4 +119,30 @@
     $('input[type="range"]').rangeslider();
 
 </script>
- -->
+-->
+
+<script>
+ badges = document.querySelectorAll('.badge')
+
+ badges.forEach((badge) => {
+   badge.addEventListener('click',(event) => {
+    badges.forEach((b) => {
+      b.style.backgroundColor = 'lightgray'
+      b.dataset.active = false
+    })
+    badge.style.backgroundColor = 'blue'
+    badge.dataset.active = true
+    Rails.ajax({
+      url: "/books/"+badge.dataset.id+"/tags/"+badge.dataset.cat,
+      type: "GET",
+      headers: { "Content-Type" : "application/json" },
+      dataType: 'json',
+      //data: {foo: 'bar', cat: badge.dataset.cat, id: badge.dataset.id} ,
+      success: function(data) {
+        console.log(data)
+      },
+      error: function(data) {}
+    })
+  })
+ })
+</script>

@@ -7,9 +7,22 @@ class BooksController < ApplicationController
   end
 
   def show
-    puts "coucou"
-    puts params[:id]
+
     @reading = Reading.find(params[:id])
+    @tags = ActsAsTaggableOn::Tag.all
+  end
+
+  def update_tag
+
+    book = Livre.find(params[:id])
+    book.tags.each do |tag|
+      book.tag_list.remove(tag.name)
+    end
+    book.tag_list.remove("awesome", "slick")
+    book.tag_list.add(params[:cat])
+
+    book.save
+    render json: {status: params}
   end
 
 

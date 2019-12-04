@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-ActsAsTaggableOn::Tag.create(name: "S.F.", color: "#F4C323")
+ActsAsTaggableOn::Tag.destroy_all
+ActsAsTaggableOn::Tag.create(name: "Sciences fictions", color: "#F4C323")
 ActsAsTaggableOn::Tag.create(name: "Heroic Fantasy", color: "#FF68AB")
 ActsAsTaggableOn::Tag.create(name: "Livre de voyages", color: "#FF68AB")
 ActsAsTaggableOn::Tag.create(name: "Roman XXeme siècle", color: "#9686FF")
