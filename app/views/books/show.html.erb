@@ -1,8 +1,16 @@
  <%= csrf_meta_tag %>
-<style>
+ <style>
   .image {
     width: 200px;
     height: 300px;
+  }
+
+  .badge {
+    color: grey;
+    border-radius: 8px;
+    border: 1px solid black;
+    padding: 10px;
+    cursor: pointer
   }
 
   .haut  {
@@ -17,11 +25,11 @@
     margin-left: 10px
   }
 
-  [data-active='true'] {
+  .badge[data-active="true"] {
     background-color: blue;
   }
 
-  [data-active='false'] {
+  .badge[data-active="false"] {
     background-color: lightgrey;
   }
 </style>
@@ -34,7 +42,12 @@
   <div class="haut">
     <div class="side">
       <% @tags.each do |tag| %>
-      <h6><span class="badge" data-cat="<%= tag.name  %>" data-id="<%= @reading.livre.id %>" data-active="false" data-color="<%= tag.color %>" style="color: grey; border-radius: 8px; border: 1px solid black; cursor: pointer"><%= tag.name %></span></h6>
+        <% if tag.name == @tag %>
+        <%  act="data-active=true" %>
+        <% else %>
+        <%  act="data-active=false" %>
+        <% end %>
+      <h6><span class="badge" data-cat="<%= tag.name  %>" data-id="<%= @reading.livre.id %>" <%= act %> data-color="<%= tag.color %>" ><%= tag.name %></span></h6>
       <% end %>
     </div>
     <div class="gauche">
@@ -54,7 +67,7 @@
       <%= link_to 'je lis ce livre', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
       <% end %>
       <% if @reading.status == 'ec' %>
-      <%= link_to "j'ai terminé ce livre", book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
+      <%= link_to "je note ce livre", notations_path(@reading), class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
       <% end %>
     </div>
   </div>

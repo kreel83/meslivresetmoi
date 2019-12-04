@@ -15,3 +15,28 @@ ActsAsTaggableOn::Tag.create(name: "Roman US", color: "#86D3FF")
 ActsAsTaggableOn::Tag.create(name: "Roman étranger", color: "#6FFF84")
 ActsAsTaggableOn::Tag.create(name: "Policier", color: "#F4FFE8")
 ActsAsTaggableOn::Tag.create(name: "Thriller", color: "#0040FF")
+# tableau d'id google
+
+liste = ["lkjlkj","lkjlkjl"]
+
+liste.each do |book|
+
+      url = "https://www.googleapis.com/books/v1/volumes/#{book}"
+      f = open(url).read
+      fj = JSON.parse(f)
+      l = Livre.new
+      l.imageurl = fj['volumeInfo']['imageLinks']['smallThumbnail']
+      l.title =  fj['volumeInfo']['title']
+      l.description = fj['volumeInfo']['description']
+      l.author = fj['volumeInfo']['authors'].join(', ')
+      l.googleid = book
+      l.save!
+      el = Endinglist.new
+      el.titre = 'sciences Fiction'
+      el.save
+      ending = Ending.new
+      ending.livre = l
+      ending.endinglist = el
+      ending.save
+
+end

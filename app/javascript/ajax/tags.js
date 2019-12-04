@@ -25,13 +25,19 @@ const badge = () => {
 }
 
 
+
+const getTag = () => {
+
+}
+
+
 const test = () => {
   $('.badge').click(function(){
 
-    $('.badge').data('active',false)
-    $('.badge').css('backgroundColor','light')
-    $(this).data('active', true)
-    $(this).css('backgroundColor','red')
+    $('.badge').attr('data-active', 'false');
+
+    $(this).attr('data-active', 'true');
+
     console.log($(this).data('cat'))
     const category = $(this).data('cat')
 
