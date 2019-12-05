@@ -4,25 +4,19 @@ class BooksController < ApplicationController
     @wl = Reading.where(status: 'wl')
     @done = Reading.where(status: 'done')
     @el = Endinglist.all
-
   end
 
   def show
-
     @reading = Reading.find(params[:id])
-    @tags = ActsAsTaggableOn::Tag.all
-
+    @tags = ActsAsTaggableOn::Tag.all.order(:name)
     if @reading.livre.tags == []
       @tag = []
     else
-    @tag = @reading.livre.tags[0].name
-  end
-
-
+      @tag = @reading.livre.tags[0].name
+    end
   end
 
   def update_tag
-
     book = Livre.find(params[:id])
     book.tags.each do |tag|
       book.tag_list.remove(tag.name)
@@ -33,7 +27,6 @@ class BooksController < ApplicationController
     book.save
     render json: {status: params}
   end
-
 
   def update
     r = Reading.find(params[:id])
@@ -47,7 +40,10 @@ class BooksController < ApplicationController
     redirect_to books_index_path
   end
 
-
+  def update_notation
+    r = Reading.find(params[:id])
+    redirect_to reviews_path(r)
+  end
 
 
   def destroy
