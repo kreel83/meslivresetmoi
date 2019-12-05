@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   get 'books/:id/reviews/new', to: "reviews#new", as: :new_review
   post 'books/:id/reviews', to: "reviews#create"
   delete 'books/:id/reviews/:id', to: "reviews#destroy"
+  get 'books/:id/reviews', to: "reviews#index", as: :reviews
+  get 'books/:id/consultReviews', to: "reviews#consult", as: :review_consult
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

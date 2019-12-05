@@ -22,4 +22,8 @@ class ReviewsController < ApplicationController
 
     redirect_to book_show_path
   end
+
+  def consult
+    @reading= Reading.find(params[:id])
+  end
 end

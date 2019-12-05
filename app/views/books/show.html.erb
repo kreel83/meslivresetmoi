@@ -62,6 +62,7 @@
   <hr>
   <div class="bas">
     <div class="control">
+      <%= link_to 'voir les commentaires', review_consult_path(@reading), class: "btn btn-success"  %>
       <%= link_to 'effacer', book_destroy_path(@reading),  class: "btn btn-lg btn-danger d-block w-100 mb-5"%>
       <% if @reading.status == 'wl' %>
       <%= link_to 'je lis ce livre', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
