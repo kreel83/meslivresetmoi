@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'books/search', to: 'searchs#index', as: :search
   get 'books/store', to: 'searchs#store', as: :store
-  get 'books/index', to: 'books#index'
+  get 'books/index', to: 'books#index', as: :books
   get 'books/show/:id', to: 'books#show', as: :book_show
   get 'books/destroy/:id', to: 'books#destroy', as: :book_destroy
   patch 'books/:id/update', to: 'books#update', as: :book_update
@@ -12,11 +12,16 @@ Rails.application.routes.draw do
 
   get 'books/:id/notations', to: "notations#index", as: :notations
   get 'books/:id/reviews/new', to: "reviews#new", as: :new_review
-  post 'books/:id/reviews', to: "reviews#create"
+  post 'books/:id/reviews/new', to: "reviews#create"
   delete 'books/:id/reviews/:id', to: "reviews#destroy"
   get 'books/:id/reviews', to: "reviews#index", as: :reviews
   get 'books/:id/consultReviews', to: "reviews#consult", as: :review_consult
   get 'books/:id/consultNotations', to: "notations#consult", as: :notation_consult
   get 'books/:user/profil', to: "profils#show", as: :profil_show
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :readings do
+    resources :reviews, only: ['new','create']
+  end
+
 end

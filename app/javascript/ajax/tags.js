@@ -17,6 +17,7 @@ const badge = () => {
       //data: {foo: 'bar', cat: badge.dataset.cat, id: badge.dataset.id} ,
       success: function(data) {
         console.log(data)
+        $('#category').html(badge.dataset.cat)
       },
       error: function(data) {}
     })
@@ -38,10 +39,13 @@ const test = () => {
 
     $(this).attr('data-active', 'true');
 
-    console.log($(this).data('cat'))
     const category = $(this).data('cat')
+    const reading = $(this).data('reading')
+    const tag = $('#tag').html().trim()
 
-    const datas = {id: $(this).data('id'), cat: category}
+
+    //console.log(etat)
+    const datas = {id: $(this).data('id'), cat: category, reading: reading, etat: tag}
 
     $.ajax({
       url: "/books/"+$(this).data('id')+'/tags',
@@ -53,7 +57,15 @@ const test = () => {
       data: datas,
       //data: {foo: 'bar', cat: $(this).data('cat'), id: $(this).data('id')} ,
       success: function(data) {
-        console.log(data)
+        $('#category').html(category)
+console.log(data)
+        if (data.status.etat == "[]") {
+          location.href = "/books/"+data.status.reading+"/notations"
+        } else {
+          $('#tag').html(data.status.cat)
+        }
+
+        //location.href = "/books/"+data.status.reading+"/notations"
       },
       error: function(data) {}
     })

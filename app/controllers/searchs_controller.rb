@@ -61,7 +61,7 @@ class SearchsController < ApplicationController
 
 
 
-    redirect_to books_index_path
+    redirect_to books_path
   end
 
   private
