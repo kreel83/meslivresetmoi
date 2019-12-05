@@ -1,0 +1,31 @@
+<style>
+  h3 {
+    font-style: italic;
+  }
+
+  .image {
+    width: 200px;
+    height: 300px;
+  }
+</style>
+
+<div class="container" style="margin-top:100px">
+  <h1><%= @reading.livre.title %></h1>
+  <h3><%= @reading.livre.author %></h3>
+  <div class="d-flex">
+    <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
+    <div class="comment-zone d-flex flex-column">
+      <p>Entrez votre commentaire :</p>
+      <input type="text" name="commentaire">
+      <div class="comment-low-zone d-flex justify-content-between">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="customSwitches">
+          <label class="custom-control-label" for="customSwitches">Publier mon commentaire</label>
+        </div>
+        <%= link_to "Valider", book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%#= link_to "Les commentaires", new_review_path(@reading), method: 'get',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
