@@ -6,12 +6,16 @@
   }
 
   .badge {
-    color: grey;
-    border-radius: 8px;
-    border: 1px solid black;
-    padding: 10px;
-    cursor: pointer
+    cursor:pointer;
+    width: 100%;
+    border: 1px solid lightgrey;
+    text-align: center;
+    padding: 18px;
+    font-size: 1.2rem;
+    color: lightgrey;
   }
+
+
 
   .haut  {
     display: flex;
@@ -27,29 +31,53 @@
 
   .badge[data-active="true"] {
     background-color: blue;
+    color: white;
   }
 
   .badge[data-active="false"] {
-    background-color: lightgrey;
+    background-color: white;
+  }
+
+  .badge[data-active="false"]:hover {
+    background-color: grey;
+    color: white;
   }
 </style>
 
 
 <div class="container" style="margin-top: 80px">
 
-
-  <h1><%= @reading.livre.title %></h1>
-  <div class="haut">
-    <div class="side">
-      <% @tags.each do |t| %>
-      <% if t.name == @tag %>
-      <%  act="data-active=true" %>
-      <% else %>
-      <%  act="data-active=false" %>
+  <div class="haut" style="display: flex;justify-content: space-between;">
+    <h3><%= @reading.livre.title %></h3>
+    <div style="width: 70px;display: flex;justify-content: space-between;font-size: 1.5rem">
+      <%= link_to review_consult_path(@reading)  do%>
+      <i class="fas fa-comments"></i>
       <% end %>
-      <h6><span class="badge" data-cat="<%= t.name  %>" data-id="<%= @reading.livre.id %>" <%= act %> data-color="<%= t.color %>" ><%= t.name %></span></h6>
+      <%= link_to notation_consult_path(@reading) do  %>
+
+      <i class="fas fa-list-ol"></i>
       <% end %>
     </div>
+    <div style="font-size: 1.5rem">
+      <%= link_to book_destroy_path(@reading) do  %>
+      <i class="far fa-calendar-times"></i>
+      <% end %>
+    </div>
+
+
+  </div>
+  <hr>
+  <div class="middle" style="display: flex;justify-content: space-between;">
+    <div><%= @reading.livre.author %> </div>
+    <div id="tag" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
+      <%= @tag %>
+
+    </div>
+  </div>
+  <hr>
+  <h6 id="category"></h6>
+  <div class="haut">
+
     <div class="gauche">
       <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
     </div>
@@ -60,82 +88,25 @@
     </div>
   </div>
   <hr>
-  <div class="bas">
-    <div class="control">
-      <%= link_to 'voir les commentaires', review_consult_path(@reading), class: "btn btn-success"  %>
-      <%= link_to 'voir les notations', notation_consult_path(@reading), class: "btn btn-danger"  %>
-<hr>
-      <%= link_to 'effacer', book_destroy_path(@reading),  class: "btn btn-lg btn-danger d-block w-100 mb-5"%>
-      <% if @reading.status == 'wl' %>
-      <%= link_to 'je lis ce livre', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
-      <% end %>
-      <% if @reading.status == 'ec' %>
-      <%= link_to "je note ce livre", notations_path(@reading), class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
-      <% end %>
-    </div>
-  </div>
+  <div class="bas" style="display: flex;text-align: right;">
+    <div>
+     <% if @reading.status == 'wl' %>
+     <%= link_to 'je lis ce livre', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary mb-5"%>
+     <% end %>
+     <% if @reading.status == 'ec' %>
+     <% if @tag == [] %>
+     <button class="btn btn-primary " id="note" data-toggle="modal" data-target="#exampleModal">Noter le livre</button>
+     <% else %>
+     <%= link_to 'noter le livre', notations_path(@reading) , class: "btn btn-primary"  %>
+     <% end %>
+     <% end %>
+   </div>
+ </div>
+ <hr>
 </div>
 
 
-<div class="container" style="margin: 150px;">
 
-  <div id="reader-opinion" class="d-flex">
-    <div id="criteria-zone" style="margin: 100px">
-      <div class="criteria d-flex">
-        <!-- <input
-          type="range"
-          min="0"
-          max="10"
-          step="1"
-          value="min + (max-min)/2"
-          data-orientation="horizontal"
-          > -->
-        </div>
-      </div>
-    </div>
-
-    <div class="notification">
-      <img src='https://avatars0.githubusercontent.com/u/55450222?s=400&v=4' class="avatar-large" />
-      <div class="notification-content">
-        <p><small>Mister Alexander- 1 Day Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-
-      <div class="notification-actions">
-        <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
-        <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-
-
-    <div class="notification">
-      <img src='https://avatars2.githubusercontent.com/u/34319123?s=400&v=4' class="avatar-large" />
-      <div class="notification-content">
-        <p><small>Mister Marcus- 2 Days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-
-      <div class="notification-actions">
-        <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
-        <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-
-
-
-    <div class="notification">
-      <img src='https://avatars3.githubusercontent.com/u/55838781?s=400&v=4' class="avatar-large"/>
-      <div class="notification-content">
-        <p><small>Mister Momo- 3 Days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-
-      <div class="notification-actions">
-        <a href="#"> Good <i class="fas fa-thumbs-up"></i></i></a>
-        <a href="#">Bad <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-  </div>
 
 <!-- <script src="jquery.min.js"></script>
 <script src="rangeslider.min.js"></script>
@@ -145,5 +116,32 @@
 
 </script>
 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Définissez la catégorie</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <% @tags.each do |t| %>
+          <% if t.name == @tag %>
+          <%  act="data-active=true" %>
+          <% else %>
+          <%  act="data-active=false" %>
+          <% end %>
+          <div class="badge" data-reading="<%= @reading.id %>" data-cat="<%= t.name  %>" data-id="<%= @reading.livre.id %>" <%= act %> data-color="<%= t.color %>" ><%= t.name %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
+      </div>
+    </div>
+  </div>
+</div>
 

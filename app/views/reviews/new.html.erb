@@ -10,22 +10,52 @@
 </style>
 
 <div class="container" style="margin-top:100px">
-  <h1><%= @reading.livre.title %></h1>
-  <h3><%= @reading.livre.author %></h3>
-  <div class="d-flex">
-    <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
-    <div class="comment-zone d-flex flex-column">
-      <p>Entrez votre commentaire :</p>
-      <input type="text" name="commentaire">
-      <div class="comment-low-zone d-flex justify-content-between">
-        <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" id="customSwitches">
-          <label class="custom-control-label" for="customSwitches">Publier mon commentaire</label>
-        </div>
-        <%= link_to "Valider", book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
-      </div>
+  <div class="row">
+    <div class="col-4">
+      <h3><%= @reading.livre.title %></h3>
+<hr>
+      <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
+      <hr>
+      <h6><%= @reading.livre.author %></h6>
     </div>
+
+    <div class="col-8">
+
+
+
+      <form action="" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+        <div class="form-group">
+          <p>votre commentaire :</p>
+          <textarea class="form-control" name="review[commentaire]"></textarea>
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitches" name="review[status]">
+            <label class="custom-control-label" for="customSwitches">Publier mon commentaire</label>
+          </div>
+          <hr>
+          <p>Vos sentiments</p>
+          <div style="font-size: 0.7rem">Plus intimes, vous pouvez inscrire ici les conditions (evenement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
+          <textarea class="form-control" name="review[feeling]"></textarea>
+          <hr>
+          <p>Comment avez-vous découvert ce livre ?</p>
+          <select name="review[discover]"  class="form-control-lg d-block w-100">
+            <% @discover.each_with_index do |item, index| %>
+            <option value="<%= index %>"><%= item %></option>
+            <% end %>
+          </select>
+
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Valider</button>
+          <%= link_to 'retour', books_path, class: 'btn btn-danger'  %>
+        </div>
+      </form>
+    </div>
+
   </div>
 </div>
+
 
 <%#= link_to "Les commentaires", new_review_path(@reading), method: 'get',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>

@@ -37,7 +37,7 @@ class BooksController < ApplicationController
     if status == 'ec'
       r.update(status: 'done')
     end
-    redirect_to books_index_path
+    redirect_to books_path
   end
 
   def update_notation
@@ -48,7 +48,7 @@ class BooksController < ApplicationController
 
   def destroy
     Reading.destroy(params[:id])
-    redirect_to books_index_path
+    redirect_to books_path
 
   end
 
