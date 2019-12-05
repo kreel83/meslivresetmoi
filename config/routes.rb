@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'books/:id/tags', to: 'books#update_tag', as: :book_update_tag, defaults: {format: :json}
 
   get 'books/:id/notations', to: "notations#index", as: :notations
-  get 'books/:id/reviews', to: "reviews#index", as: :reviews
+  get 'books/:id/reviews/new', to: "reviews#new", as: :new_review
+  post 'books/:id/reviews', to: "reviews#create"
+  delete 'books/:id/reviews/:id', to: "reviews#destroy"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
