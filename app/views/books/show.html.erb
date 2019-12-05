@@ -42,11 +42,11 @@
   <div class="haut">
     <div class="side">
       <% @tags.each do |t| %>
-        <% if t.name == @tag %>
-        <%  act="data-active=true" %>
-        <% else %>
-        <%  act="data-active=false" %>
-        <% end %>
+      <% if t.name == @tag %>
+      <%  act="data-active=true" %>
+      <% else %>
+      <%  act="data-active=false" %>
+      <% end %>
       <h6><span class="badge" data-cat="<%= t.name  %>" data-id="<%= @reading.livre.id %>" <%= act %> data-color="<%= t.color %>" ><%= t.name %></span></h6>
       <% end %>
     </div>
@@ -63,6 +63,8 @@
   <div class="bas">
     <div class="control">
       <%= link_to 'voir les commentaires', review_consult_path(@reading), class: "btn btn-success"  %>
+      <%= link_to 'voir les notations', notation_consult_path(@reading), class: "btn btn-danger"  %>
+<hr>
       <%= link_to 'effacer', book_destroy_path(@reading),  class: "btn btn-lg btn-danger d-block w-100 mb-5"%>
       <% if @reading.status == 'wl' %>
       <%= link_to 'je lis ce livre', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
