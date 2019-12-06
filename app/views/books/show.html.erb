@@ -1,108 +1,63 @@
- <%= csrf_meta_tag %>
- <style>
-  .image {
-    width: 200px;
-    height: 300px;
-  }
-
-  .badge {
-    cursor:pointer;
-    width: 100%;
-    border: 1px solid lightgrey;
-    text-align: center;
-    padding: 18px;
-    font-size: 1.2rem;
-    color: lightgrey;
-  }
-
-
-
-  .haut  {
-    display: flex;
-  }
-  .droite {
-    display: flex;
-    flex-direction: column;
-
-  }
-  .comment {
-    margin-left: 10px
-  }
-
-  .badge[data-active="true"] {
-    background-color: blue;
-    color: white;
-  }
-
-  .badge[data-active="false"] {
-    background-color: white;
-  }
-
-  .badge[data-active="false"]:hover {
-    background-color: grey;
-    color: white;
-  }
-</style>
-
-
+<%= csrf_meta_tag %>
 <div class="container" style="margin-top: 80px">
 
   <div class="haut" style="display: flex;justify-content: space-between;">
     <h3><%= @reading.livre.title %></h3>
-    <div style="width: 70px;display: flex;justify-content: space-between;font-size: 1.5rem">
-      <%= link_to review_consult_path(@reading)  do%>
-      <i class="fas fa-comments"></i>
-      <% end %>
-      <%= link_to notation_consult_path(@reading) do  %>
-
-      <i class="fas fa-list-ol"></i>
-      <% end %>
-    </div>
-    <div style="font-size: 1.5rem">
+    <div style="width: 70px;display: flex;justify-content: space-between;font-size: 1.5rem"></div>
+    <div style="display: flex; justify-content: space-around; align-content: center; width: 150px; font-size: 1.5rem">
+      <p style="font-style: italic; font-size: 10px; padding-top: 12px">Supprimer de ma liste</p>
       <%= link_to book_destroy_path(@reading) do  %>
       <i class="far fa-calendar-times"></i>
       <% end %>
     </div>
-
-
   </div>
+
   <hr>
+
   <div class="middle" style="display: flex;justify-content: space-between;">
-    <div><%= @reading.livre.author %> </div>
+    <div style="font-style: italic"><%= @reading.livre.author %></div>
     <div id="tag" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
       <%= @tag %>
-
     </div>
   </div>
-  <hr>
-  <h6 id="category"></h6>
-  <div class="haut">
 
-    <div class="gauche">
-      <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
+  <hr>
+
+  <div id="book-card" style="display: flex; justify-content: space-between;">
+<!--     <div class="haut"> -->
+      <div class="gauche">
+        <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
+      </div>
+      <div class="droite" style="justify-content: space-between;">
+        <div class="comment">
+          <%= @reading.livre.description.html_safe %>
+        </div>
+        <div class="notes-and-comments" style="display: flex; justify-content: space-around; width: 100px; font-size: 1.5rem; position: relative; bottom: 0; left: 0">
+          <%= link_to notation_consult_path(@reading) do  %>
+          <i class="fas fa-list-ol"></i>
+          <% end %>
+          <%= link_to review_consult_path(@reading)  do%>
+          <i class="fas fa-comments"></i>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="droite">
-      <div class="comment">
-        <%=  @reading.livre.description.html_safe %>
+    <hr>
+    <div class="bas" style="display: flex;text-align: right;">
+      <div>
+        <% if @reading.status == 'wl' %>
+        <%= link_to 'Je lis ce livre !', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary mb-5"%>
+        <% end %>
+        <% if @reading.status == 'ec' %>
+        <% if @tag == [] %>
+        <button class="btn btn-success" style="color: white; font-weight: bold" id="note" data-toggle="modal" data-target="#exampleModal">Noter le livre</button>
+        <% else %>
+        <%= link_to 'Noter le livre', notations_path(@reading) , class: "btn btn-success", style: "color: white; font-weight: bold"  %>
+        <% end %>
+        <% end %>
       </div>
     </div>
   </div>
-  <hr>
-  <div class="bas" style="display: flex;text-align: right;">
-    <div>
-     <% if @reading.status == 'wl' %>
-     <%= link_to 'je lis ce livre', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary mb-5"%>
-     <% end %>
-     <% if @reading.status == 'ec' %>
-     <% if @tag == [] %>
-     <button class="btn btn-primary " id="note" data-toggle="modal" data-target="#exampleModal">Noter le livre</button>
-     <% else %>
-     <%= link_to 'noter le livre', notations_path(@reading) , class: "btn btn-primary"  %>
-     <% end %>
-     <% end %>
-   </div>
- </div>
- <hr>
 </div>
 
 
