@@ -41,13 +41,11 @@ class BooksController < ApplicationController
   end
 
   def update_notation
-    if params[:status] == 'true'
-      r = Reading.find(params[:id])
-      redirect_to new_review_path(r)
 
-    else
-      redirect_to books_path
-    end
+    r = Reading.find(params[:id])
+    r.update(notation: params[:note])
+    render json: {status: params}
+
   end
 
 
