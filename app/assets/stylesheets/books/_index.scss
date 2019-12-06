@@ -1,0 +1,15 @@
+@import "show";
+
+.ligne {
+  overflow-x: scroll;
+  height: 230px;
+  padding: 0 8px;
+  background-color: black;
+}
+
+.titre {
+  font-size: 30px;
+  color: white;
+  background-color: black;
+  padding-left: 20px
+}

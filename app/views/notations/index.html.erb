@@ -1,11 +1,11 @@
 
 
-<div class="container" style="margin-top: 100px">
-  <h1>notation</h1>
+<div id="notation-container" style="margin-top: 100px">
+  <h1>Qu'avez-vous pensé de cette oeuvre ?</h1>
   <div class="notations mb-5">
     <% @taglist.each_with_index do |tag, index| %>
     <div id="<%= index %>">
-      <div ><%= tag.name %></div>
+      <div style="font-size: 16px"><%= tag.name %></div>
       <%= render 'slider', status: "slide#{tag.id}"  %>
     </div>
     <% end %>
@@ -16,16 +16,10 @@
     </div>
   </div>
 
-
   <div>
-
-
-
-
-    <%= link_to "Les commentaires", post_notation_path(@reading), method: 'post',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
-
+    <%= link_to "Commenter", post_notation_path(@reading), method: 'post',  class: "btn btn-lg btn-success d-block w-100 mb-3", style: "color:white ; font-weight: bold"%>
   </div>
-
+</div>
 
 
 

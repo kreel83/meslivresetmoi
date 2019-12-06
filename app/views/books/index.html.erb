@@ -1,21 +1,6 @@
-<style>
-  .ligne {
-    overflow-x: scroll;
-    height: 230px;
-    padding: 0 8px;
-    background-color: black;
-  }
-  .titre {
-    font-size: 30px;
-    color: white;
-    background-color: black;
-    padding-left: 20px
-  }
-</style>
-
 
 <div style="margin-top: 66px;margin-bottom: 80px">
-  <div class="titre">Lecture actuelle</div>
+  <div class="titre">Lecture(s) en cours</div>
   <div class="ligne">
 
     <%= render 'shared/carousel', ec: @ec, status: 'ec', ajout: true %>
@@ -25,12 +10,11 @@
 
     <%= render 'shared/carousel', ec: @wl, status: 'wl', ajout: true  %>
   </div>
-  <div class="titre">dernieres lectures</div>
+  <div class="titre">Dernières lectures</div>
   <div class="ligne">
 
     <%= render 'shared/carousel', ec: @done, status: 'done', ajout: false  %>
   </div>
-
 
   <% @el.each do |liste| %>
   <div class="titre"><%= liste.name %></div>

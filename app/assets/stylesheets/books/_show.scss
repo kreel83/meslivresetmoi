@@ -1,0 +1,57 @@
+#book-card {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.image {
+  width: 200px;
+  height: 300px;
+}
+
+
+.badge {
+  cursor: pointer;
+  width: 100%;
+  border: 1px solid $gray;
+  text-align: center;
+  padding: 18px;
+  font-size: 1.2rem;
+  color: $gray;
+}
+
+#tag {
+  background-color: #8186d5;
+  color: white;
+  padding: 4px 8px;
+  font-weight: bold;
+}
+
+.haut  {
+  display: flex;
+}
+
+.droite {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  margin: 16px 32px;
+}
+
+.notes-and-comments {
+  margin: 16px 32px;
+}
+
+.badge[data-active="true"] {
+  background-color: blue;
+  color: white;
+}
+
+.badge[data-active="false"] {
+  background-color: white;
+}
+
+.badge[data-active="false"]:hover {
+  background-color: $gray;
+  color: white;
+}
