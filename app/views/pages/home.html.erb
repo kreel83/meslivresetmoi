@@ -1,4 +1,50 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<style>
 
-<h1>test</h1>
+
+.footer {
+  display:none;
+}
+
+.navbar, footer {
+  display: none;
+}
+
+.alertClass {
+  display: none;
+}
+
+.photo {
+  height: 100vh;
+}
+
+</style>
+
+<header class="photo" style="background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.4)), url(http://artsboston.org/wp-content/uploads/2016/08/Open-Book.jpg); background-size: cover">
+
+    <div class="contain_image">
+        <div class="contain__fly-in-text">
+            <ul class="fly-in-text hidden">
+                <li>My</li>
+                <li>Books</li>
+                <li>&</li>
+                <li>me</li>
+
+            </ul>
+        </div>
+        <div class="webdev">Archiver et partager vos lectures</div>
+        <div class="gobtn" style="margin-left: -40px">
+          <% if user_signed_in? %>
+          <%= link_to "c'est parti !", books_path(status: 'livres'), class: 'btn btn-light btn-lg rounded'   %>
+
+          <% else %>
+          <%= link_to "c'est parti !", new_user_session_path, class: 'btn btn-light btn-lg rounded'   %>
+
+          <% end %>
+                      </div>
+    </div>
+</header>
+
+
+
+
+

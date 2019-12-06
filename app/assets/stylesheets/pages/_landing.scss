@@ -1,0 +1,90 @@
+.fly-in-text {
+  list-style: none;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 80%;
+  text-align: center;
+}
+
+.fly-in-text li {
+  display: inline-block;
+  margin-right: 50px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-size: 6rem;
+  color: white;
+  opacity: 1;
+  transition: all 2.5s ease;
+}
+
+.fly-in-text.hidden li {
+  opacity: 0;
+}
+
+.fly-in-text li:last-child {
+  margin-right: 0;
+}
+
+.fly-in-text.hidden li:nth-child(1) {
+  transform: translateX(-200px) translateY(-200px);
+}
+
+.fly-in-text.hidden li:nth-child(2) {
+  transform: translateX(20px) translateY(-80px);
+}
+
+.fly-in-text.hidden li:nth-child(3) {
+  transform: translateX(-150px) translateY(-180px);
+}
+
+.fly-in-text.hidden li:nth-child(4) {
+  transform: translateX(200px) translateY(-250px);
+}
+
+.fly-in-text.hidden li:nth-child(5) {
+  transform: translateX(-300px) translateY(200px);
+}
+.fly-in-text.hidden li:nth-child(6) {
+  transform: translateX(-150px) translateY(-180px);
+}
+
+.fly-in-text.hidden li:nth-child(7) {
+  transform: translateX(200px) translateY(-250px);
+}
+
+.fly-in-text.hidden li:nth-child(8) {
+  transform: translateX(-300px) translateY(200px);
+}
+
+.webdev {
+  list-style: none;
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translateY(-50%) translateX(-42%);
+  font-family: "Raleway", sans-serif;
+  font-weight: 200;
+  font-size: 2rem;
+  color: white;
+  letter-spacing: 15px;
+  opacity: 0;
+  text-align: center;
+}
+
+.gobtn {
+    position: absolute;
+  left: 50%;
+  top: 75%;
+  opacity: 0
+}
+
+#devtext {
+  font-size: 4rem;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  text-align: center;
+  color: #2b5e90;
+}
+
