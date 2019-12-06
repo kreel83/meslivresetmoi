@@ -13,16 +13,27 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 50px;
+    background-color:#F8F8F8;
+    box-shadow: 10px 5px 5px #2D132C;
+    border-radius: 10px;
+    margin: 20px;
+
+
 
   }
 
   .indice {
-    background-color: green;
-    color: white;
+    background-color:#F8B195;
+    color:#8b2f97;
     cursor: pointer;
     width: 50px;
     height: 50px;
     text-align: center;
-    border-radius: 50%;
+    border-radius: 30%;
     line-height: 50px;
+    opacity:40%;
   }
+.indice:hover {
+
+  opacity: 1;
+}
