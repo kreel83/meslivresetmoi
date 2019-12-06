@@ -1,20 +1,25 @@
 
 
 
-<div style="margin-top: 100px; margin-bottom: 100px">
-  <h1>Notations</h1>
+<div style="margin-top: 100px; margin-bottom: 100px;background: content-box radial-gradient(crimson, skyblue);">
+  <h1><div id="ttt">Ceux Que Pensent Les Lecteurs</div></h1>
+  <div class="row">
+    <div class="col-10 offset-1">
 
-  <% @faker.each do |fake| %>
-  <div class="liste flex">
-    <%= link_to 'voir le profil', profil_show_path(fake[:id]), class: "btn btn-primary btn-sm"  %>
-    <div class="name"><%= fake[:name] %></div>
-    <div class="date"><%= fake[:date] %></div>
-    <div class="comment"><%= fake[:commentaire]  %></div>
 
-    <button type="button" class="indice" data-toggle="modal" data-target="#exampleModal"><%= fake[:indice] %></button>
+      <% @faker.each do |fake| %>
+
+      <div class="liste flex ">
+        <%= link_to 'voir le profil', profil_show_path(fake[:id]), class: "btn btn-ghost"  %>
+        <h6>Nom<div class="name"><%= fake[:name] %></div></h6>
+        <h6>Date<div class="date"><%= fake[:date] %></div></h6>
+        <h6>Commentaire<div class="comment"><%= fake[:commentaire]  %></div></h6>
+
+        <button type="button" class="indice" data-toggle="modal" data-target="#exampleModal"><%= fake[:indice] %></button>
+      </div>
+      <% end %>
+    </div>
   </div>
-  <% end %>
-
 </div>
 
 <!-- Button trigger modal -->
