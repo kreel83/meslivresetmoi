@@ -28,20 +28,20 @@
 
         <div class="form-group">
           <p>votre commentaire :</p>
-          <textarea class="form-control" name="review[commentaire]"></textarea>
+          <textarea class="form-control" name="commentaire"></textarea>
           <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitches" name="review[status]">
+            <input type="checkbox" class="custom-control-input" id="customSwitches" name="status">
             <label class="custom-control-label" for="customSwitches">Publier mon commentaire</label>
           </div>
           <hr>
           <p>Vos sentiments</p>
           <div style="font-size: 0.7rem">Plus intimes, vous pouvez inscrire ici les conditions (evenement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
-          <textarea class="form-control" name="review[feeling]"></textarea>
+          <textarea class="form-control" name="feeling"></textarea>
           <hr>
           <p>Comment avez-vous découvert ce livre ?</p>
-          <select name="review[discover]"  class="form-control-lg d-block w-100">
+          <select name="discover"  class="form-control-lg d-block w-100">
             <% @discover.each_with_index do |item, index| %>
-            <option value="<%= index %>"><%= item %></option>
+            <option value="<%= item %>"><%= item %></option>
             <% end %>
           </select>
 
