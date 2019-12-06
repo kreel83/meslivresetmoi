@@ -1,35 +1,7 @@
-const badge = () => {
- badges = document.querySelectorAll('.badge')
- console.log(badges)
- badges.forEach((badge) => {
-   badge.addEventListener('click',(event) => {
-    badges.forEach((b) => {
-      b.style.backgroundColor = 'lightgray'
-      b.dataset.active = false
-    })
-    badge.style.backgroundColor = 'blue'
-    badge.dataset.active = true
-    Rails.ajax({
-      url: "/books/"+badge.dataset.id+"/tags/"+badge.dataset.cat,
-      type: "GET",
-      headers: { "Content-Type" : "application/json" },
-      dataType: 'json',
-      //data: {foo: 'bar', cat: badge.dataset.cat, id: badge.dataset.id} ,
-      success: function(data) {
-        console.log(data)
-        $('#category').html(badge.dataset.cat)
-      },
-      error: function(data) {}
-    })
-  })
- })
-}
 
 
 
-const getTag = () => {
 
-}
 
 
 const test = () => {
