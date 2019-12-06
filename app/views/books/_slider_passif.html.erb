@@ -1,0 +1,44 @@
+<style>
+
+  .custom-range {
+    color: red;
+  }
+
+  .sliderPassif {
+    width: 90%;
+    height: 20px;
+    background: linear-gradient(to right, #99f430 0%,#f92307 100%);
+    display: flex
+  }
+
+  .actived {
+    background-color: transparent;
+  }
+
+  .desactived {
+    background-color: #fff;
+  }
+
+  .b {
+    width: 10%;
+    border-right: 0.2px dotted black;
+    cursor: pointer;
+  }
+
+</style>
+
+
+
+<div class="sliderPassif" style="border: 1px solid black">
+  <% 10.times do |t| %>
+    <% if pos.to_i < t %>
+      <div data-id="<%= t %>" class="b desactived"></div>
+    <% else %>
+      <div data-id="<%= t %>" class="b actived"></div>
+    <% end %>
+  <% end %>
+
+</div>
+
+
+

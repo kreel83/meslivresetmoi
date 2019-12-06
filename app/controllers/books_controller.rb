@@ -4,27 +4,47 @@ class BooksController < ApplicationController
     @wl = Reading.where(status: 'wl')
     @done = Reading.where(status: 'done')
     @el = Endinglist.all
+
   end
 
   def show
     @reading = Reading.find(params[:id])
     @tags = ActsAsTaggableOn::Tag.all.order(:name)
-    if @reading.livre.tags == []
+
+    if @reading.notation
+
+      @notes = @reading.notation.split('/')
+      tag = @reading.tags[0].name
+      @crit = Critere.tagged_with(tag)
+      @criteria = []
+      @crit.each_with_index do |critere, index|
+        @couple = []
+        @couple << critere.name
+        @couple << @notes[index]
+        @criteria << @couple
+      end
+
+
+    else
+      @criteria = []
+    end
+
+    if @reading.tags == []
       @tag = []
     else
-      @tag = @reading.livre.tags[0].name
+      @tag = @reading.tags[0].name
     end
   end
 
   def update_tag
-    book = Livre.find(params[:id])
-    book.tags.each do |tag|
-      book.tag_list.remove(tag.name)
+    reading = Reading.find(params[:id])
+    reading.tags.each do |tag|
+      reading.tag_list.remove(tag.name)
     end
-    book.tag_list.remove("awesome", "slick")
-    book.tag_list.add(params[:cat])
+    reading.tag_list.remove("awesome", "slick")
+    reading.tag_list.add(params[:cat])
 
-    book.save
+    reading.save
     render json: {status: params}
   end
 

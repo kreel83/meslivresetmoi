@@ -1,5 +1,5 @@
 <%= csrf_meta_tag %>
-<div class="container" style="margin-top: 80px">
+<div class="container" style="margin-top: 80px;margin- bottom: 120px ">
 
   <div class="haut" style="display: flex;justify-content: space-between;">
     <h3><%= @reading.livre.title %></h3>
@@ -43,6 +43,47 @@
       </div>
     </div>
     <hr>
+    <div>
+      <div>
+          satisfaction globale
+          <%= render 'slider_passif', pos: @notes[-1] %>
+      </div>
+      <% @criteria.each do |critere| %>
+        <div>
+          <%= critere[0] %>
+          <%= render 'slider_passif', pos: critere[1] %>
+        </div>
+      <% end %>
+    </div>
+    <hr>
+    <div style="margin-bottom: 120px">
+      commentaire :
+      <form action="" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+        <div class="form-group">
+          <p>votre commentaire :</p>
+          <textarea class="form-control" name="commentaire"></textarea>
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitches" name="status">
+            <label class="custom-control-label" for="customSwitches">Publier mon commentaire</label>
+          </div>
+          <hr>
+          <p>Vos sentiments</p>
+          <div style="font-size: 0.7rem">Plus intimes, vous pouvez inscrire ici les conditions (evenement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
+          <textarea class="form-control" name="feeling"></textarea>
+          <hr>
+          <p>Comment avez-vous découvert ce livre ?</p>
+
+
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Valider</button>
+          <%= link_to 'retour', books_path, class: 'btn btn-danger'  %>
+        </div>
+      </form>
+    </div>
     <div class="bas" style="display: flex;text-align: right;">
       <div>
         <% if @reading.status == 'wl' %>
