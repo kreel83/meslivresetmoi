@@ -19,10 +19,11 @@
 
   <div>
 
+<p>Voulez-vous écrire un commentaire ?</p>
 
+    <%= link_to "Non merci", post_notation_path(@reading, status: 'false'), method: 'post',  class: "btn btn-lg btn-danger d-block w-100 mb-5"%>
 
-
-    <%= link_to "Les commentaires", post_notation_path(@reading), method: 'post',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
+    <%= link_to "ok", post_notation_path(@reading, status: 'true'), method: 'post',  class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
 
   </div>
 
