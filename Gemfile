@@ -15,6 +15,7 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'faker'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'owlcarousel-rails'
 
@@ -23,6 +24,7 @@ group :development do
 end
 
 group :development, :test do
+
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'listen', '~> 3.0.5'

@@ -7,10 +7,30 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+
+def calc_indice(note)
+  notations = note.split('/')
+  nb = notations.size-1
+  diviseur = 100.0 / nb
+  n = notations[0..-2]
+  n.map! do |item|
+    item.to_i * diviseur / 10
+  end
+  m1 = (n.sum / nb)  * 40.0
+  m2 = notations[-1].to_i * 60.0
+  moy = ((m1 + m2) / 20.0).round(2)
+
+end
+
+DISCOVER = ["Dans une librarire", "Emission de TV", "Magazine", 'Conseil', "Mybooks & me" ]
+
+
 livres = []
+
 livres << "veZPDwAAQBAJ"
 livres << "1fa2DwAAQBAJ"
-livres << "RQZcAQAACAAJ"
+
+
 livres << "3jihDwAAQBAJ"
 livres << "fju3DwAAQBAJ"
 livres << "PwSfDwAAQBAJ"
@@ -41,12 +61,15 @@ livres << "REC1DwAAQBAJ"
 livres << "wA_Rp0rBKvsC"
 
 
+Review.destroy_all
+Reading.destroy_all
+User.destroy_all
 u = User.new
 u.email = 'gigi@test.fr'
 u.password = "password"
 u.save!
 livres.each do |book|
-    url = "https://www.googleapis.com/books/v1/volumes/#{book}"
+  url = "https://www.googleapis.com/books/v1/volumes/#{book}"
   f = open(url).read
   fj = JSON.parse(f)
   l = Livre.new
@@ -63,15 +86,60 @@ livres.each do |book|
   r.user = u
   r.status = "done"
 
-  r.notation = random(10).to_s = '/'
-  r.tag_list.add(ActsAsTaggableOn::Tag.all.sample.name)
 
+  sample = ActsAsTaggableOn::Tag.all.sample.name
+  r.tag_list.add(sample)
+  criteres = Critere.tagged_with(sample)
+  note = ''
+  criteres.each do |critere|
+    note = note + rand(10).to_s + '/'
+  end
+  note = note + rand(10).to_s
+  r.notation = note
+  r.indice = calc_indice(note)
+  r.save!
 
 
 
   puts book
   sleep 5
 end
+
+
+
+users = ['alain', 'olivier', 'rudy', 'corinne', 'barbara', 'damien', 'sandrine', 'lucien', 'alexandre', 'mohamed', 'justine', 'maria', 'magali', 'eric', 'frederic']
+
+users.each do |user|
+
+  u = User.new
+  u.email = user+'@test.fr'
+  u.password = 'password'
+  u.save!
+
+  l = Livre.find(117)
+  r = Reading.new
+  r.livre = l
+  r.user = u
+  r.status = "done"
+  r.comment = Faker::Lorem.sentences(number: 3)
+  r.like = rand(100)
+  r.unlike = rand(100)
+  r.tag_list.add("Heroic Fantasy")
+  criteres = Critere.tagged_with("Heroic Fantasy")
+  note = ''
+  criteres.each do |critere|
+    note = note + rand(10).to_s + '/'
+  end
+  note = note + rand(10).to_s
+  r.notation = note
+  r.indice = calc_indice(note)
+  r.discover = DISCOVER.sample
+  r.save!
+  puts u.email
+end
+
+
+
 
 
 =begin
