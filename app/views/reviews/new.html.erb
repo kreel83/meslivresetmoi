@@ -28,15 +28,20 @@
 
         <div class="form-group">
           <p>votre commentaire :</p>
-          <textarea class="form-control" name="commentaire"></textarea>
+          <textarea rows=7 class="form-control" name="commentaire"><%= @reading.comment %> </textarea>
           <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitches" name="status">
+            <% if @reading.public = 'true' %>
+            <% s = "checked" %>
+            <% else %>
+            <% s = '' %>
+            <% end %>
+            <input type="checkbox" class="custom-control-input" id="customSwitches" name="status" <%= s %>>
             <label class="custom-control-label" for="customSwitches">Publier mon commentaire</label>
           </div>
           <hr>
           <p>Vos sentiments</p>
           <div style="font-size: 0.7rem">Plus intimes, vous pouvez inscrire ici les conditions (evenement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
-          <textarea class="form-control" name="feeling"></textarea>
+          <textarea rows=4 class="form-control" name="feeling"></textarea>
           <hr>
           <p>Comment avez-vous découvert ce livre ?</p>
           <select name="discover"  class="form-control-lg d-block w-100">

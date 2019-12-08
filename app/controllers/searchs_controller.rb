@@ -4,32 +4,38 @@ require 'open-uri'
 
 class SearchsController < ApplicationController
   def index
-    title = ERB::Util.url_encode(params[:title])
-    title = title.gsub(' ', '+')
+    if (!params[:title].nil? && !params[:author].nil?)
+      title = params[:title].gsub(' ', '+')
+      title = ERB::Util.url_encode(title)
 
-    author = ERB::Util.url_encode(params[:author])
+      author = ERB::Util.url_encode(params[:author])
 
-    title = '' if !params[:title]
-    author = ERB::Util.url_encode('grangé') if !params[:author]
+      title = '' if !params[:title]
+      author = ERB::Util.url_encode('grangé') if !params[:author]
 
-    titleText = "q=#{title}"
-    authorText = "+inauthor:#{author}" if author != ''
 
-    url = "https://www.googleapis.com/books/v1/volumes?#{titleText}#{authorText}&langRestrict=fr"
+      titleText = "intitle:#{title}" if title != ''
+      authorText = "+inauthor:#{author}" if author != ''
 
-    f = open(url).read
-    fj = JSON.parse(f)
-    @fj = fj['items']
-    last = ''
-    @tab = []
-    @fj.each do |item|
-      @tab << item  if last != item['volumeInfo']['title']
-      last = item['volumeInfo']['title']
+      url = "https://www.googleapis.com/books/v1/volumes?q=#{titleText}#{authorText}"
+
+      f = open(url).read
+      fj = JSON.parse(f)
+      @fj = fj['items']
+      last = ''
+      @tab = []
+      @fj.each do |item|
+        if !item['volumeInfo']['authors'].nil?
+          @tab << item  if last != item['volumeInfo']['title']
+          last = item['volumeInfo']['title']
+        end
+      end
+      @tab.sort_by! { |tab| tab['volumeInfo']['title'].downcase }
+      @fj = @tab
+
+    else
+      @fj = []
     end
-    @tab.sort_by! { |tab| tab['volumeInfo']['title'].downcase }
-    @fj = @tab
-
-
   end
 
   def store
@@ -37,8 +43,8 @@ class SearchsController < ApplicationController
     session['search'] = params[:dataId]
 
 
-      search = Livre.where(googleid: params[:dataId])
-      if search == []
+    search = Livre.where(googleid: params[:dataId])
+    if search == []
       url = "https://www.googleapis.com/books/v1/volumes/#{params[:dataId]}"
       f = open(url).read
       fj = JSON.parse(f)
@@ -50,21 +56,21 @@ class SearchsController < ApplicationController
       l.author = fj['volumeInfo']['authors'].join(', ')
       l.googleid = params[:dataId]
       l.save!
-      else
-        l = search[0]
-      end
+    else
+      l = search[0]
+    end
 
-      r = Reading.new
-      r.livre = l
-      r.user = current_user
-      r.status = params[:status]
-      if params[:status] == 'wl'
-        r.startdate = Date.today
-      end
-      if params[:status] == 'ec'
-        r.enddate = Date.today
-      end
-      r.save!
+    r = Reading.new
+    r.livre = l
+    r.user = current_user
+    r.status = params[:status]
+    if params[:status] == 'wl'
+      r.startdate = Date.today
+    end
+    if params[:status] == 'ec'
+      r.enddate = Date.today
+    end
+    r.save!
 
 
 
@@ -75,4 +81,3 @@ class SearchsController < ApplicationController
 
 
 end
-

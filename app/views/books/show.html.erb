@@ -6,7 +6,7 @@
     <div style="width: 70px;display: flex;justify-content: space-between;font-size: 1.5rem"></div>
     <div style="display: flex; justify-content: space-around; align-content: center; width: 150px; font-size: 1.5rem">
       <p style="font-style: italic; font-size: 10px; padding-top: 12px">Supprimer de ma liste</p>
-      <%= link_to book_destroy_path(@reading) do  %>
+      <%= link_to book_destroy_path(@reading), method: 'delete' do  %>
       <i class="far fa-calendar-times"></i>
       <% end %>
     </div>
@@ -16,7 +16,12 @@
 
   <div class="middle" style="display: flex;justify-content: space-between;">
     <div style="font-style: italic"><%= @reading.livre.author %></div>
-    <div id="tag" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
+    <% if @tag== [] %>
+      <% s = "data-tag=none " %>
+    <% else %>
+      <% s = "data-tag=#{@tag} " %>
+    <% end %>
+    <div id="tag" <%= s  %> data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
       <% if @tag == [] %>
         <button class="btn  btn-sm " style="color: white">définir catégorie</button>
       <% else %>
@@ -50,6 +55,10 @@
     <hr>
     <% if @status == 'done' %>
     <div>
+      indice : <%= @reading.indice %>
+    </div>
+    <hr>
+    <div>
       <div>
           satisfaction globale
           <%= render 'slider_passif', pos: @notes[-1] %>
@@ -64,31 +73,38 @@
 
     <hr>
     <div style="margin-bottom: 120px">
-      commentaire :
+
       <form action="" method="post">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
         <div class="form-group">
-          <p>votre commentaire :</p>
-          <textarea class="form-control" name="commentaire"></textarea>
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitches" name="status">
-            <label class="custom-control-label" for="customSwitches">Publier mon commentaire</label>
+          <div style="display: flex; justify-content: space-between;">
+            <p>votre commentaire :</p>
+            <%= link_to new_review_path(@reading) do  %>
+                <i class="fas fa-edit"></i>
+            <% end %>
           </div>
+
+          <textarea rows=7 class="form-control" name="commentaire"><%= @reading.comment %></textarea>
+          <div>
+            <% if @reading.public %>
+              <%=  "commentaire public" %>
+            <% else %>
+              <%= "commentaire privé" %>
+            <% end %>
+        </div>
           <hr>
           <p>Vos sentiments</p>
           <div style="font-size: 0.7rem">Plus intimes, vous pouvez inscrire ici les conditions (evenement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
-          <textarea class="form-control" name="feeling"></textarea>
+          <textarea class="form-control" name="feeling"><%= @reading.feeling %> </textarea>
           <hr>
           <p>Comment avez-vous découvert ce livre ?</p>
+          <div><%= @reading.discover %> </div>
 
 
         </div>
 
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Valider</button>
-          <%= link_to 'retour', books_path, class: 'btn btn-danger'  %>
-        </div>
+
       </form>
     </div>
     <% end %>
@@ -101,12 +117,15 @@
 
         <% end %>
         <% if @reading.status == 'ec' %>
-        <% if @tag == [] %>
-        <button class="btn btn-success" style="color: white; font-weight: bold" id="note" data-toggle="modal" data-target="#exampleModal">Noter le livre</button>
-        <% else %>
-        <%= link_to 'Noter le livre', notations_path(@reading) , class: "btn btn-success", style: "color: white; font-weight: bold"  %>
-        <% end %>
-        <%= link_to "J'abandonne la lecture de ce livre", book_destroy_path(@reading), method: 'delete',  class: "btn btn-lg btn-danger mb-5"%>
+            <div id="avertissement">
+                <div class="card">
+                  Vous devez définir une catégorie avant de noter ce livre
+                </div>
+            </div>
+            <div id="btnNote" hidden>
+                <%= link_to 'Noter le livre', notations_path(@reading) , class: "btn btn-success", style: "color: white; font-weight: bold"  %>
+            </div>
+
 
         <% end %>
       </div>
@@ -153,4 +172,6 @@
     </div>
   </div>
 </div>
+
+
 

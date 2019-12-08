@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_140915) do
+ActiveRecord::Schema.define(version: 2019_12_08_172825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,12 @@ ActiveRecord::Schema.define(version: 2019_12_06_140915) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "notation"
     t.float "indice"
+    t.text "comment"
+    t.text "feeling"
+    t.integer "like"
+    t.integer "unlike"
+    t.string "discover"
+    t.boolean "public"
     t.index ["livre_id"], name: "index_readings_on_livre_id"
     t.index ["user_id"], name: "index_readings_on_user_id"
   end
