@@ -23,6 +23,8 @@ Ending.destroy_all
 Endinglist.destroy_all
 Reading.destroy_all
 Livre.destroy_all
+User.destroy_all
+
 
 
 
@@ -74,6 +76,7 @@ liste.each do |book|
   l.save!
 
 
+
   ending = Ending.new
   ending.livre = l
   ending.endinglist = el
@@ -104,6 +107,7 @@ liste.each do |book|
   l.author = fj['volumeInfo']['authors'].join(', ')
   l.googleid = book
   l.save!
+
 
 
   ending = Ending.new
@@ -138,6 +142,7 @@ liste.each do |book|
   l.author = fj['volumeInfo']['authors'].join(', ')
   l.googleid = book
   l.save!
+
 
 
   ending = Ending.new
@@ -180,6 +185,7 @@ liste.each do |book|
   l.save!
 
 
+
   ending = Ending.new
   ending.livre = l
   ending.endinglist = el
@@ -215,6 +221,7 @@ liste.each do |book|
   l.save!
 
 
+
   ending = Ending.new
   ending.livre = l
   ending.endinglist = el
@@ -247,6 +254,7 @@ liste.each do |book|
   l.author = fj['volumeInfo']['authors'].join(', ')
   l.googleid = book
   l.save!
+
 
 
   ending = Ending.new

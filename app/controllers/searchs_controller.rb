@@ -35,7 +35,8 @@ class SearchsController < ApplicationController
     session['search'] = params[:dataId]
 
 
-
+      search = Livre.where(googleid: params[:dataId])
+      if search == []
       url = "https://www.googleapis.com/books/v1/volumes/#{params[:dataId]}"
       f = open(url).read
       fj = JSON.parse(f)
@@ -47,6 +48,10 @@ class SearchsController < ApplicationController
       l.author = fj['volumeInfo']['authors'].join(', ')
       l.googleid = params[:dataId]
       l.save!
+      else
+        l = search[0]
+      end
+
       r = Reading.new
       r.livre = l
       r.user = current_user

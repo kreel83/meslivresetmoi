@@ -3,16 +3,24 @@ class BooksController < ApplicationController
     @ec = Reading.where(status: 'ec')
     @wl = Reading.where(status: 'wl')
     @done = Reading.where(status: 'done')
-    @el = Endinglist.all
+    @liste = Reading.where(status: 'liste')
 
+
+
+
+    @el = Endinglist.all
   end
 
   def show
+    @status = params[:status]
+    if @status === "liste"
+      redirect_to liste_show_path(params[:id])
+    else
+
     @reading = Reading.find(params[:id])
     @tags = ActsAsTaggableOn::Tag.all.order(:name)
 
-    if @reading.notation
-
+    if params[:status] == 'done'
       @notes = @reading.notation.split('/')
       tag = @reading.tags[0].name
       @crit = Critere.tagged_with(tag)
@@ -23,9 +31,8 @@ class BooksController < ApplicationController
         @couple << @notes[index]
         @criteria << @couple
       end
-
-
     else
+      @notes = []
       @criteria = []
     end
 
@@ -35,16 +42,18 @@ class BooksController < ApplicationController
       @tag = @reading.tags[0].name
     end
   end
+  end
 
   def update_tag
     reading = Reading.find(params[:id])
     reading.tags.each do |tag|
       reading.tag_list.remove(tag.name)
     end
-    reading.tag_list.remove("awesome", "slick")
-    reading.tag_list.add(params[:cat])
 
+    reading.tag_list.add(params[:cat])
+    @tag = params[:cat]
     reading.save
+
     render json: {status: params}
   end
 
