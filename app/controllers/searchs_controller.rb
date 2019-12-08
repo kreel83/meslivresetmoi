@@ -5,6 +5,8 @@ require 'open-uri'
 class SearchsController < ApplicationController
   def index
     title = ERB::Util.url_encode(params[:title])
+    title = title.gsub(' ', '+')
+
     author = ERB::Util.url_encode(params[:author])
 
     title = '' if !params[:title]
@@ -13,7 +15,7 @@ class SearchsController < ApplicationController
     titleText = "q=#{title}"
     authorText = "+inauthor:#{author}" if author != ''
 
-    url = "https://www.googleapis.com/books/v1/volumes?#{titleText}#{authorText}&langRestrict=fr&maxResults=40"
+    url = "https://www.googleapis.com/books/v1/volumes?#{titleText}#{authorText}&langRestrict=fr"
 
     f = open(url).read
     fj = JSON.parse(f)
@@ -24,7 +26,7 @@ class SearchsController < ApplicationController
       @tab << item  if last != item['volumeInfo']['title']
       last = item['volumeInfo']['title']
     end
-
+    @tab.sort_by! { |tab| tab['volumeInfo']['title'].downcase }
     @fj = @tab
 
 
