@@ -6,6 +6,79 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+livres = []
+livres << "veZPDwAAQBAJ"
+livres << "1fa2DwAAQBAJ"
+livres << "RQZcAQAACAAJ"
+livres << "3jihDwAAQBAJ"
+livres << "fju3DwAAQBAJ"
+livres << "PwSfDwAAQBAJ"
+livres << "Dr2CDwAAQBAJ"
+livres << "sgKfDwAAQBAJ"
+livres << "AyOyDwAAQBAJ"
+livres << "hfFIDwAAQBAJ"
+
+livres << "TvWxDwAAQBAJ"
+livres << "-si4DwAAQBAJ"
+livres << "rtF-BgAAQBAJ"
+livres << "RoOYDwAAQBAJ"
+livres << "PgvoAwAAQBAJ"
+livres << "UM5kPwAACAAJ"
+livres << "vGvYBAAAQBAJ"
+livres << "WazjBQAAQBAJ"
+livres << "QTCxjwEACAAJ"
+livres << "MEWlDwAAQBAJ"
+livres << "MSCK1GwuiLUC"
+livres << "5jLZBAAAQBAJ"
+livres << "cxQQvgAACAAJ"
+livres << "QLK7n9_28XkC"
+livres << "D5ZLAgAAQBAJ"
+livres << "4SxEKmerqPUC"
+livres << "ThihCgAAQBAJ"
+livres << "Bi-NDwAAQBAJ"
+livres << "REC1DwAAQBAJ"
+livres << "wA_Rp0rBKvsC"
+
+
+u = User.new
+u.email = 'gigi@test.fr'
+u.password = "password"
+u.save!
+livres.each do |book|
+    url = "https://www.googleapis.com/books/v1/volumes/#{book}"
+  f = open(url).read
+  fj = JSON.parse(f)
+  l = Livre.new
+
+  l.imageurl = fj['volumeInfo']['imageLinks']['smallThumbnail']
+  l.title =  fj['volumeInfo']['title']
+  l.description = fj['volumeInfo']['description']
+  l.author = fj['volumeInfo']['authors'].join(', ')
+  l.googleid = book
+  l.save!
+
+  r = Reading.new
+  r.livre = l
+  r.user = u
+  r.status = "done"
+
+  r.notation = random(10).to_s = '/'
+  r.tag_list.add(ActsAsTaggableOn::Tag.all.sample.name)
+
+
+
+
+  puts book
+  sleep 5
+end
+
+
+=begin
+
+
+
+
 ActsAsTaggableOn::Tag.destroy_all
 ActsAsTaggableOn::Tag.create(name: "Sciences fictions", color: "#F4C323")
 ActsAsTaggableOn::Tag.create(name: "Heroic Fantasy", color: "#FF68AB")
@@ -51,6 +124,9 @@ c.tag_list = "Heroic Fantasy,Roman étranger"
 c.save
 
 puts 'done'
+
+
+
 
 
 
@@ -269,3 +345,4 @@ end
 puts "Science fictions done"
 
 
+=end

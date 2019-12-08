@@ -5,21 +5,23 @@ class ReviewsController < ApplicationController
 
   def new
     @reading = Reading.find(params[:id])
-    @review = Review.new
+
     @discover = DISCOVER
   end
 
+
+
   def create
+    @reading = Reading.find(params[:id])
 
-    @review = Review.new
-    @review.status = false
+    @reading.public = false
 
-    @review.status = true if params[:status]
-    @review.comment = params[:commentaire]
-    @review.feeling = params[:feeling]
-    @review.discover = params[:discover]
-    @review.reading = Reading.find(params[:id])
-    @review.save!
+    @reading.public = true if params[:status]
+    @reading.comment = params[:commentaire]
+    @reading.feeling = params[:feeling]
+    @reading.discover = params[:discover]
+
+    @reading.save!
     redirect_to books_path
 
   end

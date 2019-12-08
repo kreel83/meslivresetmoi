@@ -13,12 +13,12 @@ const test = () => {
 
     const category = $(this).data('cat')
     const reading = $(this).data('reading')
-    const tag = $('#tag').html().trim()
+    const tag = $('#tag').attr('data-tag')
 
 
     //console.log(etat)
     const datas = {id: $(this).data('reading'), cat: category, reading: reading, etat: tag}
-console.log($(this).data('reading'))
+
     $.ajax({
       url: "/books/"+$(this).data('reading')+'/tags',
       type: "POST",
@@ -31,7 +31,7 @@ console.log($(this).data('reading'))
       success: function(data) {
         $('#category').html(category)
         console.log(data)
-        if (data.status.etat == "[]") {
+        if (data.status.etat == "none") {
           location.href = "/books/"+data.status.reading+"/notations"
         } else {
           $('#tag').html(data.status.cat)

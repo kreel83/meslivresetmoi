@@ -1,9 +1,9 @@
 class BooksController < ApplicationController
   def index
-    @ec = Reading.where(status: 'ec')
-    @wl = Reading.where(status: 'wl')
-    @done = Reading.where(status: 'done')
-    @liste = Reading.where(status: 'liste')
+    @ec = Reading.where(status: 'ec').where(user: current_user)
+    @wl = Reading.where(status: 'wl').where(user: current_user)
+    @done = Reading.where(status: 'done').where(user: current_user)
+    @liste = Reading.where(status: 'liste').where(user: current_user)
 
 
 
@@ -42,6 +42,7 @@ class BooksController < ApplicationController
       @tag = @reading.tags[0].name
     end
   end
+
   end
 
   def update_tag
