@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   get 'books/search', to: 'searchs#index', as: :search
   get 'books/store', to: 'searchs#store', as: :store
   get 'books/index', to: 'books#index', as: :books
-  get 'books/show/:id', to: 'books#show', as: :book_show
-  get 'books/destroy/:id', to: 'books#destroy', as: :book_destroy
+  get 'books/:id/show', to: 'books#show', as: :book_show
+  get 'books/liste/:id/show', to: 'listes#show', as: :liste_show
+  patch 'books/liste/:id/update', to: 'listes#update', as: :liste_update
+
   patch 'books/:id/update', to: 'books#update', as: :book_update
+  delete 'books/:id/destroy', to: 'books#destroy', as: :book_destroy
   post 'books/:id/notation', to: 'books#update_notation', as: :post_notation
   post 'books/:id/tags', to: 'books#update_tag', as: :book_update_tag, defaults: {format: :json}
 

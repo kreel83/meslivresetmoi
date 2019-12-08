@@ -17,10 +17,10 @@ const test = () => {
 
 
     //console.log(etat)
-    const datas = {id: $(this).data('id'), cat: category, reading: reading, etat: tag}
-
+    const datas = {id: $(this).data('reading'), cat: category, reading: reading, etat: tag}
+console.log($(this).data('reading'))
     $.ajax({
-      url: "/books/"+$(this).data('id')+'/tags',
+      url: "/books/"+$(this).data('reading')+'/tags',
       type: "POST",
       headers: {
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -30,7 +30,7 @@ const test = () => {
       //data: {foo: 'bar', cat: $(this).data('cat'), id: $(this).data('id')} ,
       success: function(data) {
         $('#category').html(category)
-console.log(data)
+        console.log(data)
         if (data.status.etat == "[]") {
           location.href = "/books/"+data.status.reading+"/notations"
         } else {

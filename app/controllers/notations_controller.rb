@@ -4,7 +4,7 @@ class NotationsController < ApplicationController
 
 
     @reading = Reading.find(params[:id])
-    tag = @reading.livre.tags[0].name
+    tag = @reading.tags[0].name
     @taglist = Critere.tagged_with(tag)
 
 

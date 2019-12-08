@@ -1,0 +1,61 @@
+<%= csrf_meta_tag %>
+<div class="container" style="margin-top: 80px;padding-bottom: 120px ">
+
+  <div class="haut" style="display: flex;justify-content: space-between;">
+    <h3><%= @reading.livre.title %></h3>
+    <div style="width: 70px;display: flex;justify-content: space-between;font-size: 1.5rem"></div>
+
+  </div>
+
+  <hr>
+
+  <div class="middle" style="display: flex;justify-content: space-between;">
+    <div style="font-style: italic"><%= @reading.livre.author %></div>
+
+  </div>
+
+  <hr>
+
+  <div id="book-card" style="display: flex; justify-content: space-between;">
+<!--     <div class="haut"> -->
+      <div class="gauche">
+        <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
+      </div>
+      <div class="droite" style="justify-content: space-between;">
+        <div class="comment">
+          <%= @reading.livre.description.html_safe %>
+        </div>
+        <div class="notes-and-comments" style="display: flex; justify-content: space-around; width: 100px; font-size: 1.5rem; position: relative; bottom: 0; left: 0">
+          <%= link_to notation_consult_path(@reading) do  %>
+          <i class="fas fa-list-ol"></i>
+          <% end %>
+          <%= link_to review_consult_path(@reading)  do%>
+          <i class="fas fa-comments"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+
+
+  </div>
+  <div>
+    <%= link_to 'je place ce livre dans la wish list', liste_update_path(@reading), method: 'patch',  class: 'btn btn-success d-block w-100'  %>
+  </div>
+</div>
+
+
+
+
+<!-- <script src="jquery.min.js"></script>
+<script src="rangeslider.min.js"></script>
+<script>
+
+    $('input[type="range"]').rangeslider();
+
+</script>
+-->
+
+
+
