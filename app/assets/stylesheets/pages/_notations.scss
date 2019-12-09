@@ -1,15 +1,17 @@
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+
   .liste {
-    width: 100%;
-    border-bottom: 3px lightgray solid;
+    width: 90%;
     background-color: #F0F0F0;
     padding: 8px;
     height: 100px;
-
   }
 
   .flex {
     display: flex;
-    width: 100%;
     align-items: center;
     justify-content: space-between;
     padding: 0 50px;
@@ -17,9 +19,6 @@
     box-shadow: 10px 5px 5px #C1C1C1;
     border-radius: 10px;
     margin: 20px;
-
-
-
   }
 
   .indice {

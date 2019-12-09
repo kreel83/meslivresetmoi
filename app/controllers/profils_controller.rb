@@ -1,5 +1,5 @@
 class ProfilsController < ApplicationController
   def show
-    @profilowner = User.find(param[:user])
+    # @profilowner = User.find(params[:user])
   end
 end
