@@ -3,52 +3,59 @@
 
 <div style="margin-top: 100px; margin-bottom: 100px;background: linear-gradient(90deg, rgba(226,226,232,1) 0%, rgba(223,223,223,1) 49%, rgba(227,232,233,1) 100%);">
   <h1><div id="ttt">Ceux Que Pensent Les Lecteurs</div></h1>
+  <h3>de</h3>
+  <h4>titre</h4>
   <div class="row">
     <div class="col-10 offset-1">
 
 
-      <% @faker.each do |fake| %>
+      <% @readings.each do |reading| %>
+      <% if reading.user == current_user  %>
+          <div class="liste flex " style="background-color: rgba(0,0,255,0.2)">
+        <% else %>
+          <div class="liste flex " >
+        <% end %>
+          <%= link_to 'voir le profil', profil_show_path(reading.user), class: "btn btn-ghost"  %>
+          <h6>Nom<div class="name"><%= reading.user.first_name %></div></h6>
+          <h6>Date<div class="date"><%= reading.startdate %></div></h6>
+          <h6>Commentaire<div class="comment"><%=   %></div></h6>
 
-      <div class="liste flex ">
-        <%= link_to 'voir le profil', profil_show_path(fake[:id]), class: "btn btn-ghost"  %>
-        <h6>Nom<div class="name"><%= fake[:name] %></div></h6>
-        <h6>Date<div class="date"><%= fake[:date] %></div></h6>
-        <h6>Commentaire<div class="comment"><%= fake[:commentaire]  %></div></h6>
-
-        <button type="button" class="indice" data-toggle="modal" data-target="#exampleModal"><%= fake[:indice] %></button>
-      </div>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<!-- Button trigger modal -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Les notes de Christian</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <% @tag.each_with_index do |tag, index| %>
-          <div id="<%= index %>">
-            <div ><%= tag %></div>
-            <%= render 'slider', status: "slide#{index}"  %>
-          </div>
+                  <%= link_to view_note_path(reading) do %>
+            <div><%= reading.indice %></div>
           <% end %>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
+        <% end %>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Button trigger modal -->
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Les notes de</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <% Critere.tagged_with(@readings[0].tags[0]).each_with_index do |tag, index| %>
+            <div id="<%= index %>">
+              <div ><%= tag.name %></div>
+              <%= render 'books/slider_passif', pos: 3, status: "slide#{index}"  %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>

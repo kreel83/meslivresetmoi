@@ -1,0 +1,56 @@
+<style>
+ .indices {
+  width: 100px;height: 70px; background-color: grey;color: white;font-size: 15px; text-align: center;
+  line-height: 30px;
+  display: flex;
+  flex-direction: column;
+}
+small {
+  font-size: 0.8rem
+}
+
+</style>
+
+
+<div style="margin: 100px 0">
+
+  <div class="container">
+    <div style="display: flex;width: 40%;margin: 0 auto;justify-content: space-between;">
+      <div class="indices" >
+        <small>moi</small>
+        <div>
+          <%= @my_reading.indice %>
+        </div>
+
+
+      </div>
+      <div class="indices">
+        <div><small><%= @other_reading.user.first_name %></small></div>
+        <div>
+          <%= @other_reading.indice %>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="mb-5">
+      <% Critere.tagged_with(@my_reading.tags[0]).each_with_index do |tag, index| %>
+      <div id="<%= index %>">
+        <div ><%= tag.name %></div>
+        <div class="mb-2">
+         <%= 'moi' %><%= render 'books/slider_passif', pos: @my_notes[index], status: "slide#{index}"  %>
+
+       </div>
+       <div>
+        <%= @other_reading.user.first_name %><%= render 'books/slider_passif', pos: @other_notes[index], status: "slide#{index}"  %>
+
+      </div>
+    </div>
+    <hr>
+    <% end %>
+
+  </div>
+
+
+</div>
+</div>
