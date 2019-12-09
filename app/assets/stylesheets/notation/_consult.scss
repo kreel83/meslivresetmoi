@@ -39,10 +39,10 @@ h6 {
 }
 
 .btn-ghost {
-  color: #4A4A4A;
-  border: 1px solid #4A4A4A;
+  color: #F2D4C2;
+  border: 1px solid #EFEFEF;
   padding: 8px 24px;
-  border-radius: 50px;
+  border-radius: 20px;
   font-weight: lighter;
   opacity: 0.6;
   transition: opacity 0.3s ease;
@@ -55,3 +55,8 @@ h6 {
 
 
 
+.card-product {
+
+  border-radius:30px;
+background: linear-gradient(90deg, rgba(15,15,15,1) 0%, rgba(223,223,223,1) 49%, rgba(227,232,233,1) 100%);
+}

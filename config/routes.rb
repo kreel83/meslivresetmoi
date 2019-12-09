@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'books/:id/consultReviews', to: "reviews#consult", as: :review_consult
   get 'books/:id/consultNotations', to: "notations#consult", as: :notation_consult
   get 'books/:id/viewnote', to: "notations#view", as: :view_note
+  get 'books/:id/viewcomment', to: "reviews#view", as: :view_comment
   get 'books/:user/profil', to: "profils#show", as: :profil_show
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

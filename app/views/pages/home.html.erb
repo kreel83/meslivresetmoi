@@ -16,7 +16,7 @@
 }
 </style>
 
-<header class="photo" style="background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.4)), url(http://artsboston.org/wp-content/uploads/2016/08/Open-Book.jpg); background-size: cover">
+<header class="photo" style="background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.4)), url(https://images5.alphacoders.com/394/394862.jpg); background-size: cover;background-position : center center;">
 
     <div class="contain_image">
         <div class="contain__fly-in-text">
@@ -31,10 +31,10 @@
         <div class="webdev">Archiver et partager vos lectures</div>
         <div class="gobtn" style="margin-left: -40px">
           <% if user_signed_in? %>
-          <%= link_to "c'est parti !", books_path(status: 'livres'), class: 'btn btn-light btn-lg rounded'   %>
+          <%= link_to "c'est parti !", books_path(status: 'livres'), class: 'btn btn-ghost'   %>
 
           <% else %>
-          <%= link_to "c'est parti !", new_user_session_path, class: 'btn btn-light btn-lg rounded'   %>
+          <%= link_to "c'est parti !", new_user_session_path, class: 'btn btn-ghost'   %>
 
           <% end %>
       </div>

@@ -15,7 +15,10 @@
 
 <div style="margin-top:100px;margin-bottom: 100px;padding:0 ">
   <div class="carte-contain">
-    <div class="card-product">
+
+  <div class="card-product" style= "background: linear-gradient(90deg, rgba(247,247,247,1) 0%, rgba(223,223,223,1) 49%, rgba(214,219,219,1) 100%);box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, -16px 19px 8px -9px rgba(242,242,242,0.04);";>
+
+
       <%= image_tag @livreactuel.imageurl, alt: "alttext" %>
       <div class="card-product-infos">
         <h2>Titre : <%= @livreactuel.title %></h2>
@@ -24,6 +27,7 @@
         <p>Genre : <%= @tag[0] %></p>
         <% end %>
       </div>
+
     </div>
   </div>
 
@@ -32,21 +36,29 @@
 
   <div class="card-comment">
     <% @liste.each do |item| %>
+
     <div class="notification">
       <div class="avat" style="background-color: green">
         <%= "#{item.user.first_name[0].upcase} #{item.user.last_name[0].upcase}" %>
+
       </div>
-        <div class="notification-content">
-          <p><%= item.user.first_name.capitalize %> </p>
-        <p><small><%= time_ago_in_words(item.startdate)  %> ago</small></p>
-        <p><%= item.comment.gsub(/[\[\]""]/,'') %> </p>
+      <div class="notification-content">
+        <p><%= item.user.first_name.capitalize %> </p>
+        <p><small><%= time_ago_in_words(item.startdate)  %> ago<</small></p>
+        <p>%= item.comment.gsub(/[\[\]""]/,'') %> </p>
       </div>
       <div class="notification-actions">
-        <a href="#"><%= item.like %><i class="fas fa-thumbs-up"></i></a>
-        <a href="#"><%= item.unlike %> <i class="fas fa-thumbs-down"></i></a>
+        <a href="#"><p><%= item.like %></p> <i class="fas fa-thumbs-up" style="color:green"></i></a>
+        <a href="#"><p><%= item.unlike %></p> <i class="fas fa-thumbs-down" style="color:red"></i></a>
+      </div>
+    </div>
+
+
+
       </div>
     </div>
     <% end %>
+
   </div>
 
 
