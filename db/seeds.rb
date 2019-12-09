@@ -24,13 +24,39 @@ end
 
 DISCOVER = ["Dans une librarire", "Emission de TV", "Magazine", 'Conseil', "Mybooks & me" ]
 
+Critere.destroy_all
+
+
+c = Critere.new(name: 'Charisme des personnages')
+c.tag_list = "Sciences fictions,Roman étranger,Roman US, Livre de voyages"
+c.save
+c = Critere.new(name: 'Immersion')
+c.tag_list = "Sciences fictions,Thriller, Roman étranger, Roman XXeme siècle"
+c.save
+c = Critere.new(name: 'Sens du rythme')
+c.tag_list = "Sciences fictions,Roman étranger, Heroic Fantasy, Thriller, Policier"
+c.save
+c = Critere.new(name: "Qualité de l'intrigue")
+c.tag_list = "Livre de voyages,Roman étranger,Roman US, Policier, Roman XXeme siècle"
+c.save
+c = Critere.new(name: 'Style')
+c.tag_list = "Sciences fictions,Roman étranger,Heroic Fantasy,Thriller, Livre de voyages"
+c.save
+c = Critere.new(name: 'Niveau de peur')
+c.tag_list = "Sciences fictions,Roman XXeme siècle, Roman US, Roman étranger"
+c.save
+c = Critere.new(name: "Description de l'univers")
+c.tag_list = "Heroic Fantasy,Roman étranger, Policier, Roman XXeme siècle"
+c.save
+
+puts 'done'
+
+
 
 livres = []
 
 livres << "veZPDwAAQBAJ"
 livres << "1fa2DwAAQBAJ"
-
-
 livres << "3jihDwAAQBAJ"
 livres << "fju3DwAAQBAJ"
 livres << "PwSfDwAAQBAJ"
@@ -38,7 +64,6 @@ livres << "Dr2CDwAAQBAJ"
 livres << "sgKfDwAAQBAJ"
 livres << "AyOyDwAAQBAJ"
 livres << "hfFIDwAAQBAJ"
-
 livres << "TvWxDwAAQBAJ"
 livres << "-si4DwAAQBAJ"
 livres << "rtF-BgAAQBAJ"
@@ -59,6 +84,9 @@ livres << "ThihCgAAQBAJ"
 livres << "Bi-NDwAAQBAJ"
 livres << "REC1DwAAQBAJ"
 livres << "wA_Rp0rBKvsC"
+
+
+
 
 
 Review.destroy_all
@@ -114,6 +142,8 @@ users.each do |user|
   u = User.new
   u.email = user+'@test.fr'
   u.password = 'password'
+  u.first_name = user
+  u.last_name = Faker::Name.first_name
   u.save!
 
   l = Livre.find(117)
@@ -121,6 +151,8 @@ users.each do |user|
   r.livre = l
   r.user = u
   r.status = "done"
+  r.startdate = Faker::Date.between(from: 4.years.ago, to: Date.today)
+
   r.comment = Faker::Lorem.sentences(number: 3)
   r.like = rand(100)
   r.unlike = rand(100)
@@ -167,35 +199,12 @@ Livre.destroy_all
 User.destroy_all
 
 
-
-
-c = Critere.new(name: 'Charisme des personnages')
-c.tag_list = "Sciences fictions,Roman étranger,Roman US"
-c.save
-c = Critere.new(name: 'Immersion')
-c.tag_list = "Sciences fictions,Thriller"
-c.save
-c = Critere.new(name: 'Sens du rythme')
-c.tag_list = "Sciences fictions,Roman étranger, Heroic Fantasy"
-c.save
-c = Critere.new(name: "Qualité de l'intrigue")
-c.tag_list = "Livre de voyages,Roman étranger,Roman US"
-c.save
-c = Critere.new(name: 'Style')
-c.tag_list = "Sciences fictions,Roman étranger,Heroic Fantasy"
-c.save
-c = Critere.new(name: 'Niveau de peur')
-c.tag_list = "Sciences fictions,Roman XXeme siècle, Roman US"
-c.save
-c = Critere.new(name: "Description de l'univers")
-c.tag_list = "Heroic Fantasy,Roman étranger"
-c.save
-
-puts 'done'
+=end
 
 
 
 
+=begin
 
 
 

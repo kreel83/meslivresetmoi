@@ -1,213 +1,53 @@
+<style>
+  .avat {
+    width: 55px;
+    height: 55px;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    background-color: red;
+    border-radius: 50%;
+    line-height: 50px;
+
+  }
+</style>
+
+
 <div style="margin-top:100px;margin-bottom: 100px;padding:0 ">
   <div class="carte-contain">
-  <div class="card-product">
-    <img src="https://www.babelio.com/couv/bm_CVT_Kaikan_2759.jpg" />
-    <div class="card-product-infos">
-      <h2>Titre : kaiken</h2>
-      <p>Auteur : Jean-Christophe Grangé</p>
-      <p>Genre : Roman</p>
+    <div class="card-product">
+      <%= image_tag @livreactuel.imageurl, alt: "alttext" %>
+      <div class="card-product-infos">
+        <h2>Titre : <%= @livreactuel.title %></h2>
+        <p>Auteur : <%= @livreactuel.author %> </p>
+        <% if @tag.empty? %>
+        <p>Genre : <%= @tag[0] %></p>
+        <% end %>
+      </div>
     </div>
   </div>
-  </div>
+
+
+
 
   <div class="card-comment">
+    <% @liste.each do |item| %>
     <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-      <div class="notification-content">
-        <p><small>1 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+      <div class="avat" style="background-color: green">
+        <%= "#{item.user.first_name[0].upcase} #{item.user.last_name[0].upcase}" %>
+      </div>
+        <div class="notification-content">
+          <p><%= item.user.first_name.capitalize %> </p>
+        <p><small><%= time_ago_in_words(item.startdate)  %> ago</small></p>
+        <p><%= item.comment.gsub(/[\[\]""]/,'') %> </p>
       </div>
       <div class="notification-actions">
-        <a href="#">3 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">5 <i class="fas fa-thumbs-down"></i></a>
+        <a href="#"><%= item.like %><i class="fas fa-thumbs-up"></i></a>
+        <a href="#"><%= item.unlike %> <i class="fas fa-thumbs-down"></i></a>
       </div>
     </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-      <div class="notification-content">
-        <p><small>9 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">7 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">8 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-      <div class="notification-content">
-        <p><small>4 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">3 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">7 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-      <div class="notification-content">
-        <p><small>2 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">2 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">2 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-      <div class="notification-content">
-        <p><small>8 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">5 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">1 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-      <div class="notification-content">
-        <p><small>7 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">8 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">0 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-      <div class="notification-content">
-        <p><small>1 Month Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">4 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">3 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-      <div class="notification-content">
-        <p><small>15 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">0 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">10 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-      <div class="notification-content">
-        <p><small>10 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">3 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">7 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-      <div class="notification-content">
-        <p><small>3 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">9 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">1 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-      <div class="notification-content">
-        <p><small>10 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">3 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">7 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-      <div class="notification-content">
-        <p><small>3 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">9 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">1 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-      <div class="notification-content">
-        <p><small>10 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">3 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">7 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-      <div class="notification-content">
-        <p><small>3 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">9 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">1 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-      <div class="notification-content">
-        <p><small>10 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">3 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">7 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-      <div class="notification-content">
-        <p><small>3 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">9 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">1 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-      <div class="notification-content">
-        <p><small>10 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">3 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">7 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-    </div>
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-      <div class="notification-content">
-        <p><small>3 days Ago</small></p>
-        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
-      </div>
-      <div class="notification-actions">
-        <a href="#">9 <i class="fas fa-thumbs-up"></i></a>
-        <a href="#">1 <i class="fas fa-thumbs-down"></i></a>
-      </div>
-
+    <% end %>
   </div>
+
+
 </div>
