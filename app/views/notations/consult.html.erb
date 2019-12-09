@@ -2,26 +2,32 @@
 
 
 <div style="margin-top: 100px; margin-bottom: 100px;background: linear-gradient(90deg, rgba(226,226,232,1) 0%, rgba(223,223,223,1) 49%, rgba(227,232,233,1) 100%);">
-  <h1><div id="ttt">Ceux Que Pensent Les Lecteurs</div></h1>
-  <h3>de</h3>
-  <h4>titre</h4>
+  <div style="width: 100%;text-align: center">
+    <h1>Ceux Que Pensent Les Lecteurs</h1>
+
+    <h4>- <%= @readings[0].livre.title %> -</h4>
+  </div>
   <div class="row">
     <div class="col-10 offset-1">
 
 
       <% @readings.each do |reading| %>
       <% if reading.user == current_user  %>
-          <div class="liste flex " style="background-color: rgba(0,0,255,0.2)">
+      <div class="liste flex " style="background-color: rgba(0,0,255,0.2)">
         <% else %>
-          <div class="liste flex " >
-        <% end %>
+        <div class="liste flex " >
+          <% end %>
+          <% if reading.user != current_user %>
           <%= link_to 'voir le profil', profil_show_path(reading.user), class: "btn btn-ghost"  %>
+          <% end %>
           <h6>Nom<div class="name"><%= reading.user.first_name %></div></h6>
           <h6>Date<div class="date"><%= reading.startdate %></div></h6>
-          <h6>Commentaire<div class="comment"><%=   %></div></h6>
+          <% if !reading.comment.nil?  && reading.public ==%>
+            <%= link_to 'comment', view_comment_path(reading)  %>
+          <% end %>
 
-                  <%= link_to view_note_path(reading) do %>
-            <div><%= reading.indice %></div>
+          <%= link_to view_note_path(reading) do %>
+          <div><%= reading.indice %></div>
           <% end %>
         </div>
         <% end %>

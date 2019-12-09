@@ -1,0 +1,11 @@
+<div style="margin: 100px 0">
+  <h1>commentaire de <%= @reading.user.first_name.capitalize %></h1>
+  <h6 style="text-align: center">- <%= @reading.livre.title %> - </h6>
+  <div class="container">
+     <textarea disabled name="" id="" cols="30" rows="10" style="width: 100%;padding: 15px"><%= @reading.comment %></textarea>
+    <%= link_to 'retour', :back, class: "btn btn-primary btn-sm"  %>
+  </div>
+  </div>
+
+
+</div>
