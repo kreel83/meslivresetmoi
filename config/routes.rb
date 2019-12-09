@@ -29,4 +29,8 @@ Rails.application.routes.draw do
     resources :reviews, only: ['new','create']
   end
 
+  namespace :user do
+    root :to => "books#index"
+  end
+
 end
