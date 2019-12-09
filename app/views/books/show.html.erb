@@ -39,8 +39,10 @@
         <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
       </div>
       <div class="droite" style="justify-content: space-between;">
-        <div class="comment">
+        <div class="comment" style="overflow-x: hidden;">
+          <div class="allcomment" style="height: 300px;">
           <%= @reading.livre.description.html_safe %>
+          </div>
         </div>
         <div class="notes-and-comments" style="display: flex; justify-content: space-around; width: 100px; font-size: 1.5rem; position: relative; bottom: 0; left: 0">
           <%= link_to notation_consult_path(@reading) do  %>
