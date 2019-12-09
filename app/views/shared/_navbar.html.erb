@@ -1,35 +1,48 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
+<style>
+  .logolivre {
+    width: 30px;height: 30px;
+  }
+  .nav-link {
+    color: white;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light on bg-dark">
+  <%= link_to :back do  %>
+  <i class="fas fa-arrow-left" style="color:white;font-size: 30px;"></i>
+  <% end %>
+
   <%= link_to "#", class: "navbar-brand" do %>
-  <%= image_tag "loggo.png"%>
-    <% end %>
-
+  <%= image_tag "loggo.png", class: 'logolivre'%>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <i class="fas fa-bars" style="color:white;font-size: 30px;"></i>
   </button>
-
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link", style: "color: white" %>
-        </li>
-        <li class="nav-item">
-          <%= current_user.email %>
-        </li>
-        <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
-      <% end %>
+      <li class="nav-item active">
+        <div style="color:white;font-size: 1.5rem;background-color: blue;text-align:center;border-bottom: 2px solid blue">
+        <% if signed_in? %>
+          <%= "#{current_user.first_name.capitalize} #{current_user.last_name.upcase}" %>
+        <% end %>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <%= link_to 'Acceuil', books_path, style: "color:white;font-size: 1.5rem;text-align:center;border-bottom: 2px solid white", class: "nav-link"  %>
+             </li>
+      <li class="nav-item">
+
+        <a class="nav-link" href="#"  style="color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white">rechercher</a>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'se deconnecter', destroy_user_session_path, method: :delete ,class: 'nav-link' ,style: "color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white" %>
+              </li>
+
     </ul>
+
   </div>
-</div>
+</nav>
+
+
+
