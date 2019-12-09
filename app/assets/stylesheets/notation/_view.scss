@@ -1,0 +1,17 @@
+.indices {
+  width: 100px;
+  height: 70px;
+  background: rgb(81,85,85);
+  background: linear-gradient(0deg, rgba(81,85,85,1) 0%, rgba(154,162,168,1) 100%);
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  line-height: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+small {
+  font-size: 0.8rem
+}
+
