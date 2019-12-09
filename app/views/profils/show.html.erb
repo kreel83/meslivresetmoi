@@ -1,4 +1,52 @@
-<div class="container" style="margin-top: 100px;">
-  <h1>profil</h1>
+<div style="margin-top: 80px; margin-bottom: 120px">
+  <h1>Les lectures de <%= @profilowner.first_name.capitalize %></p></h1>
   <hr>
+
+  <div class="row justify-content-around">
+    <div class="col-5 last-readings">
+      <h5>Ses dernières lectures</h5>
+      <div class="colonne">
+
+        <% @readings.each do |t| %>
+        <div id="bookcard" class="d-flex">
+          <%= image_tag t.livre.imageurl, alt: "alttext" %>
+          <div class="d-flex flex-column">
+            <h2><%= t.livre.title %></h2>
+            <h3><%= t.livre.author %></h3>
+            <p>indice : <%= t.indice %></p>
+          </div>
+        </div>
+        <% end %>
+
+
+
+      </div>
+    </div>
+
+    <div class="col-5 best-readings mb-4">
+      <h5>Son Top</h5>
+      <div class="colonne">
+        <% @top.each do |t| %>
+        <div id="bookcard" class="d-flex">
+          <%= image_tag t.livre.imageurl, alt: "alttext" %>
+          <div class="d-flex flex-column">
+            <h2><%= t.livre.title %></h2>
+            <h3><%= t.livre.author %></h3>
+            <p>indice : <%= t.indice %></p>
+          </div>
+        </div>
+        <% end %>
+
+
+
+
+
+      </div>
+    </div>
+
+  </div>
+  <div class="pl-5 pt-3">
+    <%= link_to 'retour', :back, class: "btn btn-primary btn-sm"  %>
+  </div>
+
 </div>
