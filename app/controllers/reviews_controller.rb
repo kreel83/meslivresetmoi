@@ -48,7 +48,13 @@ class ReviewsController < ApplicationController
     end
 
     def consult
-      @reading= Reading.find(params[:id])
+      @livreactuel = Reading.find(params[:id]).livre
+
+      @liste = Reading.where(livre_id: @livreactuel.id)
+      @tag = Reading.find(params[:id]).tags
+      @liste = @liste[0..-2]
+
+
     end
 
 
