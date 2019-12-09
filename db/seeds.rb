@@ -95,6 +95,8 @@ User.destroy_all
 u = User.new
 u.email = 'gigi@test.fr'
 u.password = "password"
+u.first_name = 'Gisèle'
+u.last_name = "Delrosso"
 u.save!
 livres.each do |book|
   url = "https://www.googleapis.com/books/v1/volumes/#{book}"
@@ -132,6 +134,23 @@ livres.each do |book|
   puts book
   sleep 5
 end
+r = Reading.new
+r.livre = Livre.find(117)
+r.status = 'ec'
+r.user = u
+
+
+u = User.new
+u.email = 'marc@test.fr'
+u.password = 'password'
+u.first_name = 'Marc'
+u.last_name = 'Borgna'
+u.save!
+r = Reading.new
+r.livre = Livre.find(117)
+r.status = 'ec'
+r.user = u
+r.save!
 
 
 
