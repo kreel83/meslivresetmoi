@@ -5,9 +5,6 @@ class BooksController < ApplicationController
     @done = Reading.where(status: 'done').where(user: current_user)
     @liste = Reading.where(status: 'liste').where(user: current_user)
 
-
-
-
     @el = Endinglist.all
   end
 
