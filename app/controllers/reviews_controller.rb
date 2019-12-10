@@ -26,7 +26,12 @@ class ReviewsController < ApplicationController
   end
 
   def comment
+
     @reading = Reading.find(params[:id])
+
+    if @reading.notation.nil?
+      redirect_to notations_path(@reading)
+    else
     @reading.update(status: 'done')
     @reading.update(indice: calc_indice(@reading.notation))
 
@@ -35,6 +40,7 @@ class ReviewsController < ApplicationController
     else
       redirect_to books_path
     end
+  end
   end
 
   def destroy
