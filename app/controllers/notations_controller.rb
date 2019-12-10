@@ -13,7 +13,7 @@ class NotationsController < ApplicationController
 
   def consult
     @livre = Reading.find(params[:id]).livre
-    @readings = Reading.where(livre: @livre)
+    @readings = Reading.where(livre: @livre).where(status: 'done')
     @readings = @readings.sort_by {| item | item.indice}.reverse
   end
 
