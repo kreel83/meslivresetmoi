@@ -13,7 +13,7 @@
 
   <hr>
 
-  <div class="mt-5 p-2 d-flex justify-content-between flex-column" id="book-card" style="background-color: rgba(0,0,0,0.2)">
+  <div class="mt-5 p-2 d-flex justify-content-between flex-column" id="book-card">
 
   <div class="haut">
       <div class="gauche">
@@ -21,7 +21,7 @@
       </div>
       <div class="droite" style="justify-content: space-between;color: white">
         <div class="comment" style="overflow-x: hidden;">
-          <div class="allcomment p-3" style="height: 300px;color: white">
+          <div class="allcomment p-3" style="height: 300px">
             <%= @reading.livre.description.html_safe %>
           </div>
         </div>
