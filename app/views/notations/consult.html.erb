@@ -10,7 +10,7 @@
     <% else %>
       <div class="liste flex">
     <% end %>
-        <%= link_to 'Voir le profil', profil_show_path(reading.user), class: "btn btn-ghost"  %>
+        <%= link_to 'Voir le profil', profil_show_path(reading.user), class: "btn btn-dark"  %>
         <div class="name d-flex flex-column"><h6>Nom</h6><%= reading.user.first_name %></div>
         <div class="date d-flex flex-column"><h6>Date</h6><%= reading.startdate %></div>
         <div class="comment d-flex flex-column"><h6>Commentaire</h6><%=   %></div>
