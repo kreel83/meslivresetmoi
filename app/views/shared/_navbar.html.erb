@@ -22,20 +22,20 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
+        <%= link_to 'Accueil', books_path, style: "color:white; font-size: 1.5rem; text-align:center; border-bottom: 2px solid white", class: "nav-link"  %>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="books/search"  style="color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white">Rechercher</a>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete ,class: 'nav-link' ,style: "color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white" %>
+      </li>
+      <li class="nav-item active">
         <div style="color:white;font-size: 1.5rem;background-color: blue;text-align:center;border-bottom: 2px solid blue">
         <% if signed_in? %>
           <%= "#{current_user.first_name.capitalize} #{current_user.last_name.upcase}" %>
         <% end %>
         </div>
-      </li>
-      <li class="nav-item active">
-        <%= link_to 'Accueil', books_path, style: "color:white; font-size: 1.5rem; text-align:center; border-bottom: 2px solid white", class: "nav-link"  %>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"  style="color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white">Rechercher</a>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete ,class: 'nav-link' ,style: "color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white" %>
       </li>
 
     </ul>

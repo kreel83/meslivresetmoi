@@ -37,4 +37,8 @@ Rails.application.routes.draw do
     root :to => "books#index"
   end
 
+  resources :user do
+    resources :followers, only: [:index, :new, :create ]
+  end
+
 end
