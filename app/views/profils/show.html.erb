@@ -1,12 +1,10 @@
 <div style="margin-top: 80px; margin-bottom: 120px">
   <h1>Les lectures de <%= @profilowner.first_name.capitalize %></p></h1>
   <hr>
-
   <div class="row justify-content-around">
     <div class="col-5 last-readings">
       <h5>Ses dernières lectures</h5>
       <div class="colonne">
-
         <% @readings.each do |t| %>
         <div id="bookcard" class="d-flex">
           <%= image_tag t.livre.imageurl, alt: "alttext" %>
@@ -17,9 +15,6 @@
           </div>
         </div>
         <% end %>
-
-
-
       </div>
     </div>
 
@@ -36,15 +31,7 @@
           </div>
         </div>
         <% end %>
-
-
-
-
-
       </div>
     </div>
-
   </div>
-
-
 </div>

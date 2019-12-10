@@ -10,10 +10,8 @@
             <%= image_tag(book['volumeInfo']['imageLinks']['smallThumbnail'], height: '60', width: '45', data: {"id" => book['id']}) %>
           <% end %>
           <%= book['volumeInfo']['title'] %> (<%= book['volumeInfo']['authors'].join(', ') %> [<%= book['id'] %>])
-
         </div>
       </div>
-
       <% end %>
     </div>
   </form>

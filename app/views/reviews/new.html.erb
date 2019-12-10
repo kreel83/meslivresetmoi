@@ -13,21 +13,18 @@
   <div class="row">
     <div class="col-4">
       <h3><%= @reading.livre.title %></h3>
-<hr>
+      <hr>
       <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
       <hr>
       <h6><%= @reading.livre.author %></h6>
     </div>
 
     <div class="col-8">
-
-
-
       <form action="" method="post">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
         <div class="form-group">
-          <p>votre commentaire :</p>
+          <p>Votre commentaire :</p>
           <textarea rows=7 class="form-control" name="commentaire"><%= @reading.comment %> </textarea>
           <div class="custom-control custom-switch">
             <% if @reading.public = 'true' %>
@@ -39,8 +36,8 @@
             <label class="custom-control-label" for="customSwitches">Publier mon commentaire</label>
           </div>
           <hr>
-          <p>Vos sentiments</p>
-          <div style="font-size: 0.7rem">Plus intimes, vous pouvez inscrire ici les conditions (evenement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
+          <p>Vos sentiments :</p>
+          <div style="font-size: 0.7rem">Plus intime, vous pouvez inscrire ici les conditions (événement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
           <textarea rows=4 class="form-control" name="feeling"></textarea>
           <hr>
           <p>Comment avez-vous découvert ce livre ?</p>
@@ -54,7 +51,7 @@
 
         <div class="form-group">
           <button type="submit" class="btn btn-primary">Valider</button>
-          <%= link_to 'retour', books_path, class: 'btn btn-danger'  %>
+          <%= link_to 'Retour', books_path, class: 'btn btn-danger'  %>
         </div>
       </form>
     </div>
