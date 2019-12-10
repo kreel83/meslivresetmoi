@@ -1,17 +1,27 @@
-<div style="margin: 56px 0">
-  <h1>index</h1>
-  <div>
-    <% @f.each do |user| %>
+<div style="margin: 80px 0">
+  <h1>Votre communauté</h1>
+  <hr>
 
+  <div id="follower-cards">
 
-    <div class="card">
-      <div class="card-footer"><%= user.first_name.capitalize %></div>
-      <div class="footer"><%= link_to 'voir profil', profil_show_path(user), class: 'btn btn-primary btn-sm'  %></div>
-      <div class="footer"><%= link_to 'supprimer', destroy_follower_path(user.id), method: 'delete', class: 'btn btn-danger btn-sm'  %></div>
+    <br><% @f.each do |user| %>
+    <div class="follower-card d-flex list-inline align-items-center">
 
+      <div class="btn btn-ghost"><%= user.first_name.capitalize %></div>
 
+      <div class="add-user btn-user" style="padding-top: 16px; padding-left: 16px">
+        <%= link_to profil_show_path(user) do %>
+        <i class="fas fa-user" style="font-size: 24px"></i>
+        <% end %>
+      </div>
+
+      <div class="delete-user btn-user" style="padding-top: 16px; padding-left: 16px">
+        <%= link_to destroy_follower_path(user), method: 'delete' do %>
+        <i class="fas fa-user-slash" style="font-size: 24px"></i>
+        <% end %>
+      </div>
+
+      <% end %>
     </div>
-
-    <% end %>
   </div>
 </div>
