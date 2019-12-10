@@ -8,10 +8,8 @@
     background-color: red;
     border-radius: 50%;
     line-height: 50px;
-
   }
 </style>
-
 
 <div style="margin-bottom: 80px;;padding:0 ">
   <div class="carte-contain" style="margin-top:56px">
@@ -24,16 +22,11 @@
           <p>Genre : <%= @tag[0] %></p>
         <% end %>
       </div>
-
     </div>
   </div>
 
-
-
-
   <div class="card-comment">
     <% @liste.each do |item| %>
-
     <div class="notification">
       <div class="avat" style="background-color: green">
         <%= "#{item.user.first_name[0].upcase} #{item.user.last_name[0].upcase}" %>
@@ -48,10 +41,6 @@
         <a href="#"><p><%= item.unlike %></p> <i class="fas fa-thumbs-down" style="color:red"></i></a>
       </div>
     </div>
-
     <% end %>
-
   </div>
-
-
 </div>
