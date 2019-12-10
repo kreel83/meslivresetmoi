@@ -25,9 +25,12 @@ Rails.application.routes.draw do
   get 'books/:user/profil', to: "profils#show", as: :profil_show
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-
+  post 'books/:user/followers', to: "followers#create", as: :add_follower
+  get 'books/followers', to: "followers#index", as: :view_followers
+  delete 'books/:user/followers', to: "followers#destroy", as: :destroy_follower
 
   post "books/:id/comment", to: "reviews#comment", as: :review_comment
+
 
   resources :readings do
     resources :reviews, only: ['new','create']
@@ -37,8 +40,6 @@ Rails.application.routes.draw do
     root :to => "books#index"
   end
 
-  resources :user do
-    resources :followers, only: [:index, :new, :create ]
-  end
+
 
 end

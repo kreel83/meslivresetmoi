@@ -33,7 +33,7 @@
         <% end %>
       </div>
     </div>
-    <%= link_to "Ajouter à ma communauté",  new_user_follower_path,  method: 'get', class: "btn btn-lg btn-primary"%>
+    <%= link_to "Ajouter à ma communauté",  add_follower_path(@profilowner),  method: 'post', class: "btn btn-lg btn-primary"%>
 
   </div>
 </div>

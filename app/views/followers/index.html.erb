@@ -1,0 +1,17 @@
+<div style="margin: 56px 0">
+  <h1>index</h1>
+  <div>
+    <% @f.each do |user| %>
+
+
+    <div class="card">
+      <div class="card-footer"><%= user.first_name.capitalize %></div>
+      <div class="footer"><%= link_to 'voir profil', profil_show_path(user), class: 'btn btn-primary btn-sm'  %></div>
+      <div class="footer"><%= link_to 'supprimer', destroy_follower_path(user.id), method: 'delete', class: 'btn btn-danger btn-sm'  %></div>
+
+
+    </div>
+
+    <% end %>
+  </div>
+</div>
