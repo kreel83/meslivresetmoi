@@ -50,12 +50,21 @@ class ReviewsController < ApplicationController
   end
 
   def consult
-    @livreactuel = Reading.find(params[:id]).livre
+    if params[:status] != 'liste'
+      @livreactuel = Reading.find(params[:id]).livre
+    else
+      @livreactuel = Livre.find(params[:id])
+    end
 
     @liste = Reading.where(livre_id: @livreactuel.id)
-    @tag = Reading.find(params[:id]).tags
-    @liste = @liste.reject {|item| item.comment.nil? }
-    @liste = @liste.sort_by {|item | item.startdate }.reverse
+    if @liste.empty?
+      @tag = []
+
+    else
+      @tag = Reading.find(params[:id]).tags
+      @liste = @liste.reject {|item| item.comment.nil? }
+      @liste = @liste.sort_by {|item | item.startdate }.reverse
+    end
   end
 
 

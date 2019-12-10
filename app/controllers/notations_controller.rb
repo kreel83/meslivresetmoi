@@ -12,9 +12,16 @@ class NotationsController < ApplicationController
 
 
   def consult
-    @livre = Reading.find(params[:id]).livre
+    if params[:status] == 'liste'
+      @livre = Livre.find(params[:id])
+
+    else
+      @livre = Reading.find(params[:id]).livre
+    end
     @readings = Reading.where(livre: @livre).where(status: 'done')
-    @readings = @readings.sort_by {| item | item.indice}.reverse
+
+    @readings = @readings.sort_by {| item | item.indice}.reverse if !@readings.empty?
+
   end
 
   def view
