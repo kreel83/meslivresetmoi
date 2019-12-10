@@ -5,9 +5,17 @@ h2 {
 }
 
 .btn {
-  margin: 24px 0;
+  margin: 24px 0 12px 0;
 }
 
 .contains {
-  margin: 96px 0;
+  margin: 24px 0;
+}
+
+.card-body-left {
+  padding-right: 8px;
+}
+
+.card-body-right {
+  padding-left: 8px;
 }
