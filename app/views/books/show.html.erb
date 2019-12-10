@@ -1,6 +1,5 @@
 <%= csrf_meta_tag %>
 <div class="container" style="margin-top: 80px;padding-bottom: 120px ">
-
   <div class="haut" style="display: flex;justify-content: space-between;">
     <h3><%= @reading.livre.title %></h3>
     <div style="width: 70px;display: flex;justify-content: space-between;font-size: 1.5rem"></div>
@@ -11,169 +10,151 @@
       <% end %>
     </div>
   </div>
-
   <hr>
-
   <div class="middle" style="display: flex;justify-content: space-between;">
     <div style="font-style: italic"><%= @reading.livre.author %></div>
     <% if @tag== [] %>
-      <% s = "data-tag=none" %>
+    <% s = "data-tag=none" %>
     <% else %>
-      <% s = "data-tag=#{@tag}" %>
+    <% s = "data-tag=#{@tag}" %>
     <% end %>
     <div id="tag" <%= s  %> data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
       <% if @tag == [] %>
-        <button class="btn btn-sm" style="color: white">Définir catégorie</button>
+      <button class="btn btn-sm" style="color: white">Définir catégorie</button>
       <% else %>
-        <%= @tag %>
+      <%= @tag %>
       <% end %>
-
     </div>
   </div>
-
   <hr>
-
   <div id="book-card" style="display: flex; justify-content: space-between;">
-<!--     <div class="haut"> -->
-      <div class="gauche">
-        <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
-      </div>
-      <div class="droite" style="justify-content: space-between;">
-        <div class="comment" style="overflow-x: hidden;">
-          <div class="allcomment" style="height: 300px;">
+    <!--     <div class="haut"> -->
+    <div class="gauche">
+      <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
+    </div>
+    <div class="droite" style="justify-content: space-between;">
+      <div class="comment" style="overflow-x: hidden;">
+        <div class="allcomment" style="height: 300px;">
           <%= @reading.livre.description.html_safe %>
-          </div>
-        </div>
-        <div class="notes-and-comments" style="display: flex; justify-content: space-around; width: 100px; font-size: 1.5rem; position: relative; bottom: 0; left: 0">
-          <%= link_to notation_consult_path(@reading) do  %>
-          <i class="fas fa-list-ol"></i>
-          <% end %>
-          <%= link_to review_consult_path(@reading)  do%>
-          <i class="fas fa-comments"></i>
-          <% end %>
         </div>
       </div>
-    </div>
-    <hr>
-    <% if @status == 'done' %>
-    <div>
-      indice : <%= @reading.indice %>
-    </div>
-    <hr>
-    <div>
-      <div>
-          Satisfaction globale
-          <%= render 'slider_passif', pos: @notes[-1] %>
+      <div class="notes-and-comments" style="display: flex; justify-content: space-around; width: 100px; font-size: 1.5rem; position: relative; bottom: 0; left: 0">
+        <%= link_to notation_consult_path(@reading) do  %>
+        <i class="fas fa-list-ol"></i>
+        <% end %>
+        <%= link_to review_consult_path(@reading)  do%>
+        <i class="fas fa-comments"></i>
+        <% end %>
       </div>
-      <% @criteria.each do |critere| %>
+    </div>
+  </div>
+  <hr>
+  <% if @status == 'done' %>
+  <div>
+    indice : <%= @reading.indice %>
+  </div>
+  <hr>
+  <div>
+    <div>
+      Satisfaction globale
+      <%= render 'slider_passif', pos: @notes[-1] %>
+    </div>
+    <% @criteria.each do |critere| %>
+    <div>
+      <%= critere[0] %>
+      <%= render 'slider_passif', pos: critere[1] %>
+    </div>
+    <% end %>
+  </div>
+  <hr>
+  <div style="margin-bottom: 120px">
+    <form action="" method="post">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <div class="form-group">
+        <div style="display: flex; justify-content: space-between;">
+          <p>votre commentaire :</p>
+          <%= link_to new_review_path(@reading) do  %>
+          <i class="fas fa-edit"></i>
+          <% end %>
+        </div>
+        <textarea rows=7 class="form-control" name="commentaire"><%= @reading.comment %></textarea>
         <div>
-          <%= critere[0] %>
-          <%= render 'slider_passif', pos: critere[1] %>
+          <% if @reading.public %>
+          <%=  "commentaire public" %>
+          <% else %>
+          <%= "commentaire privé" %>
+          <% end %>
         </div>
-      <% end %>
+        <hr>
+        <p>Vos sentiments</p>
+        <div style="font-size: 0.7rem">De manière plus intime, vous pouvez inscrire ici les conditions (événement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
+        <textarea class="form-control" name="feeling"><%= @reading.feeling %> </textarea>
+        <hr>
+        <p>Comment avez-vous découvert ce livre ?</p>
+        <div><%= @reading.discover %> </div>
+      </div>
+    </form>
+  </div>
+  <% end %>
+  <div class="bas">
+
+    <% if @reading.status == 'wl' %>
+    <div>
+      <%= link_to 'Je lis ce livre !', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary mb-5"%>
+      <%= link_to 'Je renonce à le lire', book_destroy_path(@reading), method: 'delete',  class: "btn btn-lg btn-danger mb-5"%>
     </div>
-
-    <hr>
-    <div style="margin-bottom: 120px">
-
-      <form action="" method="post">
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-
-        <div class="form-group">
-          <div style="display: flex; justify-content: space-between;">
-            <p>votre commentaire :</p>
-            <%= link_to new_review_path(@reading) do  %>
-                <i class="fas fa-edit"></i>
-            <% end %>
-          </div>
-
-          <textarea rows=7 class="form-control" name="commentaire"><%= @reading.comment %></textarea>
-          <div>
-            <% if @reading.public %>
-              <%=  "commentaire public" %>
-            <% else %>
-              <%= "commentaire privé" %>
-            <% end %>
-        </div>
-          <hr>
-          <p>Vos sentiments</p>
-          <div style="font-size: 0.7rem">De manière plus intime, vous pouvez inscrire ici les conditions (événement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
-          <textarea class="form-control" name="feeling"><%= @reading.feeling %> </textarea>
-          <hr>
-          <p>Comment avez-vous découvert ce livre ?</p>
-          <div><%= @reading.discover %> </div>
-
-
-        </div>
-
-
-      </form>
+    <div class="icons">
+      <div><%= image_tag ( "fnac.png")%></div>
+      <div><%= image_tag ( "rdcc.png") %></div>
+      <div><%= image_tag ( "amazon.png")%></div>
+      <div><%= image_tag ( "ebay.png")%></div>
+      <div><%= image_tag ( "cdiscount.png") %></div>
     </div>
     <% end %>
 
-    <div class="bas" style="display: flex;text-align: right;">
-      <div>
-        <% if @reading.status == 'wl' %>
-        <%= link_to 'Je lis ce livre !', book_update_path(@reading), method: 'patch',  class: "btn btn-lg btn-primary mb-5"%>
-        <%= link_to 'Je renonce à le lire', book_destroy_path(@reading), method: 'delete',  class: "btn btn-lg btn-danger mb-5"%>
-
-        <% end %>
-        <% if @reading.status == 'ec' %>
-            <div id="avertissement">
-                <div class="card">
-                  Vous devez définir une catégorie avant de noter ce livre.
-                </div>
-            </div>
-            <div id="btnNote" hidden>
-                <%= link_to 'Noter ce livre', notations_path(@reading) , class: "btn btn-success", style: "color: white; font-weight: bold"  %>
-            </div>
-
-
-        <% end %>
+    <% if @reading.status == 'ec' %>
+    <div id="avertissement">
+      <div class="card">
+        Vous devez définir une catégorie avant de noter ce livre.
       </div>
     </div>
+    <div id="btnNote" hidden>
+      <%= link_to 'Noter ce livre', notations_path(@reading) , class: "btn btn-success", style: "color: white; font-weight: bold"  %>
+    </div>
+    <% end %>
   </div>
 </div>
-
-
-
-
+</div>
 <!-- <script src="jquery.min.js"></script>
 <script src="rangeslider.min.js"></script>
 <script>
-
-    $('input[type="range"]').rangeslider();
-
+$('input[type="range"]').rangeslider();
 </script>
 -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Définissez la catégorie</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Définissez la catégorie</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <% @tags.each do |t| %>
+        <% if t.name == @tag %>
+        <%  act="data-active=true" %>
+        <% else %>
+        <%  act="data-active=false" %>
+        <% end %>
+        <div class="badge" data-reading="<%= @reading.id %>" data-cat="<%= t.name  %>" data-id="<%= @reading.livre.id %>" <%= act %> data-color="<%= t.color %>" ><%= t.name %></div>
+        <% end %>
       </div>
-      <div class="modal-body">
-        <div class="container">
-          <% @tags.each do |t| %>
-          <% if t.name == @tag %>
-          <%  act="data-active=true" %>
-          <% else %>
-          <%  act="data-active=false" %>
-          <% end %>
-          <div class="badge" data-reading="<%= @reading.id %>" data-cat="<%= t.name  %>" data-id="<%= @reading.livre.id %>" <%= act %> data-color="<%= t.color %>" ><%= t.name %></div>
-          <% end %>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-
-      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
     </div>
   </div>
 </div>
-
-
-
+</div>
