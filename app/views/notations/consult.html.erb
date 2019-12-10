@@ -12,65 +12,73 @@
 </style>
 
 <div style="margin-top: 100px; margin-bottom: 100px">
-  <h1><div id="ttt">L'avis des lecteurs</div></h1>
-  <h3>Titre : <%= @readings.first.livre.title %></h3>
-  <h4>Auteur: <%= @readings.first.livre.author %></h4>
-  <div class="row">
+  <h1 class="mb-3">Les indices des lecteurs</h1>
+  <h3>Titre : <%= @livre.title %></h3>
+  <h4>Auteur: <%= @livre.author %></h4>
+
+    <% if @readings.empty? %>
+              <div style="background-color: yellow;padding: 16px;text-align: center">
+                  Ce livre n'a pas encore reçu de notes
+              </div>
+
+    <% else %>
+
     <% @readings.each do |reading| %>
-    <% if reading.user == current_user  %>
-    <div class="liste flex" style="background-color: rgba(0,0,255,0.2)">
-      <% else %>
-      <div class="liste flex">
+
+        <% if reading.user == current_user  %>
+          <div class="liste" style="background-color: rgba(0,0,255,0.2)">
+        <% else %>
+          <div class="liste">
         <% end %>
-        <%= link_to profil_show_path(reading.user) do  %>
-        <div class="avat" style="background-color: green">
-          <%= "#{reading.user.first_name[0].upcase} #{reading.user.last_name[0].upcase}" %>
+
+        <div class="row  align-items-center">
+                    <div class="col-2">
+                      <%= link_to profil_show_path(reading.user) do  %>
+                        <div class="avat" style="background-color: green">
+                          <%= "#{reading.user.first_name[0].upcase} #{reading.user.last_name[0].upcase}" %>
+                        </div>
+                      <% end %>
+                    </div>
+
+                    <div class="col-6">
+                      <div style="font-size: 1.5rem">
+                        <div class="name"><%= reading.user.first_name %></div>
+                        <div class="date"><%= reading.startdate.strftime("%d %B  %Y") %></div>
+                      </div>
+                    </div>
+
+                    <div class="col-2">
+                      <div>
+                        <% if (!reading.comment.nil? && reading.public) %>
+                          <button class="btn btn-primary btn-sm comment">commentaire</button>
+                        <% end %>
+                      </div>
+                    </div>
+
+                    <div class="col-2">
+                      <%= link_to view_note_path(reading) do %>
+                        <div><%= reading.indice %></div>
+                      <% end %>
+                    </div>
+                  </div>
+
+
         </div>
-        <% end %>
-        <div style="font-size: 1.5rem">
-        <div class="name"><%= reading.user.first_name %></div>
-        <div class="date"><%= reading.startdate %></div>
         <% if (!reading.comment.nil? && reading.public) %>
-          <button class="btn btn-primary">commentaire</button>
+              <div class="liste" style="display: none">
+                  <p><small><%= time_ago_in_words(reading.updated_at)  %> ago</small></p>
+                  <div><%= reading.comment %></div>
+              </div>
         <% end %>
 
-        </div>
-        <%= link_to view_note_path(reading) do %>
-        <div><%= reading.indice %></div>
-        <% end %>
 
-      </div>
-      <% end %>
-    </div>
+
+              <% end %>
+
+
+    <% end %>
   </div>
 
   <!-- Button trigger modal -->
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Les notes de</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <% Critere.tagged_with(@readings[0].tags[0]).each_with_index do |tag, index| %>
-            <div id="<%= index %>">
-              <div ><%= tag.name %></div>
-              <%= render 'books/slider_passif', pos: 3, status: "slide#{index}"  %>
-            </div>
-            <% end %>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-
-        </div>
-      </div>
-    </div>
-  </div>

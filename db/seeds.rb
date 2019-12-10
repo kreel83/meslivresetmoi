@@ -25,13 +25,21 @@ end
 DISCOVER = ["Dans une libraire", "Emission de TV", "Magazine", "Conseil", "My Books & Me" ]
 
 Critere.destroy_all
-
+ActsAsTaggableOn::Tag.destroy_all
+ActsAsTaggableOn::Tag.create(name: "Sciences fictions", color: "#F4C323")
+ActsAsTaggableOn::Tag.create(name: "Heroic Fantasy", color: "#FF68AB")
+ActsAsTaggableOn::Tag.create(name: "Livre de voyages", color: "#FF68AB")
+ActsAsTaggableOn::Tag.create(name: "Roman XXeme siècle", color: "#9686FF")
+ActsAsTaggableOn::Tag.create(name: "Roman US", color: "#86D3FF")
+ActsAsTaggableOn::Tag.create(name: "Roman étranger", color: "#6FFF84")
+ActsAsTaggableOn::Tag.create(name: "Policier", color: "#F4FFE8")
+ActsAsTaggableOn::Tag.create(name: "Thriller", color: "#0040FF")
 
 c = Critere.new(name: 'Charisme des personnages')
-c.tag_list = "Sciences fictions,Roman étranger,Roman US, Livre de voyages"
+c.tag_list = "Sciences fictions,Roman étranger,Roman US, Livre de voyages, Thriller"
 c.save
 c = Critere.new(name: 'Immersion')
-c.tag_list = "Sciences fictions,Thriller, Roman étranger, Roman XXeme siècle"
+c.tag_list = "Sciences fictions,Thriller, Roman étranger, Roman XXeme siècle, Heroic Fantasy"
 c.save
 c = Critere.new(name: 'Sens du rythme')
 c.tag_list = "Sciences fictions,Roman étranger, Heroic Fantasy, Thriller, Policier"
@@ -46,7 +54,7 @@ c = Critere.new(name: 'Niveau de peur')
 c.tag_list = "Sciences fictions,Roman XXeme siècle, Roman US, Roman étranger"
 c.save
 c = Critere.new(name: "Description de l'univers")
-c.tag_list = "Heroic Fantasy,Roman étranger, Policier, Roman XXeme siècle"
+c.tag_list = "Heroic Fantasy,Roman étranger, Policier, Roman XXeme siècle, Livre de voyages"
 c.save
 
 puts 'done'
@@ -219,15 +227,7 @@ end
 
 
 
-ActsAsTaggableOn::Tag.destroy_all
-ActsAsTaggableOn::Tag.create(name: "Sciences fictions", color: "#F4C323")
-ActsAsTaggableOn::Tag.create(name: "Heroic Fantasy", color: "#FF68AB")
-ActsAsTaggableOn::Tag.create(name: "Livre de voyages", color: "#FF68AB")
-ActsAsTaggableOn::Tag.create(name: "Roman XXeme siècle", color: "#9686FF")
-ActsAsTaggableOn::Tag.create(name: "Roman US", color: "#86D3FF")
-ActsAsTaggableOn::Tag.create(name: "Roman étranger", color: "#6FFF84")
-ActsAsTaggableOn::Tag.create(name: "Policier", color: "#F4FFE8")
-ActsAsTaggableOn::Tag.create(name: "Thriller", color: "#0040FF")
+
 # tableau d'id google
 =begin
 Review.destroy_all

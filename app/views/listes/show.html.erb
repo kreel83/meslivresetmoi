@@ -2,8 +2,8 @@
 <div class="container" style="margin-top: 80px;padding-bottom: 120px ">
 
   <div class="haut d-flex flex-column w-100">
-    <div class="text-center" style="font-size: 2rem"><%= @reading.livre.title %></div>
-    <div class="text-center" style="font-size: 1.3rem; font-style: italic"><%= @reading.livre.author %></div>
+    <div class="text-center" style="font-size: 2rem"><%= @livre.title %></div>
+    <div class="text-center" style="font-size: 1.3rem; font-style: italic"><%= @livre.author %></div>
 
   </div>
 
@@ -17,12 +17,12 @@
 
   <div class="haut">
       <div class="gauche">
-        <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
+        <%= image_tag @livre.imageurl, alt: "alttext", class: "image" %>
       </div>
       <div class="droite" style="justify-content: space-between;color: white">
         <div class="comment" style="overflow-x: hidden;">
           <div class="allcomment p-3" style="height: 300px">
-            <%= @reading.livre.description.html_safe %>
+            <%= @livre.description.html_safe if !@livre.description.nil? %>
           </div>
         </div>
       </div>
@@ -31,16 +31,16 @@
       <div class=" bas d-flex justify-content-between m-4">
         <div class="gauche d-flex justify-content-between"  style="width: 100px">
 
-            <%= link_to notation_consult_path(@reading) do  %>
+            <%= link_to notation_consult_path(@livre, status: 'liste') do  %>
             <i class="fas fa-list-ol" style="font-size: 2rem"></i>
             <% end %>
-            <%= link_to review_consult_path(@reading)  do%>
+            <%= link_to review_consult_path(@livre, status: 'liste')  do%>
             <i class="fas fa-comments" style="font-size: 2rem"></i>
             <% end %>
 
         </div>
         <div class="droite pr-4">
-          <%= link_to liste_update_path(@reading), method: 'patch' do  %>
+          <%= link_to liste_update_path(@livre, status: 'liste'), method: 'patch' do  %>
           <i class="fas fa-heart" style="font-size: 2rem"></i>
           <% end %>
         </div>

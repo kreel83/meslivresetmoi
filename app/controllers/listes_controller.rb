@@ -1,17 +1,17 @@
 class ListesController < ApplicationController
 
   def show
-    @reading = Ending.find(params[:id])
+    @livre = Ending.find(params[:id]).livre
 
   end
 
 
 def update
-  @ending = Ending.find(params[:id])
+  @livre = Livre.find(params[:id])
   @reading = Reading.new
   @reading.status = 'wl'
   @reading.user = current_user
-  @reading.livre = @ending.livre
+  @reading.livre = @livre
   @reading.save!
   redirect_to books_path
 end
