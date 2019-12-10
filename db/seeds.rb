@@ -51,11 +51,6 @@ c.save
 
 puts 'done'
 
-
-
-
-
-
 livres = []
 
 livres << "veZPDwAAQBAJ"

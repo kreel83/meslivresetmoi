@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_095045) do
+ActiveRecord::Schema.define(version: 2019_12_10_102455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(version: 2019_12_09_095045) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["endinglist_id"], name: "index_endings_on_endinglist_id"
     t.index ["livre_id"], name: "index_endings_on_livre_id"
+  end
+
+  create_table "followers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_followers_on_user_id"
   end
 
   create_table "livres", force: :cascade do |t|
@@ -141,6 +148,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_095045) do
 
   add_foreign_key "endings", "endinglists"
   add_foreign_key "endings", "livres"
+  add_foreign_key "followers", "users"
   add_foreign_key "notes", "criteres"
   add_foreign_key "notes", "readings"
   add_foreign_key "readings", "livres"
