@@ -1,22 +1,43 @@
+<style>
+  .avat {
+    width: 55px;
+    height: 55px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    background-color: red;
+    border-radius: 50%;
+    line-height: 50px;
+  }
+</style>
 
 <div style="margin-top: 100px; margin-bottom: 100px">
   <h1><div id="ttt">L'avis des lecteurs</div></h1>
-  <h3>Titre</h3>
-  <h4>Auteur</h4>
+  <h3>Titre : <%= @readings.first.livre.title %></h3>
+  <h4>Auteur: <%= @readings.first.livre.author %></h4>
   <div class="row">
     <% @readings.each do |reading| %>
     <% if reading.user == current_user  %>
-      <div class="liste flex" style="background-color: rgba(0,0,255,0.2)">
-    <% else %>
+    <div class="liste flex" style="background-color: rgba(0,0,255,0.2)">
+      <% else %>
       <div class="liste flex">
-    <% end %>
-        <%= link_to 'Voir le profil', profil_show_path(reading.user), class: "btn btn-dark"  %>
-        <div class="name d-flex flex-column"><h6>Nom</h6><%= reading.user.first_name %></div>
-        <div class="date d-flex flex-column"><h6>Date</h6><%= reading.startdate %></div>
-        <div class="comment d-flex flex-column"><h6>Commentaire</h6><%=   %></div>
+        <% end %>
+        <%= link_to profil_show_path(reading.user) do  %>
+        <div class="avat" style="background-color: green">
+          <%= "#{reading.user.first_name[0].upcase} #{reading.user.last_name[0].upcase}" %>
+        </div>
+        <% end %>
+        <div style="font-size: 1.5rem">
+        <div class="name"><%= reading.user.first_name %></div>
+        <div class="date"><%= reading.startdate %></div>
+        <% if (!reading.comment.nil? && reading.public) %>
+          <button class="btn btn-primary">commentaire</button>
+        <% end %>
+
+        </div>
         <%= link_to view_note_path(reading) do %>
         <div><%= reading.indice %></div>
-      <% end %>
+        <% end %>
 
       </div>
       <% end %>

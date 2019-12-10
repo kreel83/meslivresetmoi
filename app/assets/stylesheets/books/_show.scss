@@ -57,9 +57,11 @@
 }
 
 .icons {
-  display: flex;
+  display: none;
   width: 100%;
   justify-content: space-between;
+
+
   div {
     width:80px;
     height:80px;

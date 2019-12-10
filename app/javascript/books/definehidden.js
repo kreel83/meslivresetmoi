@@ -7,5 +7,13 @@ const definehidden = () => {
 
 }
 
-export { definehidden }
+const togglebtn = () => {
+  $('#btnbuy').click(function() {
+    $('.icons').toggle('slide')
+    $('.icons').css('display','flex')
+  })
+}
+
+
+export { definehidden, togglebtn }
 
