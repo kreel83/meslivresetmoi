@@ -17,13 +17,13 @@
   <div class="middle" style="display: flex;justify-content: space-between;">
     <div style="font-style: italic"><%= @reading.livre.author %></div>
     <% if @tag== [] %>
-      <% s = "data-tag=none " %>
+      <% s = "data-tag=none" %>
     <% else %>
-      <% s = "data-tag=#{@tag} " %>
+      <% s = "data-tag=#{@tag}" %>
     <% end %>
     <div id="tag" <%= s  %> data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
       <% if @tag == [] %>
-        <button class="btn  btn-sm " style="color: white">définir catégorie</button>
+        <button class="btn btn-sm" style="color: white">Définir catégorie</button>
       <% else %>
         <%= @tag %>
       <% end %>
@@ -62,7 +62,7 @@
     <hr>
     <div>
       <div>
-          satisfaction globale
+          Satisfaction globale
           <%= render 'slider_passif', pos: @notes[-1] %>
       </div>
       <% @criteria.each do |critere| %>
@@ -97,7 +97,7 @@
         </div>
           <hr>
           <p>Vos sentiments</p>
-          <div style="font-size: 0.7rem">Plus intimes, vous pouvez inscrire ici les conditions (evenement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
+          <div style="font-size: 0.7rem">De manière plus intime, vous pouvez inscrire ici les conditions (événement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
           <textarea class="form-control" name="feeling"><%= @reading.feeling %> </textarea>
           <hr>
           <p>Comment avez-vous découvert ce livre ?</p>
@@ -121,11 +121,11 @@
         <% if @reading.status == 'ec' %>
             <div id="avertissement">
                 <div class="card">
-                  Vous devez définir une catégorie avant de noter ce livre
+                  Vous devez définir une catégorie avant de noter ce livre.
                 </div>
             </div>
             <div id="btnNote" hidden>
-                <%= link_to 'Noter le livre', notations_path(@reading) , class: "btn btn-success", style: "color: white; font-weight: bold"  %>
+                <%= link_to 'Noter ce livre', notations_path(@reading) , class: "btn btn-success", style: "color: white; font-weight: bold"  %>
             </div>
 
 
@@ -168,7 +168,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 
       </div>
     </div>

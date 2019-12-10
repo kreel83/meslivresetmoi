@@ -10,33 +10,28 @@
     cursor: pointer;
     border: 1px solid white;
     background-color: black;
-
-
   }
+
   .owl-carousel {
     display: flex;
     width: auto;
     padding: 0 15px;
-
   }
 
   img {
     width: 100%;
     height: 100%;
-
   }
 </style>
 
-
 <div class="owl-carousel">
   <%= link_to search_path(status: status) do  %>
-    <% if ajout  %>
+    <% if ajout %>
       <div class="item">+</div>
     <% end %>
   <% end %>
 
   <% if status == 'livre' %>
-
 
     <% ec.each do |book| %>
       <%= link_to liste_show_path(book, status: status) do  %>
@@ -51,9 +46,7 @@
         <div class="item"><%= image_tag book.livre.imageurl %></div>
       <% end %>
     <% end %>
-
   <% end %>
-
 </div>
 
 

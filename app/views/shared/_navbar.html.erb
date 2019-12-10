@@ -7,7 +7,7 @@
   }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-light on bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light flex-column flex-md-row bg-dark fixed-top">
   <%= link_to :back do  %>
   <i class="fas fa-arrow-left" style="color:white;font-size: 30px;"></i>
   <% end %>
@@ -29,15 +29,14 @@
         </div>
       </li>
       <li class="nav-item active">
-        <%= link_to 'Acceuil', books_path, style: "color:white;font-size: 1.5rem;text-align:center;border-bottom: 2px solid white", class: "nav-link"  %>
-             </li>
-      <li class="nav-item">
-
-        <a class="nav-link" href="#"  style="color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white">rechercher</a>
+        <%= link_to 'Accueil', books_path, style: "color:white; font-size: 1.5rem; text-align:center; border-bottom: 2px solid white", class: "nav-link"  %>
       </li>
       <li class="nav-item">
-        <%= link_to 'se deconnecter', destroy_user_session_path, method: :delete ,class: 'nav-link' ,style: "color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white" %>
-              </li>
+        <a class="nav-link" href="#"  style="color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white">Rechercher</a>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete ,class: 'nav-link' ,style: "color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white" %>
+      </li>
 
     </ul>
 

@@ -22,7 +22,7 @@ def calc_indice(note)
 
 end
 
-DISCOVER = ["Dans une librarire", "Emission de TV", "Magazine", 'Conseil', "Mybooks & me" ]
+DISCOVER = ["Dans une libraire", "Emission de TV", "Magazine", "Conseil", "My Books & Me" ]
 
 Critere.destroy_all
 
@@ -50,6 +50,9 @@ c.tag_list = "Heroic Fantasy,Roman étranger, Policier, Roman XXeme siècle"
 c.save
 
 puts 'done'
+
+
+
 
 
 
@@ -98,6 +101,7 @@ u.password = "password"
 u.first_name = 'Gisèle'
 u.last_name = "Delrosso"
 u.save!
+
 livres.each do |book|
   url = "https://www.googleapis.com/books/v1/volumes/#{book}"
   f = open(url).read
@@ -134,10 +138,19 @@ livres.each do |book|
   puts book
   sleep 5
 end
+
+
+
+
+reflivre = Livre.where(googleid: "wA_Rp0rBKvsC").first
+u = User.where(email: 'gigi@test.fr').first
+
+
 r = Reading.new
-r.livre = Livre.find(117)
+r.livre = Livre.find(reflivre.id)
 r.status = 'ec'
 r.user = u
+r.save!
 
 
 u = User.new
@@ -146,15 +159,27 @@ u.password = 'password'
 u.first_name = 'Marc'
 u.last_name = 'Borgna'
 u.save!
+
+
+
+u = User.new
+u.email = 'alexandre@test.fr'
+u.password = 'password'
+u.first_name = 'Alexandre'
+u.last_name = 'Belet'
+u.save!
+
 r = Reading.new
-r.livre = Livre.find(117)
+r.livre = Livre.find(reflivre.id)
 r.status = 'ec'
 r.user = u
 r.save!
 
 
 
-users = ['alain', 'olivier', 'rudy', 'corinne', 'barbara', 'damien', 'sandrine', 'lucien', 'alexandre', 'mohamed', 'justine', 'maria', 'magali', 'eric', 'frederic']
+
+
+users = ['alain', 'olivier', 'rudy', 'corinne', 'barbara', 'damien', 'sandrine', 'lucien', 'mohamed', 'justine', 'maria', 'magali', 'eric', 'frederic']
 
 users.each do |user|
 
@@ -165,7 +190,7 @@ users.each do |user|
   u.last_name = Faker::Name.first_name
   u.save!
 
-  l = Livre.find(117)
+  l = Livre.find(reflivre.id)
   r = Reading.new
   r.livre = l
   r.user = u
@@ -193,7 +218,8 @@ end
 
 
 
-=begin
+
+
 
 
 
@@ -208,7 +234,7 @@ ActsAsTaggableOn::Tag.create(name: "Roman étranger", color: "#6FFF84")
 ActsAsTaggableOn::Tag.create(name: "Policier", color: "#F4FFE8")
 ActsAsTaggableOn::Tag.create(name: "Thriller", color: "#0040FF")
 # tableau d'id google
-
+=begin
 Review.destroy_all
 Critere.destroy_all
 Ending.destroy_all
@@ -218,12 +244,10 @@ Livre.destroy_all
 User.destroy_all
 
 
-=end
 
 
 
 
-=begin
 
 
 
