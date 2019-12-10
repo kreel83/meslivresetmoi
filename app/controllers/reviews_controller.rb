@@ -1,7 +1,5 @@
 class ReviewsController < ApplicationController
-  DISCOVER = ["Dans une librarire", "Emission de TV", "Magazine", 'Conseil', "Mybooks & me" ]
-
-
+  DISCOVER = ["Dans une librairie", "Emission de TV", "Magazine", "Conseil", "My Books & Me"]
 
   def new
     @reading = Reading.find(params[:id])
@@ -25,7 +23,6 @@ class ReviewsController < ApplicationController
 
     @reading.save!
     redirect_to books_path
-
   end
 
   def comment
@@ -40,9 +37,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-
-
-
   def destroy
     @review.destroy
 
@@ -56,9 +50,6 @@ class ReviewsController < ApplicationController
     @tag = Reading.find(params[:id]).tags
     @liste = @liste.reject {|item| item.comment.nil? }
     @liste = @liste.sort_by {|item | item.startdate }.reverse
-
-
-
   end
 
 
@@ -75,6 +66,5 @@ class ReviewsController < ApplicationController
     m1 = (n.sum / nb)  * 40.0
     m2 = notations[-1].to_i * 60.0
     moy = ((m1 + m2) / 20.0).round(2)
-
   end
 end

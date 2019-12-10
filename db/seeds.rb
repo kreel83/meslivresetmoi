@@ -22,7 +22,7 @@ def calc_indice(note)
 
 end
 
-DISCOVER = ["Dans une librarire", "Emission de TV", "Magazine", 'Conseil', "Mybooks & me" ]
+DISCOVER = ["Dans une libraire", "Emission de TV", "Magazine", "Conseil", "My Books & Me" ]
 
 Critere.destroy_all
 

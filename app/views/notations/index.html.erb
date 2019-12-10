@@ -1,5 +1,5 @@
 <div id="notation-container" style="margin-top: 100px">
-  <input type="hidden" value=" <%= @reading.id %> " id="reading">  
+  <input type="hidden" value=" <%= @reading.id %> " id="reading">
   <h1>Qu'avez-vous pensé de cette oeuvre ?</h1>
   <div class="notations mb-5">
     <% @taglist.each_with_index do |tag, index| %>
@@ -10,7 +10,7 @@
     <% end %>
     <hr>
     <div id="<%= 99 %>" class="mt-3" data-pos="0">
-      <div >Ce livre vous a plu ?</div>
+      <div >Ce livre vous a-t-il plu ?</div>
       <%= render 'slider', status: "slide99"  %>
     </div>
   </div>
@@ -20,7 +20,7 @@
 
   <%= link_to "Non merci", review_comment_path(@reading, status: 'false'), method: 'post', class: "btn btn-lg btn-danger d-block w-100 mb-5"%>
 
-  <%= link_to "ok", review_comment_path(@reading, status: 'true'),  method: 'post', class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
+  <%= link_to "J'y vais !", review_comment_path(@reading, status: 'true'),  method: 'post', class: "btn btn-lg btn-primary d-block w-100 mb-5"%>
   </div>
 </div>
 
