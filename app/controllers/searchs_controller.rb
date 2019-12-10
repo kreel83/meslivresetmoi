@@ -4,14 +4,18 @@ require 'open-uri'
 
 class SearchsController < ApplicationController
   def index
-    if (!params[:title].nil? && !params[:author].nil?)
+    params[:title]=nil if params[:title] == ''
+    params[:author]=nil if params[:author] == ''
+    if params[:title].nil? && params[:author].nil?
+      @fj = []
+    else
       title = params[:title].gsub(' ', '+')
       title = ERB::Util.url_encode(title)
 
       author = ERB::Util.url_encode(params[:author])
 
       title = '' if !params[:title]
-      author = ERB::Util.url_encode('grangé') if !params[:author]
+
 
 
       titleText = "intitle:#{title}" if title != ''
@@ -24,17 +28,21 @@ class SearchsController < ApplicationController
       @fj = fj['items']
       last = ''
       @tab = []
-      @fj.each do |item|
-        if !item['volumeInfo']['authors'].nil?
-          @tab << item  if last != item['volumeInfo']['title']
-          last = item['volumeInfo']['title']
+      if @fj.nil?
+          @fj=[]
+      else
+        @fj.each do |item|
+          if !item['volumeInfo']['authors'].nil?
+            @tab << item  if last != item['volumeInfo']['title']
+            last = item['volumeInfo']['title']
+          end
         end
+        @tab.sort_by! { |tab| tab['volumeInfo']['title'].downcase }
+        @fj = @tab
       end
-      @tab.sort_by! { |tab| tab['volumeInfo']['title'].downcase }
-      @fj = @tab
 
-    else
-      @fj = []
+
+
     end
   end
 
