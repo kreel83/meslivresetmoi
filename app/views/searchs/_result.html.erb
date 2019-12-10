@@ -9,7 +9,7 @@
           <% else %>
             <%= image_tag(book['volumeInfo']['imageLinks']['smallThumbnail'], height: '60', width: '45', data: {"id" => book['id']}) %>
           <% end %>
-          <%= book['volumeInfo']['title'] %> (<%= book['volumeInfo']['authors'].join(', ') %> [<%= book['id'] %>])
+          <u><%= book['volumeInfo']['title'] %></u> (<%= book['volumeInfo']['authors'].join(', ') %>)
         </div>
       </div>
       <% end %>
