@@ -1,14 +1,20 @@
+
 <% content_for :head do %>
   <title>My books and me - profil de <%= @profilowner.first_name.capitalize %></title>
 <% end %>
 
-<div style="margin-top: 80px; margin-bottom: 120px">
-  <h1>Les lectures de <%= @profilowner.first_name.capitalize %></p></h1>
+
+<div style="margin-top: 50px; margin-bottom: 120px">
+  <div class="d-flex list-inline justify-content-between align-items-center">
+    <h1 style="padding-top: 21px; padding-left: 32px">Les lectures de <%= @profilowner.first_name.capitalize %></h1>
+    <%= link_to "Ajouter à ma communauté",  add_follower_path(@profilowner),  method: 'post', class: "btn btn-lg btn-primary", style: "margin-right: 32px" %>
+  </div>
+
   <hr>
   <div class="row justify-content-around">
-    <div class="col-5 last-readings">
-      <h5>Ses dernières lectures</h5>
-      <div class="colonne">
+    <div class="col-5 d-flex flex-column">
+      <div class="actual-reading">
+        <h5>Lecture en cours</h5>
         <% @readings.each do |t| %>
         <div id="bookcard" class="d-flex">
           <%= image_tag t.livre.imageurl, alt: "alttext" %>
@@ -20,8 +26,22 @@
         </div>
         <% end %>
       </div>
+      <div class="last-readings">
+        <h5>Ses dernières lectures</h5>
+        <div class="colonne">
+          <% @readings.each do |t| %>
+          <div id="bookcard" class="d-flex">
+            <%= image_tag t.livre.imageurl, alt: "alttext" %>
+            <div class="d-flex flex-column">
+              <h2><%= t.livre.title %></h2>
+              <h3><%= t.livre.author %></h3>
+              <p>indice : <%= t.indice %></p>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-
     <div class="col-5 best-readings mb-4">
       <h5>Son Top</h5>
       <div class="colonne">
@@ -37,7 +57,5 @@
         <% end %>
       </div>
     </div>
-    <%= link_to "Ajouter à ma communauté",  add_follower_path(@profilowner),  method: 'post', class: "btn btn-lg btn-primary"%>
-
   </div>
 </div>

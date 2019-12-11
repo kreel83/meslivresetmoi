@@ -8,24 +8,30 @@
 
   <div id="follower-cards">
 
-    <br><% @f.each do |user| %>
-    <div class="follower-card d-flex list-inline align-items-center">
+    <% @f.each do |user| %>
 
-      <div class="btn btn-ghost"><%= user.first_name.capitalize %></div>
+    <div id="bookcard" class="d-flex list-inline" style="width: 250px; margin: 8px">
+      <%= image_tag "Couverture_Livre_Neutre.jpg", alt: "alttext" %>
+      <div class="d-flex flex-column align-items-center" style="padding-left: 32px">
+        <h2><%= user.first_name %></h2>
+        <div class="d-flex list-inline justify-content-around">
+          <div class="add-user btn-user" style="padding-top: 16px; padding-left: 16px">
+            <%= link_to profil_show_path(user) do %>
+            <i class="fas fa-user" style="font-size: 24px"></i>
+            <% end %>
+          </div>
 
-      <div class="add-user btn-user" style="padding-top: 16px; padding-left: 16px">
-        <%= link_to profil_show_path(user) do %>
-        <i class="fas fa-user" style="font-size: 24px"></i>
-        <% end %>
+          <div class="delete-user btn-user" style="padding-top: 16px; padding-left: 16px">
+            <%= link_to destroy_follower_path(user), method: 'delete' do %>
+            <i class="fas fa-user-slash" style="font-size: 24px"></i>
+            <% end %>
+          </div>
+        </div>
       </div>
-
-      <div class="delete-user btn-user" style="padding-top: 16px; padding-left: 16px">
-        <%= link_to destroy_follower_path(user), method: 'delete' do %>
-        <i class="fas fa-user-slash" style="font-size: 24px"></i>
-        <% end %>
-      </div>
-
-      <% end %>
     </div>
+    <% end %>
   </div>
 </div>
+
+
+
