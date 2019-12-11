@@ -1,0 +1,61 @@
+<style>
+  .ligne {
+
+    display: flex;
+    height: 250px;
+  }
+  .livre {
+    width: 300px;
+    margin: 5px;
+
+  }
+
+  .visuel {
+    height: 15px;
+    width: 100%;
+margin-bottom: 4px;
+  }
+
+  .month {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding-top: 50px;
+    font-size: 2rem;
+  }
+
+</style>
+
+
+<div style="margin: 66px 0;padding: 0 16px">
+
+
+  <div>
+    <% @tab.each do |annee| %>
+
+    <div style="font-size: 2rem">
+      <%= annee[:date] %>
+    </div>
+
+    <div class="ligne">
+      <% annee[:livre].each do |livre| %>
+      <div class="livre month" style="color: <%= livre[:color] %>">
+        <%= livre[:month] %>
+      </div>
+      <% livre[:book].each do |l| %>
+
+
+      <div class="livre">
+        <div class="visuel" style="background-color: <%= livre[:color] %> "></div>
+        <div>
+          <%= image_tag l.livre.imageurl, alt: "alttext", style: 'height: 200px' %>
+        </div>
+
+      </div>
+
+      <% end %>
+      <% end %>
+    </div>
+
+    <% end %>
+  </div>
+</div>
