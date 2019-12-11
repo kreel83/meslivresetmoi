@@ -62,8 +62,8 @@
   list-style: none;
   position: absolute;
   left: 50%;
-  top: 80%;
-  transform: translateY(-50%) translateX(-42%);
+  top: 560px;
+  transform: translateX(-50%) translateY(-50%);
   font-family: "Raleway", sans-serif;
   font-weight: 200;
   font-size: 2rem;
@@ -74,10 +74,16 @@
 }
 
 .gobtn {
-    position: absolute;
+  position: absolute;
   left: 50%;
+  transform: translateX(-140px);
   top: 75%;
-  opacity: 0
+  opacity: 0;
+  width: 200px;
+
+  a {
+     width: 100%;
+  }
 }
 
 #devtext {

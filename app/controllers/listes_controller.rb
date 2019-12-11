@@ -1,7 +1,12 @@
 class ListesController < ApplicationController
 
   def show
+    if params[:status] == 'follow'
+      @livre = Livre.find(params[:id])
+
+    else
     @livre = Ending.find(params[:id]).livre
+  end
 
   end
 

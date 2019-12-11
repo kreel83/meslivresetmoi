@@ -1,10 +1,20 @@
 class FollowersController < ApplicationController
   def index
+
     @followers = Follower.where(user: current_user)
     @f = []
+
     @followers.each do |fol|
-      @f << User.find(fol.follower)
+      user = []
+      if Reading.where(user_id: fol.follower).where(status: 'ec').empty?
+        user << 'none'
+      else
+        user <<Reading.where(user_id: fol.follower).where(status: 'ec').first.livre
+      end
+      user << User.find(fol.follower)
+      @f << user
     end
+
   end
 
   def create
