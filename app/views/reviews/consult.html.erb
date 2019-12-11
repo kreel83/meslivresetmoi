@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <title>My books and me - <%= @livreactuel.title %></title>
+<title>My books and me - <%= @livreactuel.title %></title>
 <% end %>
 
 <style>
@@ -13,6 +13,9 @@
     border-radius: 50%;
     line-height: 50px;
   }
+  .like {
+    font-size: 3rem;
+  }
 </style>
 
 
@@ -25,7 +28,7 @@
         <h2>Titre : <%= @livreactuel.title %></h2>
         <p>Auteur : <%= @livreactuel.author %> </p>
         <% if @tag.empty? %>
-          <p>Genre : <%= @tag[0] %></p>
+        <p>Genre : <%= @tag[0] %></p>
         <% end %>
       </div>
     </div>
@@ -44,9 +47,17 @@
         <p><small><%= time_ago_in_words(item.startdate)  %> ago</small></p>
         <p><%= item.comment.gsub(/[\[\]""]/,'') %> </p>
       </div>
-      <div class="notification-actions">
-        <a href="#"><p><%= item.like %></p> <i class="fas fa-thumbs-up" style="color:green"></i></a>
-        <a href="#"><p><%= item.unlike %></p> <i class="fas fa-thumbs-down" style="color:red"></i></a>
+      <div class="notification-actions" id="<%= item.id %>">
+        <div style="display: flex;flex-direction: column;align-items: : center;margin-right: 15px">
+          <a href="#" data-action="like" class="like" style="margin: 0;text-align: center;padding-bottom: 10px"><%= item.like %></a>
+          <i class="fas fa-thumbs-up" style="color:green"></i>
+        </div>
+        <div style="display: flex;flex-direction: column;align-items: : center">
+          <a href="#" data-action="unlike" class="like" style="margin: 0;text-align: center;padding-bottom: 10px"><%= item.unlike %></a>
+          <i class="fas fa-thumbs-down" style="color:red"></i>
+
+        </div>
+
       </div>
     </div>
     <% end %>

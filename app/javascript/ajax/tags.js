@@ -1,5 +1,36 @@
 
+const like = () => {
+  $('.like').click(function(){
+    const action = $(this).attr('data-action')
+    const id = $(this).parent().parent().attr('id')
+    const datas = {id: id, act: action}
 
+    $.ajax({
+      url: "/books/"+id+'/like',
+      type: "POST",
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      dataType: 'json',
+      data: datas,
+      //data: {foo: 'bar', cat: $(this).data('cat'), id: $(this).data('id')} ,
+      success: function(data) {
+        const action = data.like
+        const nb = data.add
+        const id = data.id
+
+        $(`#${id}`).find(`[data-action='${action}']`).text(nb)
+
+
+
+
+        //location.href = "/books/"+data.status.reading+"/notations"
+      },
+      error: function(data) {}
+    })
+  })
+
+}
 
 
 
@@ -44,7 +75,7 @@ const test = () => {
   })
 }
 
-export {test}
+export {test, like}
 
 
 
