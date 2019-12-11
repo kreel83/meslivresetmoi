@@ -221,6 +221,32 @@ end
 
 
 
+livre 1 = ["D'un best seller on attend de la distraction , sans trop réfléchir. Cet opus lui c'est tout le contraire. Ici l'on est devant une remarquable initiative . L'auteur propose en effet un voyage au coeur des sciences ,pour que celles ci ne soient plus réservées aux scientifiques , aux esprits brillants . L'intention est plus que louable et l'on découvre ainsi pléthore de travaux scientifiques remarquablement décrits et accessibles a tous pour peu que l'on fasse un petit effort de curiosité",
+"Dos Santos nous offre un très beau voyage dans l'univers au sens premier mais aussi dans l'univers des idées qu'elles soient religieuses, philosophiques ou scientifiques. J'ai lu certaines critiques qui jugeaient mal cet ouvrage car selon eux tout ça pour ça ! Je ne suis pas du tout d'accord avec leur vision de la chose. Je dirais même que la fin importe peu, n'est pas l'essentiel et on s'en fiche carrément",
+"Que dire...si ce n'est que j'irai me coucher un peu plus intelligente ce soir?
+Lecture assez ardue parce que, sur 600 pages, disons qu'il y en a au moins deux tiers consacrées à un cours de physique et à toutes les théories existantes. J'ai appris un tas de choses, j'en ai oubliées un tas aussi, et le reste, j'avoue que je n'en ai rien compris! le tiers restant étant consacré à l'histoire en elle-même, càd celle d'un cryptologue appelé à déchiffrer un texte d'Einstein et les aventures qui vont s'en découler",
+"Voyage au coeur des Sciences dans ce roman de plus de 600 pages à la lecture ardue et intéressante qui maintient le suspense jusqu'à la fin....
+Ce thriller scientifique pétri de théories nous entraîne dans le sillage de l'éminent cryptologue historien Portugais Thomas Noronha.
+Il est le seul à pouvoir déchiffrer un manuscrit inédit d'Albert Einstein intitulé  La formule de Dieu",
+"Parfois, je pense que la vie n'a aucune valeur, que c'est une chose insignifiante. Je vais mourir et l'humanité ne sentira pas la différence. L'humanité va mourir et l'éternité ne sentira pas la différence. Nous ne sommes que des ombres, de vaines poussières se perdant dans le temps ... Mais, d'autres fois, je pense que nous naissons tous avec une mission, que nous jouons tous un rôle, que nous faisons tous partie d'un système",
+"Tout le cosmos repose sur les mathématiques. Les lois fondamentales de l'univers s'expriment par des équations et des formules mathématiques, les lois de la physique sont des algorithmes nécessaires au processus de l'information mathématique. Tout est relié, même ce qui ne le paraît pas. mais le langage mathématique lui-même ne peut décrypter totalement ce code. Telle est la propriété la plus énigmatique de l'univers : la manière dont celui-ci dissimule la vérité dernière"]
+
+
+
+
+livre 2 = ["le temps que le journaliste passe à l’antenne à répéter la même chose pour vous faire croire que vous êtes informés, c’est autant de temps qu’il ne passe pas sur le terrain à recueillir l’information dont vous auriez vraiment besoin pour comprendre ce qu’il se passe",
+"Je n'avais jamais entendu parler de Carlos Ruiz Zafon avant de le découvrir partout, sur tous les blogs et c'est une citation affichée sur mon site adoré www.pochetroc.fr qui a achevé de me convaincre. Je me suis donc intéressé à ce livre, son sujet, son ambiance. Il a donc fini par arriver dans ma boite à lettre, je me suis lancé, j'ai lu L'Ombre du vent",
+"Passionnant, c'est le seul mot que j'utiliserai pour décrire ce livre, une plongée dans la ville de Barcelone après la guerre 40-45, à la fois historique et fantastique, ce roman ne se lâche pas avant la fin, et on se surprend à vouloir lire la suite immédiatement. Ce que j'ai fait avec le jeu de l'ange et le prisonnier du ciel.
+Je n'ai qu'un mot à dire à ceux qui ne les ont pas lus, allez-y, vous resterez scotchés jusqu'au bout",
+"C'est le premier roman de Carlos RUIZ ZAFON que je lis et c'est une découverte fantastique. Je viens juste de le refermer et j'avoue que j'ai du mal à m'en détacher.
+Ce livre nous raconte l'histoire de Daniel SEMPERE qui se déroule dans Barcelone et débute en 1945. Il est orphelin de mère depuis qu'il est tout petit et aide son père qui tient une librairie. Ils s'aiment profondément tous les deux mais ont du mal à communiquer",
+"Il existe des romans qui nous happent, nous envoutent, nous emmènent loin, très loin de chez nous. C'est un voyage immobile que l'on achève avec regret. Ce sont des personnages que l'on se surprend à aimer ou à connaître comme de vieux compagnons. Ils nous émeuvent, ils nous déçoivent, ils nous font peur, ils nous déroutent. « L'ombre du vent » est de la race de ces livres, du moins me concernant. Et ils sont rares",
+"Rien ne marque autant un lecteur que le premier livre qui s'ouvre vraiment un chemin jusqu'à notre coeur. Ces premières images, l'écho de ces premiers mots que nous croyons avoir laissés derrière nous, nous accompagnent toute notre vie et sculptent dans notre mémoire un palais ou tôt ou tard - et peu importe le nombre de livres que nous lisons, combien d'univers nous découvrons-, nous reviendrons un jour",
+"Il y a des rustres qui s'imaginent que s'ils mettent la main au cul d'une femme et qu'elle ne proteste pas, l'affaire est dans le sac. Ce sont des ignares. Le coeur de la femme est un labyrinthe de subtilités qui défie l'esprit grossier du mâle à l'affût. Si vous voulez vraiment posséder une femme, il faut d'abord penser comme elle, et la première chose est de conquérir son âme"]
+
+
+
+
 
 
 
