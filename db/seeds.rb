@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+=begin
 
 def calc_indice(note)
   notations = note.split('/')
@@ -487,3 +487,44 @@ puts "Science fictions done"
 
 
 =end
+
+
+def calc_indice(note)
+  notations = note.split('/')
+  nb = notations.size-1
+  diviseur = 100.0 / nb
+  n = notations[0..-2]
+  n.map! do |item|
+    item.to_i * diviseur / 10
+  end
+  m1 = (n.sum / nb)  * 40.0
+  m2 = notations[-1].to_i * 60.0
+  moy = ((m1 + m2) / 20.0).round(2)
+
+end
+
+livres = Livre.all
+u = User.where(first_name: 'Alexandre').first
+livres.each do |livre|
+  r = Reading.new
+  r.livre = livre
+  r.user = u
+  r.status = 'done'
+  r.startdate = Faker::Date.between(from: 4.years.ago, to: Date.today)
+
+  r.like = rand(100)
+  r.unlike = rand(30)
+  sample = ActsAsTaggableOn::Tag.all.sample.name
+  r.tag_list.add(sample)
+  criteres = Critere.tagged_with(sample)
+  note = ''
+  criteres.each do |critere|
+    note = note + rand(10).to_s + '/'
+  end
+  note = note + rand(10).to_s
+  r.notation = note
+  r.indice = calc_indice(note)
+  r.save!
+puts livre.title
+end
+
