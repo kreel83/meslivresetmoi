@@ -47,7 +47,9 @@ margin-bottom: 4px;
       <div class="livre">
         <div class="visuel" style="background-color: <%= livre[:color] %> "></div>
         <div>
-          <%= image_tag l.livre.imageurl, alt: "alttext", style: 'height: 200px' %>
+          <%= link_to liste_show_path(l.livre, status: 'follow') do  %>
+            <%= image_tag l.livre.imageurl, alt: "alttext", style: 'height: 200px' %>
+          <% end %>
         </div>
 
       </div>

@@ -55,6 +55,21 @@ class BooksController < ApplicationController
     render json: {status: params}
   end
 
+  def update_like
+    id = params[:id]
+    like = params[:act]
+    r = Reading.find(id)
+    if like == 'like'
+      c = r.like.to_i + 1
+      r.update(like: c)
+    else
+      c = r.unlike.to_i + 1
+      r.update(unlike: c)
+    end
+
+    render json: {add: c, id: id, like: like}
+  end
+
   def update
     r = Reading.find(params[:id])
 

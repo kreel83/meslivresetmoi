@@ -2,7 +2,7 @@ import "bootstrap";
 import { searchfct } from '../search/search'
 import { range_init} from '../notations/notes'
 import { definehidden, togglebtn } from '../books/definehidden'
-import { test } from '../ajax/tags'
+import { test, like } from '../ajax/tags'
 import { displaycomment} from '../consultations/commentaires.js'
 searchfct()
 range_init()
@@ -10,6 +10,7 @@ test()
 definehidden()
 togglebtn()
 displaycomment()
+like()
 
 
 

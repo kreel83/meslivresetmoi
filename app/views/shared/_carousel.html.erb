@@ -2,7 +2,6 @@
   .item {
     width: 160px;
     height: 200px;
-    background-color: #fff;
     margin-right: 10px;
     display: flex;
     justify-content: center;
@@ -27,7 +26,11 @@
 <div class="owl-carousel">
   <%= link_to search_path(status: status) do  %>
     <% if ajout %>
-      <div class="item">+</div>
+      <div class="item" style="background-color: #B0C4DE;display: flex;flex-direction: column;">
+        <i class="fas fa-book-reader" style="font-size: 2rem;color: blue"></i>
+        <div style="font-size: 4rem;color: blue">+</div>
+      </div>
+
     <% end %>
   <% end %>
 

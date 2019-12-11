@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   delete 'books/:id/destroy', to: 'books#destroy', as: :book_destroy
   post 'books/:id/notation', to: 'books#update_notation', as: :post_notation
   post 'books/:id/tags', to: 'books#update_tag', as: :book_update_tag, defaults: {format: :json}
-
+  post 'books/:id/like', to: 'books#update_like', as: :book_update_like, defaults: {format: :json}
   get 'books/:id/notations', to: "notations#index", as: :notations
   get 'books/:id/reviews/new', to: "reviews#new", as: :new_review
   post 'books/:id/reviews/new', to: "reviews#create"
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   delete 'books/:user/followers', to: "followers#destroy", as: :destroy_follower
 
   post "books/:id/comment", to: "reviews#comment", as: :review_comment
+
 
   get "books/historique", to: "historiques#index", as: :historique
 

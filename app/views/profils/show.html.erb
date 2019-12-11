@@ -27,7 +27,9 @@
       <% else %>
         <h5>Lecture en cours</h5>
         <div id="bookcard" class="d-flex">
+          <%= link_to liste_show_path(@actual.livre, status:"follow") do %>
           <%= image_tag @actual.livre.imageurl, alt: "alttext" %>
+          <% end %>
           <div class="d-flex flex-column">
             <h2><%= @actual.livre.title %></h2>
             <h3><%= @actual.livre.author %></h3>
@@ -42,7 +44,9 @@
         <div class="colonne-last">
           <% @readings.each do |t| %>
           <div id="bookcard" class="d-flex">
+            <%= link_to liste_show_path(t.livre, status:"follow")  do%>
             <%= image_tag t.livre.imageurl, alt: "alttext" %>
+            <% end %>
             <div class="d-flex flex-column">
               <h2><%= t.livre.title %></h2>
               <h3><%= t.livre.author %></h3>
@@ -58,7 +62,9 @@
       <div class="colonne-best">
         <% @top.each do |t| %>
         <div id="bookcard" class="d-flex">
+          <%= link_to liste_show_path(t.livre, status:"follow") do %>
           <%= image_tag t.livre.imageurl, alt: "alttext" %>
+          <% end %>
           <div class="d-flex flex-column">
             <h2><%= t.livre.title %></h2>
             <h3><%= t.livre.author %></h3>
