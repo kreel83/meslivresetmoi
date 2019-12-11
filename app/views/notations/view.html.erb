@@ -6,11 +6,12 @@
   <div class="container" style="margin: 0 24px">
 
     <div style="display: flex;width: 40%;margin: 0 auto;justify-content: space-between;">
+      <% if !@my_notes.nil? %>
       <div class="indices" >
         <div><small>Moi</small></div>
         <div><%= @my_reading.indice %></div>
       </div>
-
+      <% end %>
       <div class="indices">
         <div><small><%= @other_reading.user.first_name %></small></div>
         <div><%= @other_reading.indice %></div>
@@ -18,13 +19,13 @@
     </div>
 
     <div class="mb-5" style="margin: 24px 0">
-      <% Critere.tagged_with(@my_reading.tags[0]).each_with_index do |tag, index| %>
+      <% Critere.tagged_with(@other_reading.tags[0]).each_with_index do |tag, index| %>
       <div id="<%= index %>">
         <div style="font-weight: bold"><%= tag.name %></div>
         <% if !@my_notes.nil? %>
-        <div style="font-weight: italic" class="mb-2">
-          <%= 'Moi' %><%= render 'books/slider_passif', pos: @my_notes[index], status: "slide#{index}"  %>
-        </div>
+          <div style="font-weight: italic" class="mb-2">
+            <%= 'Moi' %><%= render 'books/slider_passif', pos: @my_notes[index], status: "slide#{index}"  %>
+          </div>
         <% end %>
         <div style="font-weight: italic">
           <%= @other_reading.user.first_name %><%= render 'books/slider_passif', pos: @other_notes[index], status: "slide#{index}"  %>
@@ -35,9 +36,11 @@
 
       <div id="99">
         <div style="font-weight: bold">Ce livre vous a plu ?</div>
+        <% if !@my_notes.nil? %>
         <div style="font-weight: italic" class="mb-2">
           <%= 'Moi' %><%= render 'books/slider_passif', pos: @my_notes[-1], status: "slide99"  %>
         </div>
+        <% end %>
         <div style="font-weight: italic">
           <%= @other_reading.user.first_name %><%= render 'books/slider_passif', pos: @other_notes[-1], status: "slide99"  %>
         </div>
