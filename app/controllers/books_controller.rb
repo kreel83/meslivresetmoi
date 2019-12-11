@@ -57,12 +57,16 @@ class BooksController < ApplicationController
 
   def update
     r = Reading.find(params[:id])
+
     status = r.status
     if status == 'wl'
       r.update(status: 'ec')
     end
     if status == 'ec'
+      r.update(startdate: Date.today)
+
       r.update(status: 'done')
+
     end
     redirect_to books_path
   end

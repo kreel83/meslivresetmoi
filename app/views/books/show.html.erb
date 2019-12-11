@@ -18,18 +18,18 @@
   <div class="middle" style="display: flex;justify-content: space-between;">
     <div style="font-style: italic"><%= @reading.livre.author %></div>
     <% if @reading.status == 'ec' %>
-      <% if @tag== []  %>
-        <% s = "data-tag=none" %>
-      <% else %>
-        <% s = "data-tag=#{@tag}" %>
-      <% end %>
-      <div id="tag" <%= s  %> data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
-      <% if @tag == [] %>
-        <button class="btn btn-sm m-0" style="color: white">Définir catégorie</button>
-      <% else %>
-        <%= @tag %>
-      <% end %>
+    <% if @tag== []  %>
+    <% s = "data-tag=none" %>
+    <% else %>
+    <% s = "data-tag=#{@tag}" %>
     <% end %>
+    <div id="tag" <%= s  %> data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
+      <% if @tag == [] %>
+      <button class="btn btn-sm m-0" style="color: white">Définir catégorie</button>
+      <% else %>
+      <%= @tag %>
+      <% end %>
+      <% end %>
     </div>
   </div>
   <hr>
@@ -66,7 +66,7 @@
 
           <%= link_to 'Noter ce livre', notations_path(@reading) , class: "btn btn-success m-0 text-left", style: "color: white; font-weight: bold"  %>
         </div>
-                  <% end %>
+        <% end %>
         <div style="width: auto;display: flex;justify-content: end;margin-top: 30px;">
           <% if @reading.status == 'wl' %>
           <div class="icone">
@@ -100,74 +100,76 @@
 
      </div>
      <hr>
-     <% if @status == 'done' %>
-     <div>
-      indice : <%= @reading.indice %>
-    </div>
-    <hr>
-    <div>
-      <div>
-        Satisfaction globale
-        <%= render 'slider_passif', pos: @notes[-1] %>
+     <div class="info" style="padding: 30px">
+       <% if @status == 'done' %>
+       <div style="font-size: 2rem">
+        indice : <%= @reading.indice %>
       </div>
-      <% @criteria.each do |critere| %>
+      <hr>
       <div>
-        <%= critere[0] %>
-        <%= render 'slider_passif', pos: critere[1] %>
+        <div>
+          Satisfaction globale
+          <%= render 'slider_passif', pos: @notes[-1] %>
+        </div>
+        <% @criteria.each do |critere| %>
+        <div>
+          <%= critere[0] %>
+          <%= render 'slider_passif', pos: critere[1] %>
+        </div>
+        <% end %>
+      </div>
+      <hr>
+      <div style="margin-bottom: 120px">
+        <form action="" method="post">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between;">
+              <p>votre commentaire :</p>
+              <%= link_to new_review_path(@reading) do  %>
+              <i class="fas fa-edit"></i>
+              <% end %>
+            </div>
+            <textarea rows=7 class="form-control" name="commentaire"><%= @reading.comment %></textarea>
+            <div>
+              <% if @reading.public %>
+              <%=  "commentaire public" %>
+              <% else %>
+              <%= "commentaire privé" %>
+              <% end %>
+            </div>
+            <hr>
+            <p>Vos sentiments</p>
+            <div style="font-size: 0.7rem">De manière plus intime, vous pouvez inscrire ici les conditions (événement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
+            <textarea class="form-control" name="feeling"><%= @reading.feeling %> </textarea>
+            <hr>
+            <p>Comment avez-vous découvert ce livre ?</p>
+            <div><%= @reading.discover %> </div>
+          </div>
+        </form>
       </div>
       <% end %>
-    </div>
-    <hr>
-    <div style="margin-bottom: 120px">
-      <form action="" method="post">
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <div class="form-group">
-          <div style="display: flex; justify-content: space-between;">
-            <p>votre commentaire :</p>
-            <%= link_to new_review_path(@reading) do  %>
-            <i class="fas fa-edit"></i>
-            <% end %>
-          </div>
-          <textarea rows=7 class="form-control" name="commentaire"><%= @reading.comment %></textarea>
-          <div>
-            <% if @reading.public %>
-            <%=  "commentaire public" %>
-            <% else %>
-            <%= "commentaire privé" %>
-            <% end %>
-          </div>
-          <hr>
-          <p>Vos sentiments</p>
-          <div style="font-size: 0.7rem">De manière plus intime, vous pouvez inscrire ici les conditions (événement, actualité, situation sentimentale, etc...) présentes au moment où vous avez lu ce livre</div>
-          <textarea class="form-control" name="feeling"><%= @reading.feeling %> </textarea>
-          <hr>
-          <p>Comment avez-vous découvert ce livre ?</p>
-          <div><%= @reading.discover %> </div>
+      <div class="bas">
+
+
+
+        <div class="icons" >
+          <div><%= image_tag ( "fnac.png")%></div>
+          <div><%= image_tag ( "rdcc.png") %></div>
+          <div><%= image_tag ( "amazon.png")%></div>
+          <div><%= image_tag ( "ebay.png")%></div>
+          <div><%= image_tag ( "cdiscount.png") %></div>
         </div>
-      </form>
-    </div>
-    <% end %>
-    <div class="bas">
 
 
-
-      <div class="icons" >
-        <div><%= image_tag ( "fnac.png")%></div>
-        <div><%= image_tag ( "rdcc.png") %></div>
-        <div><%= image_tag ( "amazon.png")%></div>
-        <div><%= image_tag ( "ebay.png")%></div>
-        <div><%= image_tag ( "cdiscount.png") %></div>
-      </div>
-
-
-      <% if @reading.status == 'ec' %>
-      <div id="avertissement">
-        <div class="card">
-          Vous devez définir une catégorie avant de noter ce livre.
+        <% if @reading.status == 'ec' %>
+        <div id="avertissement">
+          <div class="card">
+            Vous devez définir une catégorie avant de noter ce livre.
+          </div>
         </div>
-      </div>
 
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

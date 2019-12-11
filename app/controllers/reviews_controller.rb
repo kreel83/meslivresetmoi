@@ -33,6 +33,7 @@ class ReviewsController < ApplicationController
       redirect_to notations_path(@reading)
     else
     @reading.update(status: 'done')
+    @reading.update(startdate: Date.today)
     @reading.update(indice: calc_indice(@reading.notation))
 
     if params[:status] == 'true'
