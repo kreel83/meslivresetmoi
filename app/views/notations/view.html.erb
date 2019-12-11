@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <title>My books and me - mes notes</title>
+<title>My books and me - mes notes</title>
 <% end %>
 
 <div style="margin: 100px 0">
@@ -30,6 +30,17 @@
       </div>
       <hr>
       <% end %>
+
+      <div id="99">
+        <div style="font-weight: bold">Ce livre vous a plu ?</div>
+        <div style="font-weight: italic" class="mb-2">
+          <%= 'Moi' %><%= render 'books/slider_passif', pos: @my_notes[-1], status: "slide99"  %>
+        </div>
+        <div style="font-weight: italic">
+          <%= @other_reading.user.first_name %><%= render 'books/slider_passif', pos: @other_notes[-1], status: "slide99"  %>
+        </div>
+      </div>
+      <hr>
     </div>
 
   </div>

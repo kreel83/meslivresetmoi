@@ -58,11 +58,15 @@ class ReviewsController < ApplicationController
     end
 
     @liste = Reading.where(livre_id: @livreactuel.id)
+
     if @liste.empty?
       @tag = []
-
     else
-      @tag = Reading.find(params[:id]).tags
+      if params[:status] != 'liste'
+        @tag = Reading.find(params[:id]).tags
+      else
+        @tag = @liste.first.tags
+      end
       @liste = @liste.reject {|item| item.comment.nil? }
       @liste = @liste.sort_by {|item | item.startdate }.reverse
     end

@@ -1,6 +1,20 @@
 <% content_for :head do %>
-  <title>My books and me - Ma communauté</title>
+<title>My books and me - Ma communauté</title>
 <% end %>
+
+
+<style>
+  .delete-user {
+  padding-right: 5px;
+  padding-top: 5px;
+    height: 100%;
+  }
+
+  .btn-ghost {
+padding: 0;
+  }
+</style>
+
 
 <div style="margin: 80px 0">
   <h1>Votre communauté</h1>
@@ -10,27 +24,37 @@
 
     <% @f.each do |user| %>
 
-    <div id="bookcard" class="d-flex list-inline" style="width: 250px; margin: 8px">
-      <%= image_tag "Couverture_Livre_Neutre.jpg", alt: "alttext" %>
-      <div class="d-flex flex-column align-items-center" style="padding-left: 32px">
-        <h2><%= user.first_name %></h2>
-        <div class="d-flex list-inline justify-content-around">
-          <div class="add-user btn-user" style="padding-top: 16px; padding-left: 16px">
-            <%= link_to profil_show_path(user) do %>
-            <i class="fas fa-user" style="font-size: 24px"></i>
-            <% end %>
-          </div>
+    <div id="bookcard" class="d-flex list-inline justify-content-between" style="width: 280px; margin: 8px">
 
-          <div class="delete-user btn-user" style="padding-top: 16px; padding-left: 16px">
-            <%= link_to destroy_follower_path(user), method: 'delete' do %>
-            <i class="fas fa-user-slash" style="font-size: 24px"></i>
-            <% end %>
-          </div>
+
+    <% if user[0] == 'none' %>
+    <%= image_tag "Couverture_Livre_Neutre.jpg", alt: "alttext" %>
+    <% else %>
+    <%= link_to liste_show_path(user[0], status: 'follow') do  %>
+        <%= image_tag user[0].imageurl, alt: "alttext" %>
+    <% end %>
+    <% end %>
+
+    <div class="d-flex flex-column align-items-center">
+      <h2><%= user[1].first_name %></h2>
+      <div class="d-flex list-inline justify-content-around">
+        <div class="add-user btn-user">
+          <%= link_to profil_show_path(user[1]), class: 'btn btn-sm btn-ghost' do %>
+            <span><i class="fas fa-user" style="font-size: 12px;margin-top:3px" ></i>  Voir profil</span>
+          <% end %>
         </div>
+
+
       </div>
     </div>
-    <% end %>
+              <div class="delete-user btn-user">
+            <%= link_to destroy_follower_path(user[1]), method: 'delete' do %>
+            <i class="fas fa-times-circle" style="font-size: 24px"></i>
+            <% end %>
+          </div>
   </div>
+  <% end %>
+</div>
 </div>
 
 
