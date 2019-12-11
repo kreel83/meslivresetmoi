@@ -5,6 +5,7 @@
   flex-direction: column;
   border: dotted 0.5px $black;
   border-radius: 2px;
+  height: 590px;
 }
 
 .best-readings {
@@ -13,6 +14,7 @@
   flex-direction: column;
   border: dotted 0.5px $black;
   border-radius: 2px;
+  height: 740px;
 }
 
 .actual-readings {
@@ -23,8 +25,14 @@
   border-radius: 2px;
 }
 
-.colonne {
+.colonne-last {
   overflow-y: scroll;
-  height: 500px;
+  height: 530px;
+  padding: 0 4px;
+}
+
+.colonne-best {
+  overflow-y: scroll;
+  height: 680px;
   padding: 0 4px;
 }
