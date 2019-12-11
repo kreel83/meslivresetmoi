@@ -69,7 +69,7 @@
 
         </div>
         <% if (!reading.comment.nil? && reading.public) %>
-              <div class="liste" style="display: none">
+              <div class="liste" style="display: none;height: auto">
                   <p><small><%= time_ago_in_words(reading.updated_at)  %> ago</small></p>
                   <div><%= reading.comment %></div>
               </div>
