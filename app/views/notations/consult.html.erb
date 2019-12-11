@@ -11,6 +11,10 @@
   }
 </style>
 
+<% content_for :head do %>
+  <title>My books and me - <%= @livre.title %></title>
+<% end %>
+
 <div style="margin-top: 100px; margin-bottom: 100px">
   <h1 class="mb-3">Les indices des lecteurs</h1>
   <h3>Titre : <%= @livre.title %></h3>
