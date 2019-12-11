@@ -21,9 +21,11 @@
       <% Critere.tagged_with(@my_reading.tags[0]).each_with_index do |tag, index| %>
       <div id="<%= index %>">
         <div style="font-weight: bold"><%= tag.name %></div>
+        <% if !@my_notes.nil? %>
         <div style="font-weight: italic" class="mb-2">
           <%= 'Moi' %><%= render 'books/slider_passif', pos: @my_notes[index], status: "slide#{index}"  %>
         </div>
+        <% end %>
         <div style="font-weight: italic">
           <%= @other_reading.user.first_name %><%= render 'books/slider_passif', pos: @other_notes[index], status: "slide#{index}"  %>
         </div>
