@@ -545,6 +545,7 @@ readings.each do |reading|
   n = reading.notation
   moy = calc_indice(n)
   reading.update(indice: moy)
+  puts reading.livre.title
 end
 
 
