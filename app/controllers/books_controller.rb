@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   def index
     @ec = Reading.where(status: 'ec').where(user: current_user)
     @wl = Reading.where(status: 'wl').where(user: current_user)
-    @done = Reading.where(status: 'done').where(user: current_user)
+    @done = Reading.where(status: 'done').where(user: current_user).order(startdate: :desc).first(10)
     @liste = Reading.where(status: 'liste').where(user: current_user)
 
     @el = Endinglist.all

@@ -8,19 +8,18 @@
 
 =begin
 
-def calc_indice(note)
-  notations = note.split('/')
-  nb = notations.size-1
-  diviseur = 100.0 / nb
-  n = notations[0..-2]
-  n.map! do |item|
-    item.to_i * diviseur / 10
-  end
-  m1 = (n.sum / nb)  * 40.0
-  m2 = notations[-1].to_i * 60.0
-  moy = ((m1 + m2) / 20.0).round(2)
+  def calc_indice(note)
+    notations = note.split('/')
+    nb = notations.size-1
+    n = notations[0...-1]
 
-end
+    n.map! {|item| item.to_i}
+    somme = n.sum
+    m1 = (somme / nb)  * 0.4
+    m2 = notations[-1].to_i * 0.6
+    moy = ((m1 + m2) * 10).round(2)
+
+  end
 
 DISCOVER = ["Dans une libraire", "Emission de TV", "Magazine", "Conseil", "My Books & Me" ]
 
@@ -488,20 +487,20 @@ puts "Science fictions done"
 
 =end
 
+=begin
 
-def calc_indice(note)
-  notations = note.split('/')
-  nb = notations.size-1
-  diviseur = 100.0 / nb
-  n = notations[0..-2]
-  n.map! do |item|
-    item.to_i * diviseur / 10
+  def calc_indice(note)
+    notations = note.split('/')
+    nb = notations.size-1
+    n = notations[0...-1]
+
+    n.map! {|item| item.to_i}
+    somme = n.sum
+    m1 = (somme / nb)  * 0.4
+    m2 = notations[-1].to_i * 0.6
+    moy = ((m1 + m2) * 10).round(2)
+
   end
-  m1 = (n.sum / nb)  * 40.0
-  m2 = notations[-1].to_i * 60.0
-  moy = ((m1 + m2) / 20.0).round(2)
-
-end
 
 livres = Livre.all
 u = User.where(first_name: 'Alexandre').first
@@ -527,4 +526,25 @@ livres.each do |livre|
   r.save!
 puts livre.title
 end
+
+=end
+
+def calc_indice(note)
+  notations = note.split('/')
+  nb = notations.size-1
+  n = notations[0...-1]
+  n.map! {|item| item.to_i}
+  somme = n.sum
+  m1 = (somme / nb)  * 0.4
+  m2 = notations[-1].to_i * 0.6
+  moy = ((m1 + m2) * 10).round(2)
+end
+
+readings = Reading.where(status: 'done')
+readings.each do |reading|
+  n = reading.notation
+  moy = calc_indice(n)
+  reading.update(indice: moy)
+end
+
 
