@@ -6,6 +6,7 @@ class ListesController < ApplicationController
 
     else
     @livre = Ending.find(params[:id]).livre
+
   end
 
   end

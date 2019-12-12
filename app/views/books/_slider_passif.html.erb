@@ -28,7 +28,7 @@
 
 <div class="sliderPassif" style="border: 1px solid black">
   <% 10.times do |t| %>
-    <% if pos.to_i < t %>
+    <% if pos.to_i <= t %>
       <div data-id="<%= t %>" class="b desactived"></div>
     <% else %>
       <div data-id="<%= t %>" class="b actived"></div>
