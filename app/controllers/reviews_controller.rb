@@ -78,13 +78,13 @@ class ReviewsController < ApplicationController
   def calc_indice(note)
     notations = note.split('/')
     nb = notations.size-1
-    diviseur = 100.0 / nb
-    n = notations[0..-2]
-    n.map! do |item|
-      item.to_i * diviseur / 10
-    end
-    m1 = (n.sum / nb)  * 40.0
-    m2 = notations[-1].to_i * 60.0
-    moy = ((m1 + m2) / 20.0).round(2)
+    n = notations[0...-1]
+
+    n.map! {|item| item.to_i}
+    somme = n.sum
+    m1 = (somme / nb)  * 0.4
+    m2 = notations[-1].to_i * 0.6
+    moy = ((m1 + m2) * 10).round(2)
+
   end
 end
