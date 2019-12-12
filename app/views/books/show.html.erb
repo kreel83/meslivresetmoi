@@ -18,10 +18,14 @@
     <h1><%= @reading.livre.title %></h1>
 
 
+
   </div>
   <hr>
   <div class="middle" style="display: flex;justify-content: space-between;">
     <div style="font-style: italic"><%= @reading.livre.author %></div>
+        <% if @reading.status == 'done' %>
+      <h3><%= @reading.tags[0].name %> </h3>
+    <% end %>
     <% if @reading.status == 'ec' %>
     <% if @tag== []  %>
     <% s = "data-tag=none" %>
@@ -46,7 +50,7 @@
         </div>
         <div class="droite" style="justify-content: space-between;">
           <div class="comment" style="overflow-x: hidden;">
-            <div class="allcomment p-2" style="height: 300px;font-size: 1.3rem">
+            <div class="allcomment p-2" style="height: 300px;font-size: 1.8rem;font-size: bold">
               <%= @reading.livre.description.html_safe if !@reading.livre.description.nil? %>
             </div>
           </div>
