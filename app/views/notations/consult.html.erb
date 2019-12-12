@@ -7,7 +7,7 @@
     text-align: center;
     background-color: red;
     border-radius: 50%;
-    line-height: 50px;
+    line-height: 55px;
   }
 </style>
 
@@ -38,7 +38,7 @@
         <div class="row  align-items-center">
                     <div class="col-2">
                       <%= link_to profil_show_path(reading.user) do  %>
-                        <div class="avat" style="background-color: green">
+                        <div class="avat" style="background-color: #1d6ab7">
                           <%= "#{reading.user.first_name[0].upcase} #{reading.user.last_name[0].upcase}" %>
                         </div>
                       <% end %>
@@ -54,14 +54,14 @@
                     <div class="col-2">
                       <div>
                         <% if (!reading.comment.nil? && reading.public) %>
-                          <button class="btn btn-primary btn-sm comment">commentaire</button>
+                          <button class="btn btn-sm comment" style="color: white; background-color: #1d6ab7">commentaire</button>
                         <% end %>
                       </div>
                     </div>
 
                     <div class="col-2">
                       <%= link_to view_note_path(reading) do %>
-                        <div><%= reading.indice %></div>
+                        <div  style="width: 55px;height: 55px; border-radius:50%;border: 2px solid #1d6ab7; background-color: white; text-align: center; line-height: 55px; font-weight: bold"><%= reading.indice %></div>
                       <% end %>
                     </div>
                   </div>
