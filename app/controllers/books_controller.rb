@@ -6,6 +6,7 @@ class BooksController < ApplicationController
     @liste = Reading.where(status: 'liste').where(user: current_user)
 
     @el = Endinglist.all
+
   end
 
   def show

@@ -33,9 +33,9 @@
       </div>
       <hr>
       <% end %>
-
+<hr>
       <div id="99">
-        <div style="font-weight: bold">Ce livre vous a plu ?</div>
+        <div style="font-weight: bold">Satisfaction générale</div>
         <% if !@my_notes.nil? %>
         <div style="font-weight: italic" class="mb-2">
           <%= 'Moi' %><%= render 'books/slider_passif', pos: @my_notes[-1], status: "slide99"  %>
