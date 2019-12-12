@@ -33,6 +33,7 @@
           <div class="d-flex flex-column">
             <h2><%= @actual.livre.title %></h2>
             <h3><%= @actual.livre.author %></h3>
+            <h3><%= @actual.tags[0].name %></h3>
             <p>indice : <%= @actual.indice %></p>
           </div>
         </div>
@@ -50,7 +51,9 @@
             <div class="d-flex flex-column">
               <h2><%= t.livre.title %></h2>
               <h3><%= t.livre.author %></h3>
+              <h3 style="color: blue"><%= t.tags[0].name %></h3>
               <p>indice : <%= t.indice %></p>
+
             </div>
           </div>
           <% end %>
@@ -68,6 +71,7 @@
           <div class="d-flex flex-column">
             <h2><%= t.livre.title %></h2>
             <h3><%= t.livre.author %></h3>
+                     <h3 style="color: blue"><%= t.tags[0].name %></h3>
             <p>indice : <%= t.indice %></p>
           </div>
         </div>
