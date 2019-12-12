@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
+  <title>My books and me - Error 500</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
 
-  body {
-    background-size: cover;
-  }
-
   .rails-default-error-page {
-    background-color: #EFEFEF;
+
+    background: url('/images/Error500.png') no-repeat;
+    background-size: contain;
     color: #2E2F30;
     text-align: center;
     font-family: arial, sans-serif;
     margin: 0;
+    width: 100%;
+    height: 100vh;
   }
 
   .rails-default-error-page div.dialog {
     width: 95%;
     max-width: 33em;
-    margin: 4em auto 0;
+    margin: 0 auto;
+    margin-top: 400px;
+
   }
 
   .rails-default-error-page div.dialog > div {
@@ -36,10 +38,7 @@
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
 
-  .rails-default-error-page div.dialog > div > img {
-    background-image: url("../app/assets/images/loggo.png");
-    background-size: cover;
-  }
+
 
   .rails-default-error-page h1 {
     font-size: 100%;
@@ -50,7 +49,7 @@
   .rails-default-error-page div.dialog > p {
     margin: 0 0 1em;
     padding: 1em;
-    background-color: #F7F7F7;
+    background-color: red;
     border: 1px solid #CCC;
     border-right-color: #999;
     border-left-color: #999;
@@ -58,8 +57,13 @@
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     border-top-color: #DADADA;
-    color: #666;
+    color: white;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  }
+
+
+  .dialog {
+    margin-top: 100px;
   }
   </style>
 </head>
@@ -68,7 +72,6 @@
   <!-- This file lives in public/500.html -->
   <div class="dialog">
     <div>
-      <img src="/images/Error500.png" alt="">
       <h1>My books & me</h1>
       <p>Oouuuupppsss !!!! Il y a un problème...</p>
     </div>

@@ -1,15 +1,15 @@
 
 <% content_for :meta_title do %>
-  <title>My books and me - Accueil</title>
+  My books and me - Accueil
 <% end %>
 <div style="margin-bottom: 80px;margin-top: 66px">
 
-  <div class="titre">Lecture(s) en cours</div>
+  <div class="titre">Mes lectures du moment</div>
   <div class="ligne">
 
     <%= render 'shared/carousel', ec: @ec, status: 'ec', ajout: true %>
   </div>
-  <div class="titre">Wish list</div>
+  <div class="titre">Ma Wish list</div>
   <div class="ligne">
 
     <%= render 'shared/carousel', ec: @wl, status: 'wl', ajout: true  %>
@@ -21,8 +21,8 @@
   </div>
 
   <% @el.each do |liste| %>
-  <div class="titre"><%= liste.name %></div>
-  <div class="ligne">
+  <div class="titre"  style="background-color: #292929"><%= liste.name %></div>
+  <div class="ligne" style="background-color: #292929">
 
     <%= render 'shared/carousel', ec: liste.endings, status: 'liste', ajout: false %>
   </div>
