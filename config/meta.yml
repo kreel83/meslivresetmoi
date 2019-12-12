@@ -3,4 +3,4 @@
 meta_product_name: "MyBooks&Me"
 meta_title: "My books and me"
 meta_description: "Archiver et partager vos lectures"
-meta_image: "cover.png" # should exist in `app/assets/images/`
+meta_image: "cover.jpg" # should exist in `app/assets/images/`
