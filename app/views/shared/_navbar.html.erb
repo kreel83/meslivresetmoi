@@ -7,43 +7,41 @@
   }
 </style>
 
-<nav class="navbar navbar-expand-xl navbar-light flex-column flex-sm-row bg-dark fixed-top">
-  <%= link_to :back do  %>
-  <i class="fas fa-arrow-left" style="color:white;font-size: 30px;"></i>
-  <% end %>
-  <div id="logo" style="margin: 0 auto">
-    <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "loggo.png", class: 'logolivre'%>
+
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <%= link_to :back do  %>
+      <i class="fas fa-arrow-left" style="color:white;font-size: 25px;"></i>
     <% end %>
-  </div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <i class="fas fa-bars" style="color:white;font-size: 30px;"></i>
-  </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <div style="color:white;font-size: 1.5rem;background-color: #003f5c;text-align:center;border-bottom:">
-          <% if signed_in? %>
-          <%= "#{current_user.first_name.capitalize} #{current_user.last_name.upcase}" %>
-          <% end %>
+    <div class="collapse navbar-collapse" style="text-align: center" id="navbarCollapse">
+      <ul class="navbar-nav m-auto">
+
+        <li class="nav-item">
+          <%= link_to 'Accueil', books_path, class: "nav-link"  %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="books/search"  style="colortext-align:center">Rechercher</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete ,class: 'nav-link' %>
+        </li>
+      </ul>
+              <div class="nav-item">
+          <div style="color:white;text-align:center;border-bottom:">
+            <% if signed_in? %>
+            <%= "#{current_user.first_name.capitalize} #{current_user.last_name.upcase}" %>
+            <% end %>
+          </div>
         </div>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Accueil', books_path, style: "color:white; font-size: 1.5rem; text-align:center; border-bottom: 2px solid white", class: "nav-link"  %>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="books/search"  style="color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white">Rechercher</a>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete ,class: 'nav-link' ,style: "color:white;font-size:  1.5rem;text-align:center;border-bottom: 2px solid white" %>
-      </li>
+    </div>
+  </nav>
+</header>
 
 
-    </ul>
-
-  </div>
-</nav>
 
 
 
