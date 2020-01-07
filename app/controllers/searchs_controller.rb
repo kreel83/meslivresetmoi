@@ -1,47 +1,62 @@
 require 'json'
 require 'open-uri'
 
-
 class SearchsController < ApplicationController
   def index
-    params[:title]=nil if params[:title] == ''
-    params[:author]=nil if params[:author] == ''
+    params[:title] = nil if params[:title] == ''
+    params[:author] = nil if params[:author] == ''
+
     if params[:title].nil? && params[:author].nil?
       @fj = []
     else
-      title = params[:title].gsub(' ', '+')
-      title = ERB::Util.url_encode(title)
-
+      title = params[:title].gsub(' ', '+') unless params[:title].nil?
       author = ERB::Util.url_encode(params[:author])
-
-      title = '' if !params[:title]
-
-
-
-      titleText = "intitle:#{title}" if title != ''
-      authorText = "+inauthor:#{author}" if author != ''
-
-      url = "https://www.googleapis.com/books/v1/volumes?q=#{titleText}#{authorText}"
-
-      f = open(url).read
-      fj = JSON.parse(f)
-      @fj = fj['items']
-      last = ''
-      @tab = []
-      if @fj.nil?
-          @fj=[]
+      title = '' unless params[:title]
+      if title != ''
+        title_text = "intitle:#{title}"
       else
-        @fj.each do |item|
-          if !item['volumeInfo']['authors'].nil?
-            @tab << item  if last != item['volumeInfo']['title']
-            last = item['volumeInfo']['title']
-          end
-        end
-        @tab.sort_by! { |tab| tab['volumeInfo']['title'].downcase }
-        @fj = @tab
+        title_text = ''
       end
+      author_text = "+inauthor:\"#{author}\"" if author != ''
 
+      index = 0
+      continue = true
+      @total = []
+      while continue
+        url = "https://www.googleapis.com/books/v1/volumes?q=#{title_text}#{author_text}&maxResults=40&orderBy=newest&langRestrict=fr&startIndex=#{index}"
+        index += 40
+        f = open(url).read
+        fj = JSON.parse(f)
+        @fj = fj['items']
 
+        continue = false unless @fj.size == 39
+
+        if @fj.nil?
+          @fj = []
+        else
+          titles = []
+          @tab=[]
+          @fj.each do |item|
+            unless item['volumeInfo']['authors'].nil?
+              unless titles.include? item['volumeInfo']['title'].downcase
+                @tab << item
+                titles << item['volumeInfo']['title'].downcase
+              end
+            end
+          end
+          #@tab.sort_by! { |tab| tab['volumeInfo']['title'].downcase }
+          @fj = @tab
+        end
+        @authors = []
+        @fj.each do | auth |
+          auteur = auth['volumeInfo']['authors']
+          i = auteur.find_index { |item| item.gsub('.', '').downcase.include? params[:author].downcase }
+          if i
+          @authors << auteur[i] unless @authors.map { |s| s.downcase }.include? auteur[i].sub('.', '').downcase
+        end
+        end
+        @total << @fj
+      end
 
     end
   end

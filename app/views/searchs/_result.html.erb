@@ -2,8 +2,10 @@
     <input type="hidden" name="dataId" value="" id="id">
     <input type="hidden" name="status" value="<%= params[:status] %>">
     <div class="contains">
-      <% @fj.each do |book| %>
-      <div class="card mb-2">
+            <div class="row">
+      <% @total.each do |page| %>
+      <% page.each do |book| %>
+      <div class="card m-2">
         <div class="card-body d-flex list-inline p-0" style="height: 100px">
           <% if book['volumeInfo']['imageLinks'].nil? %>
           <div class="card-body-left">
@@ -15,12 +17,14 @@
           </div>
           <% end %>
           <div class="card-body-right d-flex flex-column align-content-center pt-3 ">
-            <div><%= book['volumeInfo']['title'] %></div>
-             <div style="color: grey"><%= book['volumeInfo']['authors'].join(', ') %></div>
+            <div style="font-size: 0.8rem; font-weight: bold"><%= book['volumeInfo']['title'] %></div>
+             <div style="color: grey;font-size: 0.6rem"><%= book['volumeInfo']['authors'].join(', ') %></div>
           </div>
         </div>
       </div>
       <% end %>
+      <% end %>
+    </div>
     </div>
   </form>
 

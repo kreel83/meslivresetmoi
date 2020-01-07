@@ -1,16 +1,18 @@
 import "bootstrap";
-import { searchfct } from '../search/search'
+import { searchfct, searchAuthor } from '../search/search'
 import { range_init} from '../notations/notes'
 import { definehidden, togglebtn } from '../books/definehidden'
 import { test, like } from '../ajax/tags'
 import { displaycomment} from '../consultations/commentaires.js'
 searchfct()
+searchAuthor()
 range_init()
 test()
 definehidden()
 togglebtn()
 displaycomment()
 like()
+
 
 
 

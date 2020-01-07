@@ -8,10 +8,10 @@
     <div class="d-flex flex-column">
       <div class="d-flex list-inline justify-content-between">
         <label for="title">Par titre :</label>
-        <input type="text" id="title" name="title">
+        <input type="text" id="title" name="title" value="<%= params[:title] %>">
 
         <label for="author">Par auteur :</label>
-        <input type="text" id="author" name="author">
+        <input type="text" id="author" name="author" value="<%= params[:author] %>">
       </div>
       <button type="submit" class="btn btn-primary">Lancer la recherche</button>
     </div>
@@ -23,8 +23,12 @@
       Aucun livre trouvé. Merci de vérifier votre recherche...
     </div>
   <% else %>
+    <% if @authors.size == 1 %>
+        <%= render 'searchs/result', fb: @fb %>
 
-    <%= render 'searchs/result', fb: @fb %>
+      <% else %>
+        <%= render 'searchs/author', authors: @authors %>
+    <% end %>
   <% end %>
 
 </div>

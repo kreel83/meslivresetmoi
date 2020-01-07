@@ -527,7 +527,7 @@ livres.each do |livre|
 puts livre.title
 end
 
-=end
+
 
 def calc_indice(note)
   notations = note.split('/')
@@ -547,5 +547,30 @@ readings.each do |reading|
   reading.update(indice: moy)
   puts reading.livre.title
 end
+
+=end
+require 'open-uri'
+require 'nokogiri'
+
+    Author.destroy_all
+    arr =[]
+    ('a'..'z').to_a.each do |letter|
+      puts "lettre #{letter}"
+      url = "https://www.livredepoche.com/auteurs/#{letter}"
+      html_file = open(url).read
+      html_doc = Nokogiri::HTML(html_file)
+      b = html_doc.search('.pager li:last a').text.to_i
+
+      b.times do |page|
+
+        url = "https://www.livredepoche.com/auteurs/#{letter}?page=#{page}"
+        html_file = open(url).read
+        html_doc = Nokogiri::HTML(html_file)
+        html_doc.search('.masonry-item').each do |element|
+            Author.create(author: element.search('.field-item>h2>a').text.strip)
+        end
+        puts "page=#{page}"
+      end
+    end
 
 
