@@ -1,0 +1,24 @@
+  <form action="/books/search" method="get" id="formAuthor">
+    <input type="hidden" name="author" value="" id="author">
+    <input type="hidden" name="title" value="" id="title">
+    <input type="hidden" name="status" value="<%= params[:status] %>">
+    <div class="contains">
+      <div class="row">
+        <% authors.each do |author| %>
+          <div class="card m-2 card-author" data-author="<%= author %>">
+            <div class="card-body d-flex list-inline p-0" style="height: 100px">
+
+              <div class="card-body-left">
+                <%= image_tag( 'Couverture_Livre_Neutre.jpg' , height: '100', width: '70') %>
+              </div>
+
+
+              <div class="card-body-right d-flex flex-column align-content-center pt-3 ">
+                <div style="font-size: 0.8rem; font-weight: bold"><%= author %></div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    </div>
+    </div>
+  </form>

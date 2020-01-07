@@ -11,8 +11,11 @@ Rails.application.routes.draw do
   patch 'books/:id/update', to: 'books#update', as: :book_update
   delete 'books/:id/destroy', to: 'books#destroy', as: :book_destroy
   post 'books/:id/notation', to: 'books#update_notation', as: :post_notation
+
   post 'books/:id/tags', to: 'books#update_tag', as: :book_update_tag, defaults: {format: :json}
   post 'books/:id/like', to: 'books#update_like', as: :book_update_like, defaults: {format: :json}
+  post 'books/searchAuthor', to: 'searchs#searchAuthor', as: :author_search, defaults: {format: :json}
+
   get 'books/:id/notations', to: "notations#index", as: :notations
   get 'books/:id/reviews/new', to: "reviews#new", as: :new_review
   post 'books/:id/reviews/new', to: "reviews#create"

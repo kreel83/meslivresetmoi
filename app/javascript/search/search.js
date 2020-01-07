@@ -1,3 +1,5 @@
+
+
 const searchfct = () => {
   $('.card img').click(function(){
     $('#id').val($(this).data('id'))
@@ -5,5 +7,14 @@ const searchfct = () => {
   })
 }
 
-export { searchfct }
+const searchAuthor = () => {
+  $('.card-author').click(function(){
+    $('#author').val($(this).data('author'))
+
+  })
+}
+
+
+
+export { searchfct, searchAuthor }
 
