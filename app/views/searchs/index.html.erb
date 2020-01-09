@@ -18,13 +18,14 @@
   </form>
 
   <hr>
-  <% if @fj.empty? %>
+  <% if @total.empty? %>
     <div style="background-color: #2d132c; padding: 15px;text-align: center; color:red;">
       Aucun livre trouvé. Merci de vérifier votre recherche...
     </div>
   <% else %>
-    <% if @authors.size == 1 %>
-        <%= render 'searchs/result', fb: @fb %>
+
+    <% if @authors.size <= 1 %>
+        <%= render 'searchs/result', total: @total %>
 
       <% else %>
         <%= render 'searchs/author', authors: @authors %>

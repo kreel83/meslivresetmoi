@@ -1,5 +1,7 @@
-#book-card {
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+.haut {
+  width: 100%;
+  display: flex;
+  justify-content: space-between
 }
 
 .image {
@@ -25,9 +27,7 @@
   font-weight: bold;
 }
 
-.haut  {
-  display: flex;
-}
+
 
 .droite {
   display: flex;
