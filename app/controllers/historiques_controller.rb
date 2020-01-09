@@ -13,9 +13,6 @@ class HistoriquesController < ApplicationController
 
     @historique.each do |reading|
 
-
-
-
       if reading.startdate.year == l
         m = reading.startdate.month
 
@@ -27,11 +24,14 @@ class HistoriquesController < ApplicationController
         annee[:date] = l
         annee[:livre] = []
         annee[:livre] = inputmonth(annee[:livre])
+        m = reading.startdate.month
+
+        annee[:livre][m-1][:book] << reading
       end
 
 
     end
-
+@tab << annee
 
 
   end

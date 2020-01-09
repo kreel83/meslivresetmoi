@@ -42,15 +42,15 @@
     </div>
   </div>
   <hr>
-  <div id="book-card" class="p-4 container" style="display: flex; justify-content: space-between;flex-direction: column;">
+  <div id="bookcard" class="p-4 container" style="">
     <!--     <div class="haut"> -->
       <div class="haut">
         <div class="gauche">
           <%= image_tag @reading.livre.imageurl, alt: "alttext", class: "image" %>
         </div>
-        <div class="droite" style="justify-content: space-between;">
+        <div class="droite" style="flex-grow: 1">
           <div class="comment" style="overflow-x: hidden;">
-            <div class="allcomment p-2" style="height: 300px;font-size: 1.8rem;font-size: bold">
+            <div class="allcomment p-2" style="height: 300px;font-size: 1rem;font-size: bold">
               <%= @reading.livre.description.html_safe if !@reading.livre.description.nil? %>
             </div>
           </div>
@@ -109,7 +109,7 @@
 
      </div>
      <hr>
-     <div class="info" style="padding: 30px">
+     <div class="info container" style="padding: 30px">
        <% if @status == 'done' %>
        <div style="font-size: 2rem">
         indice : <%= @reading.indice %>

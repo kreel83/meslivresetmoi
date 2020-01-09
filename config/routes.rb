@@ -35,7 +35,9 @@ Rails.application.routes.draw do
   post "books/:id/comment", to: "reviews#comment", as: :review_comment
 
 
+
   get "books/historique", to: "historiques#index", as: :historique
+  get "books/admin", to: "admins#index", as: :admin
 
 
   resources :readings do

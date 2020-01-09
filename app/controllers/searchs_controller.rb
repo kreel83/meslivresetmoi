@@ -8,6 +8,7 @@ class SearchsController < ApplicationController
 
     if params[:title].nil? && params[:author].nil?
       @fj = []
+      @total = []
     else
       title = params[:title].gsub(' ', '+') unless params[:title].nil?
       author = ERB::Util.url_encode(params[:author])
@@ -22,6 +23,7 @@ class SearchsController < ApplicationController
       index = 0
       continue = true
       @total = []
+      @authors = []
       while continue
         url = "https://www.googleapis.com/books/v1/volumes?q=#{title_text}#{author_text}&maxResults=40&orderBy=newest&langRestrict=fr&startIndex=#{index}"
         index += 40
@@ -29,11 +31,14 @@ class SearchsController < ApplicationController
         fj = JSON.parse(f)
         @fj = fj['items']
 
-        continue = false unless @fj.size == 39
+
 
         if @fj.nil?
           @fj = []
+          continue = false
         else
+          @fj = @fj.reject {|f| f['volumeInfo']['imageLinks'].nil? }
+          continue = false unless @fj.size == 39
           titles = []
           @tab=[]
           @fj.each do |item|
@@ -47,18 +52,31 @@ class SearchsController < ApplicationController
           #@tab.sort_by! { |tab| tab['volumeInfo']['title'].downcase }
           @fj = @tab
         end
-        @authors = []
+
         @fj.each do | auth |
           auteur = auth['volumeInfo']['authors']
-          i = auteur.find_index { |item| item.gsub('.', '').downcase.include? params[:author].downcase }
+
+          if params[:author]
+            i = auteur.find_index { |item| item.gsub('.', '').downcase.include? params[:author].downcase }
+          else
+            i = 0
+          end
           if i
-          @authors << auteur[i] unless @authors.map { |s| s.downcase }.include? auteur[i].sub('.', '').downcase
-        end
+            @authors << auteur[i] unless @authors.map { |s| s.gsub(/[\.\s]/, '').downcase }.include? auteur[i].gsub(/[\.\s]/, '').downcase
+          end
+
         end
         @total << @fj
+
       end
+      # a = @authors[1]
+      # aa = a.split(' ')
+      # aa.map! {| m | m.downcase.capitalize }
+      # t = aa.join('_')
+      # url = "https://fr.wikipedia.org/wiki/#{t}"
 
     end
+
   end
 
   def store

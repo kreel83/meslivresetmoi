@@ -5,7 +5,7 @@
     height: 250px;
   }
   .livre {
-    width: 300px;
+    width: 100px;
     margin: 5px;
 
   }
@@ -17,11 +17,16 @@ margin-bottom: 4px;
   }
 
   .month {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    padding-top: 50px;
-    font-size: 2rem;
+
+    padding-top: 10px;
+    font-size: 1rem;
   }
+  .contain-livre {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+
 
 </style>
 
@@ -29,38 +34,37 @@ margin-bottom: 4px;
   My books and me - Mon historique
 <% end %>
 
-<div style="margin: 66px 0;padding: 0 16px">
+<div class="container" style="padding: 30px 50px;margin-top: 60px">
 
-
-  <div>
     <% @tab.each do |annee| %>
 
     <div style="font-size: 2rem">
       <%= annee[:date] %>
     </div>
 
-    <div class="ligne">
+
       <% annee[:livre].each do |livre| %>
-      <div class="livre month" style="color: <%= livre[:color] %>">
-        <%= livre[:month] %>
-      </div>
-      <% livre[:book].each do |l| %>
+        <% if !livre[:book].empty? %>
+        <div class="livre month" style="color: <%= livre[:color] %>">
+          <%= livre[:month] %>
+        </div>
+        <div class="contain-livre">
+        <% livre[:book].each do |l| %>
 
+          <div class="livre">
 
-      <div class="livre">
-        <div class="visuel" style="background-color: <%= livre[:color] %> "></div>
-        <div>
-          <%= link_to liste_show_path(l.livre, status: 'follow') do  %>
-            <%= image_tag l.livre.imageurl, alt: "alttext", style: 'height: 200px' %>
-          <% end %>
+            <div>
+              <%= link_to liste_show_path(l.livre, status: 'follow') do  %>
+                <%= image_tag l.livre.imageurl, alt: "alttext", style: 'height: 150px; border: 1px solid grey' %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
         </div>
 
-      </div>
-
       <% end %>
-      <% end %>
-    </div>
+<%end %>
 
     <% end %>
-  </div>
+
 </div>
