@@ -24,7 +24,10 @@
           <%= link_to 'Accueil', books_path, class: "nav-link"  %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="books/search"  style="colortext-align:center">Rechercher</a>
+          <a class="nav-link" href="/books/followers"  style="colortext-align:center">Ma communauté</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/books/historique"  style="colortext-align:center">Mon historique</a>
         </li>
         <li class="nav-item">
           <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete ,class: 'nav-link' %>
