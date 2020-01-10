@@ -84,6 +84,11 @@ class SearchsController < ApplicationController
     session['search'] = params[:dataId]
 
 
+    if status.include? 'liste'
+      redirect_to admin_liste_store_path(googleid: params[:dataId], status: params[:status])
+      return
+    end
+
     search = Livre.where(googleid: params[:dataId])
     if search == []
       url = "https://www.googleapis.com/books/v1/volumes/#{params[:dataId]}"

@@ -6,7 +6,17 @@
 
 <div class="container" style="margin-top: 60px">
   <h1>administration du site</h1>
+  <hr>
+<button class="btn btn-primary" id="addListe">Ajouter une liste</button>
+<div class="listeAjout" hidden>
+  <form action="/admin/storeNewListe" method="post" >
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="text" class="form-control" name="addliste">
+  <button type="submit" class="btn btn-primary" class="form-control">Ajouter</button>
+</form>
+</div>
 
+  <hr>
 <div class="accordion" id="accordionExample">
   <% @total.each_with_index do |liste, index| %>
 
@@ -19,15 +29,23 @@
         </button>
       </h2>
     </div>
-
-    <div id="collapse<%= index %>" class="collapse" aria-labelledby="heading<%= index %>" data-parent="#accordionExample">
+    <% s= '' %>
+    <% s=" show" if @select == liste['liste'] %>
+    <div id="collapse<%= index %>" class="collapse <%= s %>" aria-labelledby="heading<%= index %>" data-parent="#accordionExample">
       <div class="card-body" style="display: flex;flex-wrap: wrap">
+        <div style="width: 120px;" id="add<%=liste['liste'] %>">
+            <div class="" style="width: 100px;height: 150px;border: 1px solid grey"></div>
+            <div class="options">
+              <%= link_to 'add', admin_add_path(status: "liste"+liste['liste']),  class:"btn btn-success btn-sm d-block w-50"%>
+
+            </div>
+        </div>
         <% liste['livres'].each do |livre| %>
-        <div style="width: 120px;">
+        <div style="width: 120px;" id="<%= livre.id %>">
           <%= image_tag Livre.find(livre.livre_id).imageurl, alt: "alttext", style: 'margin: 3px; height: 150px;width:100px' %>
 
         <div class="options">
-          <button class="btn btn-danger btn-sm d-block w-50">X</button>
+          <button class="btn btn-danger btn-sm d-block w-50 del" data-id="<%= livre.id %>">X</button>
         </div>
         </div>
         <% end %>

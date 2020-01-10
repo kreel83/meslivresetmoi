@@ -163,11 +163,20 @@
 
 
         <div class="icons" >
+          <%= link_to "https://www.fnac.com/SearchResult/ResultList.aspx?SCat=0%211&Search=#{@reading.livre.title}&sft=1&sa=0", target: "_blank" do   %>
           <div><%= image_tag ( "fnac.png")%></div>
-          <div><%= image_tag ( "rdcc.png") %></div>
+          <% end %>
+          <%= link_to "https://www.cultura.com/catalogsearch/result/?q=#{@reading.livre.title}&classification=27674&mode=grid&p=1", target: "_blank" do   %>
+          <div><%= image_tag ( "cultura.png") %></div>
+                    <% end %>
+          <%= link_to "https://www.amazon.fr/s?k=#{@reading.livre.title}&i=stripbooks&__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss", target: "_blank" do  %>
           <div><%= image_tag ( "amazon.png")%></div>
-          <div><%= image_tag ( "ebay.png")%></div>
-          <div><%= image_tag ( "cdiscount.png") %></div>
+          <% end %>
+          <%= link_to "https://www.rueducommerce.fr/recherche/#{@reading.livre.title}?sort=score&universe=MC-6854&view=list", target: "_blank" do  %>
+
+          <div><%= image_tag ( "rdcc.png")%></div>
+                    <% end %>
+
         </div>
 
 

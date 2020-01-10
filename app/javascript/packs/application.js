@@ -4,6 +4,7 @@ import { range_init} from '../notations/notes'
 import { definehidden, togglebtn } from '../books/definehidden'
 import { test, like } from '../ajax/tags'
 import { displaycomment} from '../consultations/commentaires.js'
+import { admin_delete, listeAdd} from '../admin/admin.js'
 searchfct()
 searchAuthor()
 range_init()
@@ -12,6 +13,8 @@ definehidden()
 togglebtn()
 displaycomment()
 like()
+admin_delete()
+listeAdd()
 
 
 

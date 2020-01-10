@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   post 'books/:id/tags', to: 'books#update_tag', as: :book_update_tag, defaults: {format: :json}
   post 'books/:id/like', to: 'books#update_like', as: :book_update_like, defaults: {format: :json}
   post 'books/searchAuthor', to: 'searchs#searchAuthor', as: :author_search, defaults: {format: :json}
+  post 'admin/delete', to: 'admins#delete', as: :admin_delete, defaults: {format: :json}
+  get 'admin/add', to: 'admins#add', as: :admin_add
+  get 'admin/liste/store', to: 'admins#store', as: :admin_liste_store
+  post 'admin/storeNewListe', to: 'admins#storeListe', as: :admin_store_liste
 
   get 'books/:id/notations', to: "notations#index", as: :notations
   get 'books/:id/reviews/new', to: "reviews#new", as: :new_review
